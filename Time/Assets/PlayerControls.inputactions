@@ -1,0 +1,60 @@
+{
+    "name": "PlayerControls",
+    "maps": [
+        {
+            "name": "Player",
+            "id": "03d35a53-b83f-44b4-b9d6-8ff82cc0d389",
+            "actions": [
+                {
+                    "name": "Heal",
+                    "type": "Button",
+                    "id": "d20fc14a-4aed-4449-961e-395223c5ea4a",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Damage",
+                    "type": "Button",
+                    "id": "4cbcf736-da6a-48df-97df-76106cd7e27d",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "4a0db506-72a7-4152-806f-d1d4a33f4ba0",
+                    "path": "<Keyboard>/h",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Heal",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b378a756-567c-40be-bc5c-ad291fb54b2d",
+                    "path": "<Keyboard>/k",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Damage",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "UI",
+            "id": "ee66ce82-926a-4383-be95-89f9c6e76dd4",
+            "actions": [],
+            "bindings": []
+        }
+    ],
+    "controlSchemes": []
+}
