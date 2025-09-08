@@ -10,17 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5267f8265d5cbdb48b00dbbe5ec3c934, type: 3}
-  m_Name: Oxy-soin
+  m_Name: "Mur d'oxyg\xE8ne"
   m_EditorClassIdentifier: 
-  cardName: Oxy-soin
-  cardType: 02000000
-  health: 0
-  damageMin: 0
-  damageMax: 0
-  protectMin: 0
-  protectMax: 0
-  healMin: 10
-  healMax: 20
+  cardName: "Mur d'oxyg\xE8ne"
+  cardType: 01000000
+  damage: 0
+  protect: 5
+  heal: 0
   damageType: 
-  protectType: 
-  healType: 00000000
+  protectType: 00000000
+  healType: 

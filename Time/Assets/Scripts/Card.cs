@@ -9,13 +9,10 @@ namespace Time
     {
         public string cardName;
         public List<CardType> cardType;
-        public int health;
-        public int damageMin;
-        public int damageMax;
-        public int protectMin;
-        public int protectMax;
-        public int healMin;
-        public int healMax;
+        public int damage;
+        public int protect;
+        public int heal;
+        public string descriptionCard;
         public List<DamageType> damageType;
         public List<ProtectType> protectType;
         public List<HealType> healType;
