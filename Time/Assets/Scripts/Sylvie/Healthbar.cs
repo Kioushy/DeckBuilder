@@ -22,6 +22,9 @@ public class Health : MonoBehaviour
     bool death;
     // public GameObject diePanel;
 
+    // --- TODO : mettre à jour pour que le temps s'écoule automatiquement 
+    // Full bar : 1h (60f * 60f) ou 45 min
+
     private void Awake()
     {
         // Si le slider n'est pas assigné dans l'Inspecteur, nous le trouvons automatiquement
