@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Requin-Face_0: 2808147557546146705
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
