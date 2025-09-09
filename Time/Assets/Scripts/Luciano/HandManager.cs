@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Collections;
 using Time;
 
-public class NewMonoBehaviourScript : MonoBehaviour
+public class HandManager : MonoBehaviour
 {
+    public DeckManager deckManager;
     public GameObject cardPrefab; //assign card Prefab in the inspector
     public Transform handTransform; //Là où se trouvera la position de la main
     public float fanSpread = 5f;
@@ -13,18 +14,19 @@ public class NewMonoBehaviourScript : MonoBehaviour
     public List<GameObject> cardsInHand = new List<GameObject>(); //tenir la liste des cartes object dans la main
     void Start()
     {
-        AddCardToHand();
-        AddCardToHand();
-        AddCardToHand();
+       
     }
 
     // Update is called once per frame
  
-    public void AddCardToHand()
+    public void AddCardToHand(Card cardData)
     {
         //instancier la carte
         GameObject newCard = Instantiate(cardPrefab, handTransform.position, Quaternion.identity, handTransform);
         cardsInHand.Add(newCard);
+
+        //Set the CardData of the instantiated card 
+        newCard.GetComponent<CardDisplay>().cardData = cardData;
 
         UpdateHandVisuals();
     }

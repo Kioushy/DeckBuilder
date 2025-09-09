@@ -17,6 +17,7 @@ MonoBehaviour:
   damage: 0
   protect: 0
   heal: 10
+  descriptionCard: "Vous octroie un soin de 10 minutes d'oxyg\xE8ne. "
   damageType: 
   protectType: 
   healType: 00000000

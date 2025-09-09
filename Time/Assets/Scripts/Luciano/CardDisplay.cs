@@ -24,9 +24,9 @@ public class CardDisplay : MonoBehaviour
 
        private Color[] typeColors =
     {
-        new Color(0.04313726f, 0.2745098f, 0.5960785f), //carte attaque 
-        new Color(0.04313726f, 0.2745098f, 0.5960785f),// carte défense
-        new Color(0.972549f, 0.7254902f, 0.227451f) // carte spécial
+        new Color(0.04313726f, 0.2745098f, 0.5960785f), //icône mono 
+        new Color(1f, 1f, 1f),// icône multi
+        new Color(0f, 0f, 0f) // icône overtime
     };
     void Start()
     {

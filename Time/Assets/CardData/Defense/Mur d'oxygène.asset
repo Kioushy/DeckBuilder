@@ -17,6 +17,7 @@ MonoBehaviour:
   damage: 0
   protect: 5
   heal: 0
+  descriptionCard: "Octroie une protection d'oxyg\xE8ne de 5 minutes."
   damageType: 
   protectType: 00000000
   healType: 
