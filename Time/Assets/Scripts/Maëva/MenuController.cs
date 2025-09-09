@@ -1,14 +1,32 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using System;
 
 public class PauseMenuController : MonoBehaviour
 {
-    private static bool isPaused = false;
+    public static bool isPaused = false;
+
     private GameObject pausePanel;
     private GameObject settingsPanel;
 
-    void Update()
+    private Button resumeButton;
+    private Button settingButton;
+    private Button menuButton;
+    private Button settingExitButton;
+
+    private Dropdown resolutionDropdown;
+    private Slider volumeSlider;
+    private Toggle fullscreenToggle;
+
+    private void Awake()
+    {
+        // Persiste entre les scènes
+        DontDestroyOnLoad(gameObject);
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
@@ -17,112 +35,121 @@ public class PauseMenuController : MonoBehaviour
         }
     }
 
-    void OpenPauseMenu()
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        isPaused = false;
+        Time.timeScale = 1f;
+    }
+
+    // Callback optionnel pour actions après chargement
+    public void OpenPauseMenu(Action onReady = null)
+    {
+        if (!SceneManager.GetSceneByName("PauseMenu").isLoaded)
+        {
+            SceneManager.LoadSceneAsync("PauseMenu", LoadSceneMode.Additive).completed += (op) =>
+            {
+                SetupPauseMenu();
+                onReady?.Invoke();
+            };
+        }
+        else
+        {
+            SetupPauseMenu();
+            onReady?.Invoke();
+        }
+    }
+
+    public void SetupPauseMenu()
+    {
+        Scene pauseScene = SceneManager.GetSceneByName("PauseMenu");
+        if (!pauseScene.isLoaded) return;
+
+        GameObject[] roots = pauseScene.GetRootGameObjects();
+        foreach (GameObject root in roots)
+        {
+            // Panels
+            pausePanel = root.transform.Find("MenuPause Panel")?.gameObject;
+            settingsPanel = root.transform.Find("SettingScreen")?.gameObject;
+
+            if (pausePanel != null) pausePanel.SetActive(true);
+            if (settingsPanel != null) settingsPanel.SetActive(false);
+
+            // Boutons MenuPause
+            resumeButton = root.transform.Find("MenuPause Panel/Resume")?.GetComponent<Button>();
+            settingButton = root.transform.Find("MenuPause Panel/Setting")?.GetComponent<Button>();
+            menuButton = root.transform.Find("MenuPause Panel/Menu")?.GetComponent<Button>();
+
+            resumeButton?.onClick.RemoveAllListeners();
+            resumeButton?.onClick.AddListener(ResumeGame);
+
+            settingButton?.onClick.RemoveAllListeners();
+            settingButton?.onClick.AddListener(OpenSettings);
+
+            menuButton?.onClick.RemoveAllListeners();
+            menuButton?.onClick.AddListener(ReturnToMainMenu);
+
+            // Bouton Setting Exit
+            settingExitButton = root.transform.Find("SettingScreen/Exit")?.GetComponent<Button>();
+            settingExitButton?.onClick.RemoveAllListeners();
+            settingExitButton?.onClick.AddListener(BackToPauseMenu);
+
+            // Dropdown / Slider / Toggle
+            resolutionDropdown = root.transform.Find("SettingScreen/Resolution/Dropdown")?.GetComponent<Dropdown>();
+            if (resolutionDropdown != null)
+            {
+                resolutionDropdown.onValueChanged.RemoveAllListeners();
+                resolutionDropdown.onValueChanged.AddListener(ChangeResolution);
+            }
+
+            volumeSlider = root.transform.Find("SettingScreen/volume/Slider")?.GetComponent<Slider>();
+            if (volumeSlider != null)
+            {
+                volumeSlider.onValueChanged.RemoveAllListeners();
+                volumeSlider.onValueChanged.AddListener(ChangeVolume);
+            }
+
+            fullscreenToggle = root.transform.Find("SettingScreen/fullscreen/Toggle")?.GetComponent<Toggle>();
+            if (fullscreenToggle != null)
+            {
+                fullscreenToggle.onValueChanged.RemoveAllListeners();
+                fullscreenToggle.onValueChanged.AddListener(SetFullscreen);
+            }
+        }
+
         isPaused = true;
         Time.timeScale = 0f;
-
-        // Charger la scène du menu pause en Additive
-        SceneManager.LoadSceneAsync("PauseMenu", LoadSceneMode.Additive).completed += (op) =>
-        {
-            Scene pauseScene = SceneManager.GetSceneByName("PauseMenu");
-            if (pauseScene.isLoaded)
-            {
-                GameObject[] roots = pauseScene.GetRootGameObjects();
-
-                foreach (GameObject go in roots)
-                {
-                    // Récupérer les panels
-                    pausePanel = go.transform.Find("MenuPause Panel")?.gameObject;
-                    settingsPanel = go.transform.Find("SettingScreen")?.gameObject;
-
-                    if (pausePanel != null) pausePanel.SetActive(true);
-                    if (settingsPanel != null) settingsPanel.SetActive(false);
-
-                    // Boutons du menu principal
-                    go.transform.Find("MenuPause Panel/Resume")?.GetComponent<Button>()
-                        .onClick.AddListener(ResumeGame);
-
-                    go.transform.Find("MenuPause Panel/Setting")?.GetComponent<Button>()
-                        .onClick.AddListener(OpenSettings);
-
-                    go.transform.Find("MenuPause Panel/Menu")?.GetComponent<Button>()
-                        .onClick.AddListener(ReturnToMainMenu);
-
-                    // Boutons du menu Settings
-                    go.transform.Find("SettingScreen/Exit")?.GetComponent<Button>()
-                        .onClick.AddListener(BackToPauseMenu);
-
-                    // Dropdown Résolution
-                    Dropdown resDropdown = go.transform.Find("SettingScreen/Resolution/Dropdown")
-                        ?.GetComponent<Dropdown>();
-                    if (resDropdown != null)
-                    {
-                        resDropdown.onValueChanged.AddListener(ChangeResolution);
-                    }
-
-                    // Slider Volume
-                    Slider volumeSlider = go.transform.Find("SettingScreen/volume/Slider")
-                        ?.GetComponent<Slider>();
-                    if (volumeSlider != null)
-                    {
-                        volumeSlider.onValueChanged.AddListener(ChangeVolume);
-                    }
-
-                    // Toggle Fullscreen
-                    Toggle fullscreenToggle = go.transform.Find("SettingScreen/fullscreen/Toggle")
-                        ?.GetComponent<Toggle>();
-                    if (fullscreenToggle != null)
-                    {
-                        fullscreenToggle.onValueChanged.AddListener(SetFullscreen);
-                    }
-                }
-            }
-        };
     }
 
     public void ResumeGame()
     {
         isPaused = false;
         Time.timeScale = 1f;
-        SceneManager.UnloadSceneAsync("PauseMenu");
+        if (SceneManager.GetSceneByName("PauseMenu").isLoaded)
+            SceneManager.UnloadSceneAsync("PauseMenu");
     }
 
-    void OpenSettings()
+    public void OpenSettings()
     {
+        if (pausePanel == null || settingsPanel == null) SetupPauseMenu();
         if (pausePanel != null) pausePanel.SetActive(false);
         if (settingsPanel != null) settingsPanel.SetActive(true);
     }
 
-    void BackToPauseMenu()
+    public void BackToPauseMenu()
     {
         if (pausePanel != null) pausePanel.SetActive(true);
         if (settingsPanel != null) settingsPanel.SetActive(false);
     }
 
-    void ReturnToMainMenu()
+    public void ReturnToMainMenu()
     {
         Time.timeScale = 1f;
         isPaused = false;
-        SceneManager.LoadScene("MainMenu"); // quand tu auras ta scène principale
+        SceneManager.LoadScene("MainMenu");
     }
 
     // ---------- Paramètres ----------
-    void ChangeResolution(int index)
-    {
-        Debug.Log("Changer résolution : " + index);
-        // TODO: appliquer Screen.SetResolution selon options
-    }
-
-    void ChangeVolume(float value)
-    {
-        Debug.Log("Changer volume : " + value);
-        AudioListener.volume = value;
-    }
-
-    void SetFullscreen(bool isFullscreen)
-    {
-        Debug.Log("Fullscreen : " + isFullscreen);
-        Screen.fullScreen = isFullscreen;
-    }
+    private void ChangeResolution(int index) { Debug.Log("Changer résolution : " + index); }
+    private void ChangeVolume(float value) { AudioListener.volume = value; }
+    private void SetFullscreen(bool isFullscreen) { Screen.fullScreen = isFullscreen; }
 }
