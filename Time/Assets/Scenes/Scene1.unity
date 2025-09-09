@@ -1077,6 +1077,18 @@ PrefabInstance:
       propertyPath: m_AnchorMax.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1285500631646437743, guid: 563fde2b762e07e4c85595e9e36202f8, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3331048245906002574, guid: 563fde2b762e07e4c85595e9e36202f8, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3331048245906002574, guid: 563fde2b762e07e4c85595e9e36202f8, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -390
+      objectReference: {fileID: 0}
     - target: {fileID: 3331662860256948922, guid: 563fde2b762e07e4c85595e9e36202f8, type: 3}
       propertyPath: m_Name
       value: HealthBarPlayer
@@ -1160,6 +1172,18 @@ PrefabInstance:
     - target: {fileID: 4552515672440841631, guid: 563fde2b762e07e4c85595e9e36202f8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4572576948655936558, guid: 563fde2b762e07e4c85595e9e36202f8, type: 3}
+      propertyPath: m_UiScaleMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4572576948655936558, guid: 563fde2b762e07e4c85595e9e36202f8, type: 3}
+      propertyPath: m_ReferenceResolution.x
+      value: 1920
+      objectReference: {fileID: 0}
+    - target: {fileID: 4572576948655936558, guid: 563fde2b762e07e4c85595e9e36202f8, type: 3}
+      propertyPath: m_ReferenceResolution.y
+      value: 1080
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
