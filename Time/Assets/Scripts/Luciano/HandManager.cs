@@ -33,7 +33,7 @@ public class HandManager : MonoBehaviour
 
     void Update()
     {
-        UpdateHandVisuals();
+        
     }
     private void UpdateHandVisuals()
     {
