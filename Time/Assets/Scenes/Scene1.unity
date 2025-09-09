@@ -129,6 +129,7 @@ GameObject:
   m_Component:
   - component: {fileID: 258845092}
   - component: {fileID: 258845093}
+  - component: {fileID: 258845094}
   m_Layer: 0
   m_Name: Meduse
   m_TagString: Enemy
@@ -207,6 +208,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &258845094
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 258845091}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb1b2c60254450849a0188736902da8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 3
+  healthBarPrefabPath: UI/HealthBarEnemy
 --- !u!1001 &711425573
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -229,11 +244,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4615679235433826219, guid: 6fe9b19e53a8b1040939b68a0e98fc73, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5966112167936121212, guid: 6fe9b19e53a8b1040939b68a0e98fc73, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5966112167936121212, guid: 6fe9b19e53a8b1040939b68a0e98fc73, type: 3}
       propertyPath: m_LocalPosition.x
@@ -609,11 +624,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4615679235433826219, guid: 6fe9b19e53a8b1040939b68a0e98fc73, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5966112167936121212, guid: 6fe9b19e53a8b1040939b68a0e98fc73, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5966112167936121212, guid: 6fe9b19e53a8b1040939b68a0e98fc73, type: 3}
       propertyPath: m_LocalPosition.x
@@ -832,6 +847,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2044369420}
   - component: {fileID: 2044369421}
+  - component: {fileID: 2044369422}
   m_Layer: 0
   m_Name: Requin
   m_TagString: Enemy
@@ -910,6 +926,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &2044369422
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2044369419}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb1b2c60254450849a0188736902da8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 3
+  healthBarPrefabPath: UI/HealthBarEnemy
 --- !u!1001 &2378843964023103079
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -932,15 +962,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4615679235433826219, guid: 6fe9b19e53a8b1040939b68a0e98fc73, type: 3}
       propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5966112167936121212, guid: 6fe9b19e53a8b1040939b68a0e98fc73, type: 3}
-      propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5966112167936121212, guid: 6fe9b19e53a8b1040939b68a0e98fc73, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5966112167936121212, guid: 6fe9b19e53a8b1040939b68a0e98fc73, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -70
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8239691712111502654, guid: 6fe9b19e53a8b1040939b68a0e98fc73, type: 3}
       propertyPath: m_Pivot.x
@@ -1035,6 +1065,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1172966361188862060, guid: 563fde2b762e07e4c85595e9e36202f8, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -834
+      objectReference: {fileID: 0}
+    - target: {fileID: 1172966361188862060, guid: 563fde2b762e07e4c85595e9e36202f8, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -13
+      objectReference: {fileID: 0}
     - target: {fileID: 1285500631646437743, guid: 563fde2b762e07e4c85595e9e36202f8, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
