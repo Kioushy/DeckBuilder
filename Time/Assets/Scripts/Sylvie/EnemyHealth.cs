@@ -39,8 +39,6 @@ public class EnemyHealth : MonoBehaviour
         }
     }
 
-
-
     private void SetupHealthBar()
     {
 
@@ -106,8 +104,12 @@ public class EnemyHealth : MonoBehaviour
 
         animator.SetTrigger("Die"); // Lance anim de mort
         GetComponent<Collider2D>().enabled = false; // optionnel : désactive collisions
-        // GetComponent<Rigidbody2D>().simulated = false; // optionnel : stop physique
-        
+
+        // On notifie le GameFlowManager que l'ennemi est mort
+        if (GameFlowManager.Instance != null)
+        {
+            GameFlowManager.Instance.EnemyDied();
+        }
         // On détruit l'ennemi après un délai, la barre de vie sera détruite via OnDestroy()
         Destroy(gameObject, 1f); // ou Animation Event pour caler pile la durée
     }
