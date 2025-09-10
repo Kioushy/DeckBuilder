@@ -1,7 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
-using Time;
 
 #if UNITY_EDITOR
 using UnityEditor;

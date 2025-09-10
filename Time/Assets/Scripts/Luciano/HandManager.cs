@@ -1,7 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
-using Time;
 
 public class HandManager : MonoBehaviour
 {

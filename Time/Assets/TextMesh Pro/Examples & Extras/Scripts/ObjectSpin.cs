@@ -40,7 +40,7 @@ namespace TMPro.Examples
             switch (Motion)
             {
                 case MotionType.Rotation:
-                    m_transform.Rotate(0, SpinSpeed * Time.deltaTime, 0);
+                    m_transform.Rotate(0, SpinSpeed * UnityEngine.Time.deltaTime, 0);
                     break;
                 case MotionType.SearchLight:
                     m_time += SpinSpeed * Time.deltaTime;

@@ -2,8 +2,8 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-namespace Time
-{
+
+
     [CreateAssetMenu(fileName = "New Card", menuName = "Card")]
     public class Card : ScriptableObject
     {
@@ -29,4 +29,3 @@ namespace Time
             Special,
         }
     }
-}

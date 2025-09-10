@@ -21,6 +21,7 @@ public class PauseMenuController : MonoBehaviour
 
     private void Awake()
     {
+        
         // Persiste entre les scènes
         DontDestroyOnLoad(gameObject);
         SceneManager.sceneLoaded += OnSceneLoaded;
@@ -39,6 +40,7 @@ public class PauseMenuController : MonoBehaviour
     {
         isPaused = false;
         Time.timeScale = 1f;
+        
     }
 
     // Callback optionnel pour actions après chargement
