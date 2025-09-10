@@ -12,7 +12,7 @@ public class EnemyHealth : MonoBehaviour
     [SerializeField] private string healthBarPrefabPath = "UI/HealthBarEnemy";
 
     //Références privées
-    private float currentHealth;
+    public static float currentHealth;
     private bool isDead = false;   
     private Animator animator;
 
