@@ -47,11 +47,10 @@ public class HealthBarPlayer : MonoBehaviour
 
     private void Start()
     {
-        // On récupère directement la référence du Slider via l'UIManager
-        if (UIManager.Instance != null)
-        {
-            playerHealthSlider = UIManager.Instance.GetPlayerHealthSlider();
-        }
+        // On récupère directement la référence du Slider sur le GameObject
+    
+        playerHealthSlider  = GetComponent<Slider>();
+        
 
         // Si on n'a toujours pas de slider (soit il n'est pas assigné,
         // soit il n'est pas un enfant de cet objet), on arrête
