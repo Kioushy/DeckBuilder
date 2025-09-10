@@ -786,6 +786,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 297893833667884368, guid: 166d46288398d954099232c4ba645821, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 297893833667884368, guid: 166d46288398d954099232c4ba645821, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2588731978202788192, guid: 166d46288398d954099232c4ba645821, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.8
@@ -830,8 +838,24 @@ PrefabInstance:
       propertyPath: m_Name
       value: Meduse
       objectReference: {fileID: 0}
+    - target: {fileID: 5232241984852460183, guid: 166d46288398d954099232c4ba645821, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5232241984852460183, guid: 166d46288398d954099232c4ba645821, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5682777960420363760, guid: 166d46288398d954099232c4ba645821, type: 3}
       propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6510345763206061120, guid: 166d46288398d954099232c4ba645821, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9034359052105150370, guid: 166d46288398d954099232c4ba645821, type: 3}
+      propertyPath: m_PresetInfoIsWorld
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
