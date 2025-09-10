@@ -830,6 +830,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Meduse
       objectReference: {fileID: 0}
+    - target: {fileID: 5682777960420363760, guid: 166d46288398d954099232c4ba645821, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
