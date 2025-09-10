@@ -9,7 +9,7 @@ public class MainMenuController : MonoBehaviour
     private Button quitButton;
 
     private GameObject transitionPanel;
-    private float transitionTime = 2f;
+    private float transitionTime = 5f;
 
     private AudioSource audioSource;
 
@@ -42,11 +42,11 @@ public class MainMenuController : MonoBehaviour
         audioSource.clip = clip;
 
         // Bubble
-        bubblePrefab = GameObject.Find("TransitionPanel/BubblePrefab");
+        bubblePrefab = transitionPanel != null ? transitionPanel.transform.Find("BubblePrefab")?.gameObject : null;
         if (bubblePrefab != null)
-            Debug.LogWarning("BubblePrefab introuvable !");
+            bubblePrefab.SetActive(false );
         else
-            bubblePrefab.SetActive(false);
+            Debug.LogWarning("BubblePrefab introuvable !");
     }
 
     private void OnStartClicked()
@@ -60,9 +60,9 @@ public class MainMenuController : MonoBehaviour
             audioSource.Play();
 
         // Générer les bulles
-        BubbleEffect bubbles = transitionPanel.AddComponent<BubbleEffect>();
-        bubbles.bubblePrefab = GameObject.Find("TransitionPanel/BubblePrefab");
-        bubbles.bubbleCount = 20;
+            BubbleEffect bubbles = transitionPanel.AddComponent<BubbleEffect>();
+            bubbles.bubblePrefab = bubblePrefab;
+            bubbles.bubbleCount = 20;
         }
 
         Invoke("LoadLevel1", transitionTime);

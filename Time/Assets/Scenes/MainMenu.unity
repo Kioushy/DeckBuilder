@@ -2080,6 +2080,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BubblePrefab
       objectReference: {fileID: 0}
+    - target: {fileID: 972702158981452538, guid: 8e79883579f80a549a650775f83daf64, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2370087617138305886, guid: 8e79883579f80a549a650775f83daf64, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
