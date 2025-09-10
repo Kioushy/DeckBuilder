@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5267f8265d5cbdb48b00dbbe5ec3c934, type: 3}
-  m_Name: "Mur d'oxyg\xE8ne"
+  m_Name: Goxylla
   m_EditorClassIdentifier: 
-  cardName: "Mur d'oxyg\xE8ne"
-  cardType: 01000000
+  cardName: Goxylla
+  cardType: 
   damage: 0
-  protect: 5
+  protect: 20
   heal: 0
   player: 0
   dealDamage: 0
   protection: 0
   healing: 0
-  descriptionCard: "\xC9rige un mur qui octroie une protection de 5 minutes."
+  descriptionCard: "Tu deviens le Godzilla d'oxyg\xE8ne, ce qui t'octroie 20 de shield."

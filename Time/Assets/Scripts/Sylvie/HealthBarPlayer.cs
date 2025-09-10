@@ -23,7 +23,9 @@ public class HealthbarPlayer : MonoBehaviour
     [Header("Health Drain")]
     [Tooltip("La durée en secondes pour que la barre de vie se vide complétement")]
     [SerializeField] float drainDuration = 60f;
-    int currentHealth;
+    public static int currentHealth;
+
+    public static int shield = 0;
     bool death;
     private Coroutine healthDrainCoroutine;
     private Slider playerHealthSlider;
