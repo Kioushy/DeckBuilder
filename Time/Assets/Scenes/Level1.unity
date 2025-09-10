@@ -804,13 +804,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -5790163410582470308, guid: 166d46288398d954099232c4ba645821, type: 3}
+      propertyPath: shockwavePrefab
+      value: 
+      objectReference: {fileID: 904332439}
     - target: {fileID: 297893833667884368, guid: 166d46288398d954099232c4ba645821, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 297893833667884368, guid: 166d46288398d954099232c4ba645821, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -47.65
       objectReference: {fileID: 0}
     - target: {fileID: 1482727016026046019, guid: 166d46288398d954099232c4ba645821, type: 3}
       propertyPath: m_SizeDelta.x
@@ -890,7 +894,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5232241984852460183, guid: 166d46288398d954099232c4ba645821, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -55.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 5682777960420363760, guid: 166d46288398d954099232c4ba645821, type: 3}
+      propertyPath: m_Color.b
+      value: 0.22745098
+      objectReference: {fileID: 0}
+    - target: {fileID: 5682777960420363760, guid: 166d46288398d954099232c4ba645821, type: 3}
+      propertyPath: m_Color.g
+      value: 0.7254902
+      objectReference: {fileID: 0}
+    - target: {fileID: 5682777960420363760, guid: 166d46288398d954099232c4ba645821, type: 3}
+      propertyPath: m_Color.r
+      value: 0.972549
       objectReference: {fileID: 0}
     - target: {fileID: 5682777960420363760, guid: 166d46288398d954099232c4ba645821, type: 3}
       propertyPath: m_SortingOrder
@@ -1590,6 +1606,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 866837679}
   m_CullTransparentMesh: 1
+--- !u!1 &904332439 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 526489601197117918, guid: 166d46288398d954099232c4ba645821, type: 3}
+  m_PrefabInstance: {fileID: 609606827}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &964423083
 GameObject:
   m_ObjectHideFlags: 0
@@ -2392,7 +2413,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1622808521
 Transform:
   m_ObjectHideFlags: 0
