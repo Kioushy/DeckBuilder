@@ -26,18 +26,14 @@ public class HealthbarPlayer : MonoBehaviour
     int currentHealth;
     bool death;
     private Coroutine healthDrainCoroutine;
-    private Slider healthSlider;
+    private Slider playerHealthSlider;
 
     // --- TODO : mettre à jour pour que le temps s'écoule automatiquement 
     // Full bar : 1h (60f * 60f) ou 45 min
 
     private void Awake()
     {
-        // On récupère directement la référence du Slider via l'UIManager
-        if (UIManager.Instance != null)
-        {
-            healthSlider = UIManager.Instance.GetPlayerHealthSlider();
-        }
+        
         
         // Si le slider n'est pas assigné dans l'Inspecteur, nous le trouvons automatiquement
         // if (healthSlider == null)
@@ -46,21 +42,27 @@ public class HealthbarPlayer : MonoBehaviour
         //     healthSlider = GetComponentInChildren<Slider>();
         // }
 
-        // Si on n'a toujours pas de slider (soit il n'est pas assigné,
-        // soit il n'est pas un enfant de cet objet), on arrête
-        // ici pour éviter de faire des recharches coûteuses
-        if (healthSlider == null)
-        {
-            Debug.LogError("HealthBarPlayer : Aucun Slider n'a été assigné ou trouvé ");
-            // Pour éviter les NullReferenceException plus tard dans le code
-            // vus pouvez désactiver le script si le composant est manquant
-            enabled = false;
-            return;
-        }
+        
     }
 
     private void Start()
     {
+        // On récupère directement la référence du Slider via l'UIManager
+        if (UIManager.Instance != null)
+        {
+            playerHealthSlider = UIManager.Instance.GetPlayerHealthSlider();
+        }
+
+        // Si on n'a toujours pas de slider (soit il n'est pas assigné,
+        // soit il n'est pas un enfant de cet objet), on arrête
+        // ici pour éviter de faire des recharches coûteuses
+        if (playerHealthSlider == null)
+        {
+            Debug.LogError("HealthBarPlayer : Aucun Slider n'a été assigné ou trouvé ");
+            enabled = false;
+            return;
+        }
+
         FullHeal();
         // Démarrez la coroutine au début du jeu
         healthDrainCoroutine = StartCoroutine(DrainHealthOverTime());
@@ -214,14 +216,14 @@ public class HealthbarPlayer : MonoBehaviour
 
     private void UpdateSlider()
     {
-        if (healthSlider == null)
+        if (playerHealthSlider == null)
         {
             // Nothing to update
             return;
         }
 
-        healthSlider.maxValue = MaxHealth;
-        healthSlider.value = currentHealth;
+        playerHealthSlider.maxValue = MaxHealth;
+        playerHealthSlider.value = currentHealth;
     }
 
     public void FullHeal() 
@@ -230,5 +232,8 @@ public class HealthbarPlayer : MonoBehaviour
         UpdateSlider();
     }
 
-
+    public void Initialize(Slider slider)
+    {
+        playerHealthSlider = slider;
+    }
 }

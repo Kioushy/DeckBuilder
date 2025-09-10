@@ -30,12 +30,6 @@ public class UIManager : MonoBehaviour
             // On appelle la méthode de chargement et d'initialisation ici
             LoadAndInstantiateHealthBar();
         }
-
-        // Vérification des références essentielles
-        // if (playerHealthSlider == null)
-        // {
-        //     Debug.LogError("UIManager: Le Slider de la barre de vie n'est pas assigné dans l'inspecteur");
-        // }
     }
 
     private void LoadAndInstantiateHealthBar()
@@ -47,8 +41,15 @@ public class UIManager : MonoBehaviour
             return;
         }
 
-        // 1. Charger le préfabriqué depuis le dossier Resources
+        // Charger le préfabriqué depuis le dossier Resources
         GameObject healthBarPrefab = Resources.Load<GameObject>(healthBarPrefabName);
+
+        // 3. VÉRIFIER L'OBJET APRÈS LE CHARGEMENT. C'est le point crucial qui manquait.
+        if (healthBarPrefab == null)
+        {
+            Debug.LogError($"UIManager: Le préfabriqué '{healthBarPrefabName}' n'a pas été trouvé dans le dossier Resources. Vérifiez le nom et l'emplacement.");
+            return; // Arrêter l'exécution si l'objet n'est pas trouvé
+        }
 
         // Vérifier si l'object a bien été chargé
         if (healthBarPrefabName == null)
@@ -59,13 +60,20 @@ public class UIManager : MonoBehaviour
 
         // 2. Instancier le préfabriqué dans la scène
         GameObject healthBarInstance = Instantiate(healthBarPrefab);
-    
+
         // 3. Récupérer le composant Slider de l'enfant
         playerHealthSlider = healthBarInstance.GetComponentInChildren<Slider>();
 
         if (playerHealthSlider == null)
         {
             Debug.LogError($"UIManager: Aucun composant Slider n'a été trouvé dans le préfabriqué");
+        }
+        
+        // On donne la référence au script HealthbarPlayer s’il est dessus
+        HealthbarPlayer healthScript = healthBarInstance.GetComponent<HealthbarPlayer>();
+        if (healthScript != null)
+        {
+            healthScript.Initialize(playerHealthSlider);
         }
 
     }
