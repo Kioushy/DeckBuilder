@@ -39,12 +39,12 @@ public class Card : ScriptableObject
 
         if (card.protect != 0)
         {
-            HealthbarPlayer.shield += card.protect;
+            HealthBarPlayer.shield += card.protect;
         }
 
         if (card.heal != 0)
         {
-            HealthbarPlayer.currentHealth += card.heal;
+            HealthBarPlayer.currentHealth += card.heal;
         }
     }
 }
