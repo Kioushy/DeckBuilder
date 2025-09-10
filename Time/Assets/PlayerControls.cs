@@ -81,7 +81,11 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""eca73a1b-266d-4937-8087-f603d70e2179"",
+<<<<<<< HEAD
                     ""path"": ""<Keyboard>/f12"",
+=======
+                    ""path"": ""<Keyboard>/space"",
+>>>>>>> Sylvie_Alpha
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
