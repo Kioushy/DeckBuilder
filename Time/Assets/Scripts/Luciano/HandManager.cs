@@ -11,6 +11,8 @@ public class HandManager : MonoBehaviour
     public float fanSpread = 5f;
     public float cardSpacing = 5f;
     public float verticalSpacing = 100f;
+
+    public int maxHandSize = 3;
     public List<GameObject> cardsInHand = new List<GameObject>(); //tenir la liste des cartes object dans la main
     void Start()
     {
@@ -21,13 +23,15 @@ public class HandManager : MonoBehaviour
  
     public void AddCardToHand(Card cardData)
     {
-        //instancier la carte
-        GameObject newCard = Instantiate(cardPrefab, handTransform.position, Quaternion.identity, handTransform);
-        cardsInHand.Add(newCard);
+        if (cardsInHand.Count < maxHandSize)
+        {
+            //instancier la carte
+            GameObject newCard = Instantiate(cardPrefab, handTransform.position, Quaternion.identity, handTransform);
+            cardsInHand.Add(newCard);
 
-        //Set the CardData of the instantiated card 
-        newCard.GetComponent<CardDisplay>().cardData = cardData;
-
+            //Set the CardData of the instantiated card 
+            newCard.GetComponent<CardDisplay>().cardData = cardData;
+        }
         UpdateHandVisuals();
     }
 

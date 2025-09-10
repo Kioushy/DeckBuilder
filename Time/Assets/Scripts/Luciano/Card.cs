@@ -12,37 +12,21 @@ namespace Time
         public int damage;
         public int protect;
         public int heal;
+        public enum Players { Joueur1, Joueur2 };
+        public Players player;
+        public damageType dealDamage;
+        public protectType protection;
+        public healType healing;
         public string descriptionCard;
-        public List<DamageType> damageType;
-        public List<ProtectType> protectType;
-        public List<HealType> healType;
+        public enum damageType { Mono, Multi, Overtime };
+        public enum protectType { Mono, Multi, Overtime };
+        public enum healType { Mono, Multi, Overtime };
 
         public enum CardType
         {
             Attack,
             Defense,
             Special,
-        }
-
-        public enum DamageType
-        {
-            Mono,
-            Multi,
-            Overtime,
-        }
-
-        public enum ProtectType
-        {
-            Mono,
-            Multi,
-            Overtime,
-        }
-
-        public enum HealType
-        {
-            Mono,
-            Multi,
-            Overtime,
         }
     }
 }
