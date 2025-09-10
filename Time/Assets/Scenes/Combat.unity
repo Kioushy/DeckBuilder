@@ -454,8 +454,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 100}
-  m_SizeDelta: {x: 2, y: -209}
+  m_AnchoredPosition: {x: 0, y: 143.9}
+  m_SizeDelta: {x: 2, y: -296.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1639834713
 MonoBehaviour:
@@ -754,6 +754,34 @@ PrefabInstance:
       propertyPath: handManager
       value: 
       objectReference: {fileID: 454069646}
+    - target: {fileID: 387017665660994892, guid: 90e1d8e35943afe449f214944abf65a9, type: 3}
+      propertyPath: allCards.Array.size
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 387017665660994892, guid: 90e1d8e35943afe449f214944abf65a9, type: 3}
+      propertyPath: 'allCards.Array.data[3]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 3326db025cb1d794593ee6bd934c8c98, type: 2}
+    - target: {fileID: 387017665660994892, guid: 90e1d8e35943afe449f214944abf65a9, type: 3}
+      propertyPath: 'allCards.Array.data[4]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 040146c671ec1d5448707c9cd4eebddf, type: 2}
+    - target: {fileID: 387017665660994892, guid: 90e1d8e35943afe449f214944abf65a9, type: 3}
+      propertyPath: 'allCards.Array.data[5]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 392563d2931f1d945a6eb6ab5b65bbf9, type: 2}
+    - target: {fileID: 387017665660994892, guid: 90e1d8e35943afe449f214944abf65a9, type: 3}
+      propertyPath: 'allCards.Array.data[6]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 8bc373aad717fb34087063760aaa8cad, type: 2}
+    - target: {fileID: 387017665660994892, guid: 90e1d8e35943afe449f214944abf65a9, type: 3}
+      propertyPath: 'allCards.Array.data[7]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 29aee755987d16a49ba031b528cee931, type: 2}
+    - target: {fileID: 387017665660994892, guid: 90e1d8e35943afe449f214944abf65a9, type: 3}
+      propertyPath: 'allCards.Array.data[8]'
+      value: 
+      objectReference: {fileID: 11400000, guid: da02afc74ec148447a2b4f727858f3a7, type: 2}
     - target: {fileID: 3133585713719917998, guid: 90e1d8e35943afe449f214944abf65a9, type: 3}
       propertyPath: m_Name
       value: DeckManager
