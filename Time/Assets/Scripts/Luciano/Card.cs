@@ -7,7 +7,6 @@ using System.Collections.Generic;
 [CreateAssetMenu(fileName = "New Card", menuName = "Card")]
 public class Card : ScriptableObject
 {
-    public Card card;
     public string cardName;
     public List<CardType> cardType;
     public int damage;
@@ -28,23 +27,5 @@ public class Card : ScriptableObject
         Attack,
         Defense,
         Special,
-    }
-
-    public void LaunchEffect()
-    {
-        if (card.damage != 0)
-        {
-            EnemyHealth.currentHealth -= card.damage;
-        }
-
-        if (card.protect != 0)
-        {
-            HealthBarPlayer.shield += card.protect;
-        }
-
-        if (card.heal != 0)
-        {
-            HealthBarPlayer.currentHealth += card.heal;
-        }
     }
 }
