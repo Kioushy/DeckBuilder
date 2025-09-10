@@ -53,6 +53,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""CheatRiposte"",
+                    ""type"": ""Button"",
+                    ""id"": ""73022ecf-8d11-4591-bfbc-14b5c2879c6d"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -88,6 +97,17 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""CheatAttack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9694b229-b750-4776-9bf1-696b355b85bc"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CheatRiposte"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -105,6 +125,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_Player_Heal = m_Player.FindAction("Heal", throwIfNotFound: true);
         m_Player_Damage = m_Player.FindAction("Damage", throwIfNotFound: true);
         m_Player_CheatAttack = m_Player.FindAction("CheatAttack", throwIfNotFound: true);
+        m_Player_CheatRiposte = m_Player.FindAction("CheatRiposte", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
     }
@@ -177,6 +198,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Heal;
     private readonly InputAction m_Player_Damage;
     private readonly InputAction m_Player_CheatAttack;
+    private readonly InputAction m_Player_CheatRiposte;
     public struct PlayerActions
     {
         private @PlayerControls m_Wrapper;
@@ -184,6 +206,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @Heal => m_Wrapper.m_Player_Heal;
         public InputAction @Damage => m_Wrapper.m_Player_Damage;
         public InputAction @CheatAttack => m_Wrapper.m_Player_CheatAttack;
+        public InputAction @CheatRiposte => m_Wrapper.m_Player_CheatRiposte;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -202,6 +225,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @CheatAttack.started += instance.OnCheatAttack;
             @CheatAttack.performed += instance.OnCheatAttack;
             @CheatAttack.canceled += instance.OnCheatAttack;
+            @CheatRiposte.started += instance.OnCheatRiposte;
+            @CheatRiposte.performed += instance.OnCheatRiposte;
+            @CheatRiposte.canceled += instance.OnCheatRiposte;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -215,6 +241,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @CheatAttack.started -= instance.OnCheatAttack;
             @CheatAttack.performed -= instance.OnCheatAttack;
             @CheatAttack.canceled -= instance.OnCheatAttack;
+            @CheatRiposte.started -= instance.OnCheatRiposte;
+            @CheatRiposte.performed -= instance.OnCheatRiposte;
+            @CheatRiposte.canceled -= instance.OnCheatRiposte;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -275,6 +304,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnHeal(InputAction.CallbackContext context);
         void OnDamage(InputAction.CallbackContext context);
         void OnCheatAttack(InputAction.CallbackContext context);
+        void OnCheatRiposte(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

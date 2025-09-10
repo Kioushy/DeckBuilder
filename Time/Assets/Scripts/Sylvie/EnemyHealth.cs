@@ -18,7 +18,6 @@ public class EnemyHealth : MonoBehaviour
     // Référence pour la barre de vie instanciée
     private Slider healthbarSlider;
 
-
     private static EnemyHealth instance;
     public static EnemyHealth Instance
     {
@@ -56,8 +55,6 @@ public class EnemyHealth : MonoBehaviour
             healthbarSlider.value = currentHealth;
         }
     }
-
-
     
     public void TakeDamage(float damageAmount)
     {

@@ -98,7 +98,7 @@ public class HealthBarPlayer : MonoBehaviour
             Debug.Log("Dégâts reçus !");
         }
     }
-    private void UpdateHealth(int healthToChange)
+    public void UpdateHealth(int healthToChange)
     {
         // ajoute healthToChange
         currentHealth += healthToChange;
