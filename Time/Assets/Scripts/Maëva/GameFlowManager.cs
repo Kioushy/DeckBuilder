@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -276,6 +277,17 @@ public class GameFlowManager : MonoBehaviour
         // On notifie les autres scripts que le niveau a changé
         OnLevelChanged?.Invoke();
     }
+
+    public void ActionDamage(InputAction.CallbackContext context) 
+    {
+        if (context.performed)
+        {
+            EnemyHealth.Instance.TakeDamage(1);
+        }
+    
+    
+    }
+
 
     /// <summary>
     /// Indique si le jeu est en pause.
