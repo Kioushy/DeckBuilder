@@ -11,7 +11,7 @@ public class EnemyHealth : MonoBehaviour
     [Tooltip("Prefab de la barre de vie qui contient un Canvas en mode 'World Space")]
 
     //Références privées
-    public static float currentHealth;
+    public float currentHealth;
     private bool isDead = false;   
     // private Animator animator;
 
