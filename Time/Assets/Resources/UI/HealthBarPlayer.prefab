@@ -47,7 +47,7 @@ GameObject:
   - component: {fileID: 1172966361188862060}
   - component: {fileID: 4000052720641700463}
   m_Layer: 5
-  m_Name: HealthSlider
+  m_Name: PlayerHealthSlider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -72,7 +72,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 859, y: 11}
+  m_AnchoredPosition: {x: -787, y: -6}
   m_SizeDelta: {x: 60, y: 800}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &4000052720641700463
@@ -138,6 +138,7 @@ GameObject:
   - component: {fileID: 1134957485766910321}
   - component: {fileID: 4572576948655936558}
   - component: {fileID: 1325989868399538902}
+  - component: {fileID: 9028739145756790493}
   m_Layer: 5
   m_Name: HealthBarPlayer
   m_TagString: HealthBarPlayer
@@ -228,6 +229,23 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &9028739145756790493
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3331662860256948922}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74faf71a6bb259e4299fd2410102acd3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaxHealth: 100
+  MinHealth: 0
+  healAction: {fileID: -1468642370571964472, guid: 82d4c17eb9403ce40a3f9b183b65c8bb, type: 3}
+  damageAction: {fileID: -7932346788313454325, guid: 82d4c17eb9403ce40a3f9b183b65c8bb, type: 3}
+  drainDuration: 60
 --- !u!1 &5601958589421668784
 GameObject:
   m_ObjectHideFlags: 0
