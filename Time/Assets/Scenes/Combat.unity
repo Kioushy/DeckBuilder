@@ -3520,7 +3520,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 297893833667884368, guid: 166d46288398d954099232c4ba645821, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -47.65
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 307400176067327681, guid: 166d46288398d954099232c4ba645821, type: 3}
       propertyPath: m_Layer
@@ -3532,7 +3532,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1139620001383054705, guid: 166d46288398d954099232c4ba645821, type: 3}
       propertyPath: maxHealth
-      value: 30
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 1482727016026046019, guid: 166d46288398d954099232c4ba645821, type: 3}
       propertyPath: m_SizeDelta.x
@@ -4031,6 +4031,10 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 57207b6e-0d41-4c2a-8eb8-103db509428b
     m_ActionName: 'Player/CheatAttack[/Keyboard/space]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 73022ecf-8d11-4591-bfbc-14b5c2879c6d
+    m_ActionName: 'Player/CheatRiposte[/Keyboard/r]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
