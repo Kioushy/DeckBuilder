@@ -9,28 +9,46 @@ public class EnemyHealth : MonoBehaviour
 
     [Header("UI Settings")]
     [Tooltip("Prefab de la barre de vie qui contient un Canvas en mode 'World Space")]
-    [SerializeField] private string healthBarPrefabPath = "UI/HealthBarEnemy";
 
     //Références privées
-    private float currentHealth;
+    public static float currentHealth;
     private bool isDead = false;   
-    private Animator animator;
+    // private Animator animator;
 
     // Référence pour la barre de vie instanciée
     private Slider healthbarSlider;
-    private GameObject healthbarInstance;
+
+
+    private static EnemyHealth instance;
+    public static EnemyHealth Instance
+    {
+        get { return instance; }
+    }
 
     private void Awake()
     {
-        animator = GetComponent<Animator>(); // on récupère l’Animator
+        if (instance != null && instance != this)
+        {
+            Destroy(this.gameObject);
+            return;
+        }
+
+        instance = this;
+        DontDestroyOnLoad(this.gameObject);
     }
 
+    /*
+    private void Awake()
+    {
+        // animator = GetComponent<Animator>(); // on récupère l’Animator
+    }
+    */
     private void Start()
     {
+        healthbarSlider = transform.GetChild(0).transform.GetChild(0).GetComponent<Slider>();
         currentHealth = maxHealth;
 
         // On instancie la barre de vie au démarrage
-        SetupHealthBar();
 
         if (healthbarSlider != null)
         {
@@ -39,35 +57,6 @@ public class EnemyHealth : MonoBehaviour
         }
     }
 
-    private void SetupHealthBar()
-    {
-
-        // 1. Charger le prefab depuis le dossier Resources
-        GameObject healthBarPrefab = Resources.Load<GameObject>(healthBarPrefabPath);
-        if (healthBarPrefab == null)
-        {
-            Debug.LogError("Prefab de la barre de vie non assigné. Assurez-vous de le lier dans l'Inspector de l'ennemi.");
-            enabled = false;
-            return;
-        }
-
-        // 1. Instancier le prefab comme enfant du Canvas
-        // Le deuxième argument (transform) le rend enfant du GameObject actuel
-        healthbarInstance = Instantiate(healthBarPrefab, transform);
-
-        // 2. Décaler la position de la barre de vie
-        // La position est relative au parent (l'ennemi)
-        // C'est beaucoup plus simple et performant
-        healthbarInstance.transform.localPosition = new Vector2(0, 1.2f);
-
-        // 3. Récupérer le composant Slider
-        healthbarSlider = healthbarInstance.GetComponentInChildren<Slider>();
-
-        if (healthbarSlider == null)
-        {
-            Debug.LogError("Le prefab de la barre de vie ne contient pas de composant Slider ou son parent.");
-        }
-    }
 
     
     public void TakeDamage(float damageAmount)
@@ -102,8 +91,8 @@ public class EnemyHealth : MonoBehaviour
         if (isDead) return;
         isDead = true;
 
-        animator.SetTrigger("Die"); // Lance anim de mort
-        GetComponent<Collider2D>().enabled = false; // optionnel : désactive collisions
+        // animator.SetTrigger("Die"); // Lance anim de mort
+        // GetComponent<Collider2D>().enabled = false; // optionnel : désactive collisions
 
         // On notifie le GameFlowManager que l'ennemi est mort
         if (GameFlowManager.Instance != null)
@@ -111,6 +100,6 @@ public class EnemyHealth : MonoBehaviour
             GameFlowManager.Instance.EnemyDied();
         }
         // On détruit l'ennemi après un délai, la barre de vie sera détruite via OnDestroy()
-        Destroy(gameObject, 1f); // ou Animation Event pour caler pile la durée
+        Destroy(gameObject); // ou Animation Event pour caler pile la durée
     }
 }
