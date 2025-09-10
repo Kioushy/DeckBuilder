@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 using JetBrains.Annotations;
 using System.Collections;
 
-public class HealthbarPlayer : MonoBehaviour
+public class HealthBarPlayer : MonoBehaviour
 {
     [SerializeField] int MaxHealth;
     [SerializeField] int MinHealth;
@@ -35,8 +35,7 @@ public class HealthbarPlayer : MonoBehaviour
 
     private void Awake()
     {
-        
-        
+
         // Si le slider n'est pas assigné dans l'Inspecteur, nous le trouvons automatiquement
         // if (healthSlider == null)
         // {
@@ -44,7 +43,6 @@ public class HealthbarPlayer : MonoBehaviour
         //     healthSlider = GetComponentInChildren<Slider>();
         // }
 
-        
     }
 
     private void Start()
@@ -73,85 +71,46 @@ public class HealthbarPlayer : MonoBehaviour
 
     private void OnEnable()
     {
-        // Heal action: prefer assigned InputActionReference, otherwise create a keyboard fallback (H)
-        if (healAction != null && healAction.action != null)
-        {
-            healAction.action.performed += OnHealPerformed;
-            healAction.action.Enable();
-        }
-        else
-        {
-            runtimeHealAction = new InputAction("Heal", InputActionType.Button, "<Keyboard>/h");
-            runtimeHealAction.performed += OnHealPerformed;
-            runtimeHealAction.Enable();
-            createdRuntimeHeal = true;
-        }
-
-        // Damage action: prefer assigned InputActionReference, otherwise create a keyboard fallback (K)
-        if (damageAction != null && damageAction.action != null)
-        {
-            damageAction.action.performed += OnDamagePerformed;
-            damageAction.action.Enable();
-        }
-        else
-        {
-            runtimeDamageAction = new InputAction("Damage", InputActionType.Button, "<Keyboard>/k");
-            runtimeDamageAction.performed += OnDamagePerformed;
-            runtimeDamageAction.Enable();
-            createdRuntimeDamage = true;
-        }
+        // S'abonne aux événements des actions
+        if (healAction != null) healAction.action.performed += OnHeal;
+        if (damageAction != null) damageAction.action.performed += OnDamage;
     }
 
     private void OnDisable()
     {
-        if (healAction != null && healAction.action != null)
-        {
-            healAction.action.performed -= OnHealPerformed;
-            healAction.action.Disable();
-        }
-
-        if (damageAction != null && damageAction.action != null)
-        {
-            damageAction.action.performed -= OnDamagePerformed;
-            damageAction.action.Disable();
-        }
-
-        if (runtimeHealAction != null)
-        {
-            runtimeHealAction.performed -= OnHealPerformed;
-            runtimeHealAction.Disable();
-            runtimeHealAction.Dispose();
-            runtimeHealAction = null;
-            createdRuntimeHeal = false;
-        }
-
-        if (runtimeDamageAction != null)
-        {
-            runtimeDamageAction.performed -= OnDamagePerformed;
-            runtimeDamageAction.Disable();
-            runtimeDamageAction.Dispose();
-            runtimeDamageAction = null;
-            createdRuntimeDamage = false;
-        }
+        // Se désabonne pour éviter les fuites de mémoire
+        if (healAction != null) healAction.action.performed -= OnHeal;
+        if (damageAction != null) damageAction.action.performed -= OnDamage;
     }
 
-    private void OnHealPerformed(InputAction.CallbackContext context)
+    // Méthodes de callback pour le nouvel Input System
+    public void OnHeal(InputAction.CallbackContext context)
     {
-        if (context.performed) UpdateHealth(+1);
+        if (context.performed)
+        {
+            UpdateHealth(+1);
+            Debug.Log("Soin reçu !");
+        }
     }
 
-    private void OnDamagePerformed(InputAction.CallbackContext context)
+    public void OnDamage(InputAction.CallbackContext context)
     {
-        if (context.performed) UpdateHealth(-1);
+        if (context.performed)
+        {
+            UpdateHealth(-1);
+            Debug.Log("Dégâts reçus !");
+        }
     }
-
-    private void UpdateHealth(int healthToChange) 
+    private void UpdateHealth(int healthToChange)
     {
         // ajoute healthToChange
         currentHealth += healthToChange;
 
+        // S'assurer que la santé ne dépasse pas la limite
+        currentHealth = Mathf.Clamp(currentHealth, MinHealth, MaxHealth);
+
         //clamp max health
-        if (currentHealth > MaxHealth) 
+        if (currentHealth > MaxHealth)
         {
             currentHealth = MaxHealth;
         }
@@ -176,6 +135,24 @@ public class HealthbarPlayer : MonoBehaviour
         }
 
         UpdateSlider();
+
+        if (currentHealth <= MinHealth && !death)
+        {
+            death = true;
+            Debug.Log("Le joueur est mort !");
+            
+            // Stop drain
+            if (healthDrainCoroutine != null)
+            {
+                StopCoroutine(healthDrainCoroutine);
+            }
+
+            // Notifie le GameFlowManager
+            if (GameFlowManager.Instance != null)
+            {
+                GameFlowManager.Instance.PlayerDied();
+            }
+        }
     }
 
     // Coroutine pour le drain de vie automatique
@@ -228,7 +205,7 @@ public class HealthbarPlayer : MonoBehaviour
         playerHealthSlider.value = currentHealth;
     }
 
-    public void FullHeal() 
+    public void FullHeal()
     {
         currentHealth = MaxHealth;
         UpdateSlider();
@@ -237,5 +214,19 @@ public class HealthbarPlayer : MonoBehaviour
     public void Initialize(Slider slider)
     {
         playerHealthSlider = slider;
+    }
+    
+    public void Die()
+    {
+        // Animation optionnelle
+        // if (animator != null)
+        // {
+        //     animator.SetTrigger("Die");
+        // }
+
+        // Très important : appeler le GameFlowManager
+        GameFlowManager.Instance.PlayerDied();
+
+        // Destroy(gameObject);
     }
 }

@@ -70,7 +70,7 @@ public class UIManager : MonoBehaviour
         }
         
         // On donne la référence au script HealthbarPlayer s’il est dessus
-        HealthbarPlayer healthScript = healthBarInstance.GetComponent<HealthbarPlayer>();
+        HealthBarPlayer healthScript = healthBarInstance.GetComponent<HealthBarPlayer>();
         if (healthScript != null)
         {
             healthScript.Initialize(playerHealthSlider);
