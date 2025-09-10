@@ -12,12 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5267f8265d5cbdb48b00dbbe5ec3c934, type: 3}
   m_Name: Oxy-Soin
   m_EditorClassIdentifier: 
-  cardName: Oxy-Soin
+  cardName: 
   cardType: 02000000
   damage: 0
   protect: 0
-  heal: 10
-  descriptionCard: "Vous octroie un soin de 10 minutes d'oxyg\xE8ne. "
-  damageType: 
-  protectType: 
-  healType: 00000000
+  heal: 5
+  player: 0
+  dealDamage: 0
+  protection: 0
+  healing: 0
+  descriptionCard: "Vous octroie un soin de 5 minutes d'oxyg\xE8ne. "
