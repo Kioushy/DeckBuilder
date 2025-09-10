@@ -894,19 +894,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5232241984852460183, guid: 166d46288398d954099232c4ba645821, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -55.15
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5682777960420363760, guid: 166d46288398d954099232c4ba645821, type: 3}
       propertyPath: m_Color.b
-      value: 0.22745098
+      value: 0.96724814
       objectReference: {fileID: 0}
     - target: {fileID: 5682777960420363760, guid: 166d46288398d954099232c4ba645821, type: 3}
       propertyPath: m_Color.g
-      value: 0.7254902
+      value: 0.97652847
       objectReference: {fileID: 0}
     - target: {fileID: 5682777960420363760, guid: 166d46288398d954099232c4ba645821, type: 3}
       propertyPath: m_Color.r
-      value: 0.972549
+      value: 0.9811321
       objectReference: {fileID: 0}
     - target: {fileID: 5682777960420363760, guid: 166d46288398d954099232c4ba645821, type: 3}
       propertyPath: m_SortingOrder
@@ -2487,9 +2487,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a460b84e86944b42814cb6f115b32b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  victoryPanel: {fileID: 0}
-  defeatPanel: {fileID: 0}
-  victoryFinalText: {fileID: 0}
+  victoryPanel: {fileID: 420380855}
+  defeatPanel: {fileID: 1142584346}
+  victoryFinalText: {fileID: 573269261}
 --- !u!114 &1712913599
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2539,6 +2539,10 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 57207b6e-0d41-4c2a-8eb8-103db509428b
     m_ActionName: 'Player/CheatAttack[/Keyboard/space]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 73022ecf-8d11-4591-bfbc-14b5c2879c6d
+    m_ActionName: 'Player/CheatRiposte[/Keyboard/r]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player

@@ -27,14 +27,30 @@ public class HealthBarPlayer : MonoBehaviour
 
     public static int shield = 0;
     bool death;
+    private bool isDead = false;  
     private Coroutine healthDrainCoroutine;
     private Slider playerHealthSlider;
+
+    private static HealthBarPlayer instance;
+
+    public static HealthBarPlayer Instance
+    {
+        get { return instance; }
+    }
 
     // --- TODO : mettre à jour pour que le temps s'écoule automatiquement 
     // Full bar : 1h (60f * 60f) ou 45 min
 
     private void Awake()
     {
+        if (instance != null && instance != this)
+        {
+            // Destroy(this.gameObject);
+            return;
+        }
+
+        instance = this;
+        DontDestroyOnLoad(this.gameObject);
 
         // Si le slider n'est pas assigné dans l'Inspecteur, nous le trouvons automatiquement
         // if (healthSlider == null)
@@ -102,6 +118,9 @@ public class HealthBarPlayer : MonoBehaviour
     }
     public void UpdateHealth(int healthToChange)
     {
+
+        if (isDead) return; // déjà mort, ignore
+
         // ajoute healthToChange
         currentHealth += healthToChange;
 
@@ -109,49 +128,54 @@ public class HealthBarPlayer : MonoBehaviour
         currentHealth = Mathf.Clamp(currentHealth, MinHealth, MaxHealth);
 
         //clamp max health
-        if (currentHealth > MaxHealth)
-        {
-            currentHealth = MaxHealth;
-        }
+        // if (currentHealth > MaxHealth)
+        // {
+        //     currentHealth = MaxHealth;
+        // }
 
-        if (death)
-        {
-            // diePanel.SetActive(true);
-            Debug.Log("Le joueur est mort !");
-        }
+        // if (death)
+        // {
+        //     // diePanel.SetActive(true);
+        //     Debug.Log("Le joueur est mort !");
+        // }
 
-        // clamp min health
-        if (currentHealth <= MinHealth)
-        {
-            currentHealth = MinHealth;
-            death = true;
-            Debug.Log("Le joueur est mort !");
-            // Arrêter le drain de vie une fois que le joueur est mort
-            if (healthDrainCoroutine != null)
-            {
-                StopCoroutine(healthDrainCoroutine);
-            }
-        }
+        // // clamp min health
+        // if (currentHealth <= MinHealth)
+        // {
+        //     currentHealth = MinHealth;
+        //     death = true;
+        //     Debug.Log("Le joueur est mort !");
+        //     // Arrêter le drain de vie une fois que le joueur est mort
+        //     if (healthDrainCoroutine != null)
+        //     {
+        //         StopCoroutine(healthDrainCoroutine);
+        //     }
+        // }
 
         UpdateSlider();
-
-        if (currentHealth <= MinHealth && !death)
+        
+         if (currentHealth <= MinHealth)
         {
-            death = true;
-            Debug.Log("Le joueur est mort !");
-            
-            // Stop drain
-            if (healthDrainCoroutine != null)
-            {
-                StopCoroutine(healthDrainCoroutine);
-            }
-
-            // Notifie le GameFlowManager
-            if (GameFlowManager.Instance != null)
-            {
-                GameFlowManager.Instance.PlayerDied();
-            }
+            Die();
         }
+
+        // if (currentHealth <= MinHealth && !death)
+        // {
+        //     death = true;
+        //     Debug.Log("Le joueur est mort !");
+
+        //     // Stop drain
+        //     if (healthDrainCoroutine != null)
+        //     {
+        //         StopCoroutine(healthDrainCoroutine);
+        //     }
+
+        //     // Notifie le GameFlowManager
+        //     if (GameFlowManager.Instance != null)
+        //     {
+        //         GameFlowManager.Instance.PlayerDied();
+        //     }
+        // }
     }
 
     // Coroutine pour le drain de vie automatique
@@ -217,14 +241,27 @@ public class HealthBarPlayer : MonoBehaviour
     
     public void Die()
     {
+        if (isDead) return;
+        isDead = true;
+
+        Debug.Log("Le joueur est mort !");
         // Animation optionnelle
         // if (animator != null)
         // {
         //     animator.SetTrigger("Die");
         // }
 
+        // Stop drain
+        if (healthDrainCoroutine != null)
+        {
+            StopCoroutine(healthDrainCoroutine);
+        }
+
         // Très important : appeler le GameFlowManager
-        GameFlowManager.Instance.PlayerDied();
+        if (GameFlowManager.Instance != null)
+        {
+            GameFlowManager.Instance.PlayerDied();
+        }
 
         // Destroy(gameObject);
     }
