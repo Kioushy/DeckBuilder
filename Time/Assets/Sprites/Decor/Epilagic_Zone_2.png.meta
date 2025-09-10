@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Epilagic_Zone_2_0: 5848598107051521432
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

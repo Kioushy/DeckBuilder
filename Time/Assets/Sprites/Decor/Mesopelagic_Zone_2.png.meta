@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Mesopelagic_Zone_2_0: 5921719686923047807
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
