@@ -587,7 +587,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1285500631646437743, guid: 563fde2b762e07e4c85595e9e36202f8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -390
       objectReference: {fileID: 0}
     - target: {fileID: 2210911715177229346, guid: 563fde2b762e07e4c85595e9e36202f8, type: 3}
       propertyPath: m_Name
@@ -595,15 +595,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3331048245906002574, guid: 563fde2b762e07e4c85595e9e36202f8, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3331048245906002574, guid: 563fde2b762e07e4c85595e9e36202f8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -390
       objectReference: {fileID: 0}
     - target: {fileID: 3331662860256948922, guid: 563fde2b762e07e4c85595e9e36202f8, type: 3}
       propertyPath: m_Name
       value: HealthBarPlayer
+      objectReference: {fileID: 0}
+    - target: {fileID: 3331662860256948922, guid: 563fde2b762e07e4c85595e9e36202f8, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3331662860256948922, guid: 563fde2b762e07e4c85595e9e36202f8, type: 3}
       propertyPath: m_TagString
