@@ -51,7 +51,7 @@ public class HealthbarPlayer : MonoBehaviour
         // ici pour éviter de faire des recharches coûteuses
         if (healthSlider == null)
         {
-            Debug.LogError("HealthBarPlayer : Aucun Slider n'a été assigné ou trouvé comme ");
+            Debug.LogError("HealthBarPlayer : Aucun Slider n'a été assigné ou trouvé ");
             // Pour éviter les NullReferenceException plus tard dans le code
             // vus pouvez désactiver le script si le composant est manquant
             enabled = false;
