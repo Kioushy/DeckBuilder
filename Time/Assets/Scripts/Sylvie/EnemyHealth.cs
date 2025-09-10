@@ -14,7 +14,7 @@ public class EnemyHealth : MonoBehaviour
     //Références privées
     private float currentHealth;
     private bool isDead = false;   
-    private Animator animator;
+    // private Animator animator;
 
     // Référence pour la barre de vie instanciée
     private Slider healthbarSlider;
@@ -22,7 +22,7 @@ public class EnemyHealth : MonoBehaviour
 
     private void Awake()
     {
-        animator = GetComponent<Animator>(); // on récupère l’Animator
+        // animator = GetComponent<Animator>(); // on récupère l’Animator
     }
 
     private void Start()
@@ -102,8 +102,8 @@ public class EnemyHealth : MonoBehaviour
         if (isDead) return;
         isDead = true;
 
-        animator.SetTrigger("Die"); // Lance anim de mort
-        GetComponent<Collider2D>().enabled = false; // optionnel : désactive collisions
+        // animator.SetTrigger("Die"); // Lance anim de mort
+        // GetComponent<Collider2D>().enabled = false; // optionnel : désactive collisions
 
         // On notifie le GameFlowManager que l'ennemi est mort
         if (GameFlowManager.Instance != null)
@@ -111,6 +111,6 @@ public class EnemyHealth : MonoBehaviour
             GameFlowManager.Instance.EnemyDied();
         }
         // On détruit l'ennemi après un délai, la barre de vie sera détruite via OnDestroy()
-        Destroy(gameObject, 1f); // ou Animation Event pour caler pile la durée
+        Destroy(gameObject); // ou Animation Event pour caler pile la durée
     }
 }
