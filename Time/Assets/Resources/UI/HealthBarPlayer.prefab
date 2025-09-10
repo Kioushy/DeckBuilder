@@ -46,10 +46,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1172966361188862060}
   - component: {fileID: 4000052720641700463}
-  - component: {fileID: 3599965432459013446}
   m_Layer: 5
   m_Name: HealthSlider
-  m_TagString: Healthbar
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -127,23 +126,6 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &3599965432459013446
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2210911715177229346}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 74faf71a6bb259e4299fd2410102acd3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MaxHealth: 100
-  MinHealth: 0
-  healthSlider: {fileID: 0}
-  healAction: {fileID: -1468642370571964472, guid: 82d4c17eb9403ce40a3f9b183b65c8bb, type: 3}
-  damageAction: {fileID: -7932346788313454325, guid: 82d4c17eb9403ce40a3f9b183b65c8bb, type: 3}
 --- !u!1 &3331662860256948922
 GameObject:
   m_ObjectHideFlags: 0
@@ -158,7 +140,7 @@ GameObject:
   - component: {fileID: 1325989868399538902}
   m_Layer: 5
   m_Name: HealthBarPlayer
-  m_TagString: Untagged
+  m_TagString: HealthBarPlayer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

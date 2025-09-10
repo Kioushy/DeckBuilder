@@ -6,9 +6,13 @@ public class UIManager : MonoBehaviour
     // Instance unique pour le pattern Singleton
     public static UIManager Instance { get; private set; }
 
-    [Header("UI References")]
-    [Tooltip("Assigner la barre de vie du joueur ici")]
-    [SerializeField] private Slider playerHealthSlider;
+    // Utilisation de la référence privée pour stocker le Slider
+    private Slider playerHealthSlider;
+
+    // Ajout d'une référence au nom du préfabriqué dans le dossier Resources
+    [Header("HealthBar Prefab")]
+    [Tooltip("Nom du prefab de la barre de vie dans le dossier Resources")]
+    [SerializeField] private string healthBarPrefabName = "UI/HealthBarPlayer";
 
     private void Awake()
     {
@@ -22,13 +26,48 @@ public class UIManager : MonoBehaviour
             Instance = this;
             // Assure que l'objet n'est pas détruit au chargement d'une nouvelle scène
             DontDestroyOnLoad(this.gameObject);
+
+            // On appelle la méthode de chargement et d'initialisation ici
+            LoadAndInstantiateHealthBar();
         }
 
         // Vérification des références essentielles
+        // if (playerHealthSlider == null)
+        // {
+        //     Debug.LogError("UIManager: Le Slider de la barre de vie n'est pas assigné dans l'inspecteur");
+        // }
+    }
+
+    private void LoadAndInstantiateHealthBar()
+    {
+        // Utilisation de string.IsNullOrEmpty pour vérifier si le nom a été assigné
+        if (string.IsNullOrEmpty(healthBarPrefabName))
+        {
+            Debug.LogError("UIManager: Le nom du préfabriqué de la barre de vie n'est pas assigné !");
+            return;
+        }
+
+        // 1. Charger le préfabriqué depuis le dossier Resources
+        GameObject healthBarPrefab = Resources.Load<GameObject>(healthBarPrefabName);
+
+        // Vérifier si l'object a bien été chargé
+        if (healthBarPrefabName == null)
+        {
+            Debug.LogError($"UIManager: Le préfabriqué '{healthBarPrefabName}' n'a pas été dans le dossier Resources.");
+            return;
+        }
+
+        // 2. Instancier le préfabriqué dans la scène
+        GameObject healthBarInstance = Instantiate(healthBarPrefab);
+    
+        // 3. Récupérer le composant Slider de l'enfant
+        playerHealthSlider = healthBarInstance.GetComponentInChildren<Slider>();
+
         if (playerHealthSlider == null)
         {
-            Debug.LogError("UIManager: Le Slider de la barre de vie n'est pas assigné dans l'inspecteur");
+            Debug.LogError($"UIManager: Aucun composant Slider n'a été trouvé dans le préfabriqué");
         }
+
     }
 
     /// <summary>
