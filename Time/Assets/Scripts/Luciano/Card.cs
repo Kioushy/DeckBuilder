@@ -28,22 +28,4 @@ public class Card : ScriptableObject
         Defense,
         Special,
     }
-
-    public void LaunchEffect()
-    {
-        if (damage != 0)
-        {
-            EnemyHealth.currentHealth -= damage;
-        }
-
-        if (protect != 0)
-        {
-            HealthBarPlayer.shield += protect;
-        }
-
-        if (heal != 0)
-        {
-            HealthBarPlayer.currentHealth += heal;
-        }
-    }
 }
