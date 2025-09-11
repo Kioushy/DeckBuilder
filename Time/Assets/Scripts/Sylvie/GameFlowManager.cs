@@ -296,13 +296,13 @@ public class GameFlowManager : MonoBehaviour
     #region Debug
 
     // Debug damage avec la touche input
-    // public void ActionDamage(InputAction.CallbackContext context)
-    // {
-    //     if (context.performed)
-    //     {
-    //         EnemyHealth.Instance.TakeDamage(1);
-    //     }
-    // }
+    public void ActionDamage(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            EnemyHealth.Instance.TakeDamage(1);
+        }
+    }
 
     // Pour charger le niveau suivant
     // public void LoadNextLevel()
