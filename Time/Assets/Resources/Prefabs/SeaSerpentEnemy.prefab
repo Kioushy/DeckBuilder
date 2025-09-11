@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8022195576033328722}
   - component: {fileID: 4064490072386150111}
   - component: {fileID: 8149219313568048129}
+  - component: {fileID: 9114469180604756186}
   m_Layer: 0
   m_Name: SeaSerpentEnemy
   m_TagString: Enemy
@@ -114,7 +115,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d287dd770a54ad14aaa339377b5586b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyData: {fileID: 11400000, guid: 8e539cab0ac73714ab250e0f3661efbd, type: 2}
+  maxHealth: 3
+  currentHealth: 0
+--- !u!114 &9114469180604756186
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6073517422322100670}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5f0131f0a3d3b148a2e16b2a0e2c4eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &3400791547827212133
 PrefabInstance:
   m_ObjectHideFlags: 0
