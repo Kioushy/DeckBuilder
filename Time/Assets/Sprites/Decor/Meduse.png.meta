@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 1ec4fe928dc9dd546bba586438cb8d1c
+guid: 1392c9664c5951f45aace1982a465d7a
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -2887523297098116039
-    second: Bubulle_0
+      213: 4721083297166304241
+    second: Meduse_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Bubulle_0
+      name: Meduse_0
       rect:
         serializedVersion: 2
-        x: 24
-        y: 70
-        width: 310
-        height: 303
+        x: 1
+        y: 4
+        width: 66
+        height: 96
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 9345dcb2cd47de7d0800000000000000
-      internalID: -2887523297098116039
+      spriteID: 1f3a0a2de38a48140800000000000000
+      internalID: 4721083297166304241
       vertices: []
       indices: 
       edges: []
@@ -134,8 +134,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      Bubulle_0: -2887523297098116039
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -1,10 +1,19 @@
 fileFormatVersion: 2
-guid: 1ec4fe928dc9dd546bba586438cb8d1c
+guid: 1dcad65c7e577ae419848453dc35d640
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -2887523297098116039
-    second: Bubulle_0
+      213: 8970364576282479689
+    second: CoralIntro_Left_0
+  - first:
+      213: -351897979260904769
+    second: CoralIntro_Left_1
+  - first:
+      213: -500480080792341609
+    second: CoralIntro_Left_2
+  - first:
+      213: 4805846822702473838
+    second: CoralIntro_Left_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,23 +109,111 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Bubulle_0
+      name: CoralIntro_Left_0
       rect:
         serializedVersion: 2
-        x: 24
-        y: 70
-        width: 310
-        height: 303
+        x: 0
+        y: 0
+        width: 376
+        height: 515
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 9345dcb2cd47de7d0800000000000000
-      internalID: -2887523297098116039
+      spriteID: 94c801b1e032d7c70800000000000000
+      internalID: 8970364576282479689
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CoralIntro_Left_1
+      rect:
+        serializedVersion: 2
+        x: 342
+        y: 0
+        width: 153
+        height: 290
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fbad9fcf6aecd1bf0800000000000000
+      internalID: -351897979260904769
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CoralIntro_Left_2
+      rect:
+        serializedVersion: 2
+        x: 420
+        y: 0
+        width: 95
+        height: 120
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 793b637a400fd09f0800000000000000
+      internalID: -500480080792341609
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CoralIntro_Left_3
+      rect:
+        serializedVersion: 2
+        x: 494
+        y: 0
+        width: 293
+        height: 305
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e62ee18093cc1b240800000000000000
+      internalID: 4805846822702473838
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CoralIntro_Left_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 800
+        height: 600
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 94bac59c683835045b0cae99dda0fbf5
+      internalID: -91608473
       vertices: []
       indices: 
       edges: []
@@ -125,7 +222,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 6251561571305424ca40e7faea473fc3
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +232,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Bubulle_0: -2887523297098116039
+      CoralIntro_Left_4: -91608473
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

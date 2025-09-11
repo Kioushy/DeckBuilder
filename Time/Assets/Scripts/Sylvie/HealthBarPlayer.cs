@@ -78,9 +78,13 @@ public class HealthBarPlayer : MonoBehaviour
             return;
         }
 
+        StartCoroutine(WaitAnimation());
+
         FullHeal();
+
+        //FullHeal();
         // Démarrez la coroutine au début du jeu
-        healthDrainCoroutine = StartCoroutine(DrainHealthOverTime());
+        //healthDrainCoroutine = StartCoroutine(DrainHealthOverTime());
     }
 
 
@@ -177,6 +181,12 @@ public class HealthBarPlayer : MonoBehaviour
         //     }
         // }
     }
+    private IEnumerator WaitAnimation()
+    {
+        yield return new WaitForSeconds(5f);
+        StartCoroutine(DrainHealthOverTime());
+    }
+
 
     // Coroutine pour le drain de vie automatique
     private IEnumerator DrainHealthOverTime()
