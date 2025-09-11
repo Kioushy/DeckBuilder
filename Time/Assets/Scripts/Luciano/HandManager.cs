@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
+using System;
 
 public class HandManager : MonoBehaviour
 {
@@ -11,7 +12,7 @@ public class HandManager : MonoBehaviour
     public float cardSpacing = 5f;
     public float verticalSpacing = 100f;
 
-    public int maxHandSize = 3;
+    public int maxHandSize;
     public List<GameObject> cardsInHand = new List<GameObject>(); //tenir la liste des cartes object dans la main
     void Start()
     {
@@ -39,6 +40,11 @@ public class HandManager : MonoBehaviour
     {
         
     }
+
+    public void BattleSetup(int setMaxHandSize)
+    {
+        maxHandSize = setMaxHandSize;
+    }
     private void UpdateHandVisuals()
     {
         int cardCount = cardsInHand.Count;
@@ -61,5 +67,10 @@ public class HandManager : MonoBehaviour
             //set card position
             cardsInHand[i].transform.localPosition = new Vector3(horizontalOffset, verticalOffset, 0f);
         }
+    }
+
+    public void BattleSetup()
+    {
+       
     }
 }
