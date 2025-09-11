@@ -5,72 +5,84 @@ using System;
 
 public class HandManager : MonoBehaviour
 {
-    public DeckManager deckManager;
+    private static HandManager instance;
+    public static HandManager Instance
+    {
+        get { return instance; }
+    }
+
     public GameObject cardPrefab; //assign card Prefab in the inspector
     public Transform handTransform; //Là où se trouvera la position de la main
     public float fanSpread = 5f;
     public float cardSpacing = 5f;
     public float verticalSpacing = 100f;
+    public List<GameObject> Hand = new List<GameObject>(); //tenir la liste des cartes object dans la main
+    public int startingHandSize = 3;
 
-    public int maxHandSize;
-    public List<GameObject> cardsInHand = new List<GameObject>(); //tenir la liste des cartes object dans la main
+    public int maxHandSize = 3;
+    public int currentCardInHand;
+
+    private void Awake()
+    {
+        if (instance != null && instance != this)
+        {
+            Destroy(this.gameObject);
+            return;
+        }
+
+        instance = this;
+        DontDestroyOnLoad(this.gameObject);
+    }
+
     void Start()
     {
-       
+        HandCounter();
     }
 
-    // Update is called once per frame
- 
-    public void AddCardToHand(Card cardData)
-    {
-        if (cardsInHand.Count < maxHandSize)
-        {
-            //instancier la carte
-            GameObject newCard = Instantiate(cardPrefab, handTransform.position, Quaternion.identity, handTransform);
-            cardsInHand.Add(newCard);
 
-            //Set the CardData of the instantiated card 
-            newCard.GetComponent<CardDisplay>().cardData = cardData;
-            newCard.GetComponent<CardContainer>().card = cardData;
-        }
-        UpdateHandVisuals();
-    }
 
-    void Update()
-    {
-        
-    }
-
-    public void BattleSetup(int setMaxHandSize)
-    {
-        maxHandSize = setMaxHandSize;
-    }
     private void UpdateHandVisuals()
     {
-        int cardCount = cardsInHand.Count;
+        int cardCount = Hand.Count;
 
         if (cardCount == 1)
         {
-            cardsInHand[0].transform.localRotation = Quaternion.Euler(0f, 0f, 0f);
-            cardsInHand[0].transform.localPosition = new Vector3(0f, 0f, 0f);
+            Hand[0].transform.localRotation = Quaternion.Euler(0f, 0f, 0f);
+            Hand[0].transform.localPosition = new Vector3(0f, 0f, 0f);
             return;
         }
         for (int i = 0; i < cardCount; i++)
         {
             float rotationAngle = (fanSpread * (i - (cardCount - 1) / 2f));
-            cardsInHand[i].transform.localRotation = Quaternion.Euler(0f, 0f, rotationAngle);
+            Hand[i].transform.localRotation = Quaternion.Euler(0f, 0f, rotationAngle);
 
             float horizontalOffset = (cardSpacing * (i - (cardCount - 1) / 2f));
             float normalizedPosition = (2f * i / (cardCount - 1) - 1f); //normalise la position des cartes entre -1 et 1
             float verticalOffset = verticalSpacing * (1 - normalizedPosition * normalizedPosition);
 
             //set card position
-            cardsInHand[i].transform.localPosition = new Vector3(horizontalOffset, verticalOffset, 0f);
+            Hand[i].transform.localPosition = new Vector3(horizontalOffset, verticalOffset, 0f);
         }
     }
 
-    public void BattleSetup()
+
+    public void GenerateCard() 
     {
-       
+        //instancier la carte
+        GameObject newCard = Instantiate(cardPrefab, handTransform.position, Quaternion.identity,handTransform);
+        Hand.Add(newCard);
+        //Set the CardData of the instantiated card 
+        newCard.GetComponent<CardDisplay>().cardData = DeckManager.Instance.Deck[0];
+        newCard.GetComponent<CardContainer>().card = DeckManager.Instance.Deck[0];
+        DeckManager.Instance.Deck.RemoveAt(0);
+        HandCounter();
+        UpdateHandVisuals();
     }
+
+    public void HandCounter()
+    {
+        currentCardInHand = Hand.Count;
+        //Text
+    }
+
 }
