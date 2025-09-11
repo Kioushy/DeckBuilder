@@ -14,7 +14,7 @@ public class DrawPileManagerEditor : Editor
 
         DrawPileManager drawPileManager = (DrawPileManager)target;
         if (GUILayout.Button("Draw Next Card")){
-            HandManager handManager = FindObjectOfType<HandManager>();
+            HandManager handManager = FindFirstObjectByType<HandManager>();
             if (handManager != null){
                 drawPileManager.DrawCard(handManager);
             }

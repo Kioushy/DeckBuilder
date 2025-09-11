@@ -58,6 +58,7 @@ public class DrawPileManager : MonoBehaviour
             Card nextCard = drawPile[rand];
             handManager.AddCardToHand(nextCard);
             drawPile.RemoveAt(currentIndex);
+            UpdateDrawPileCount();
             if (drawPile.Count > 0) currentIndex %= drawPile.Count;
             drawPile.Remove(drawPile[rand]);
 

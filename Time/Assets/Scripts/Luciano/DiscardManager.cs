@@ -13,6 +13,21 @@ public class DiscardManager : MonoBehaviour
         UpdateDiscardCount();
     }
 
+    private void OnEnable()
+    {
+        DropZone.Discard += AddDiscard;
+    }
+
+    private void OnDisable()
+    {
+        DropZone.Discard -= AddDiscard;
+    }
+
+    private void AddDiscard(Card _card)
+    {
+        discardCardsCount += 1;
+        Debug.Log("Discard = " + discardCardsCount);
+    }
     private void UpdateDiscardCount()
     {
         discardCount.text = discardCards.Count.ToString();

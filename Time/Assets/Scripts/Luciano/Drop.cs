@@ -1,8 +1,11 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
+using System;
 
 public class DropZone : MonoBehaviour , IDropHandler
 {
+
+    public static event Action<Card> Discard;
     public void OnDrop(PointerEventData eventData)
     {
         if (eventData.pointerDrag != null)
@@ -12,6 +15,8 @@ public class DropZone : MonoBehaviour , IDropHandler
             eventData.selectedObject.GetComponent<CardContainer>().LaunchEffect();
             Debug.Log(eventData.selectedObject.name);
             Debug.Log("Drop");
+            Debug.LogError("ICI");
+            //Discard?.Invoke();
         }
     }
 
