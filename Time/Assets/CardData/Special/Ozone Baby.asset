@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Ozone Baby
   cardType: 
+  Type: 2
   damage: 0
   protect: 0
   heal: 15

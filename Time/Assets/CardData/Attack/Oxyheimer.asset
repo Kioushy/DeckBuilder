@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Oxyheimer
   cardType: 
+  Type: 1
   damage: 20
   protect: 0
   heal: 0

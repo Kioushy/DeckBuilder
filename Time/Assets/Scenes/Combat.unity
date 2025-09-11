@@ -825,7 +825,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9682d6a6ca8f224ba19b00fefef7ad7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  deckManager: {fileID: 0}
+  deckManager: {fileID: 648362248}
   cardPrefab: {fileID: 4603167168328745094, guid: 9a69bc1a61172274c827f2c5011d0f47, type: 3}
   handTransform: {fileID: 1645104096}
   fanSpread: 13.39
@@ -1308,6 +1308,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 6160790885525107731, guid: 90e1d8e35943afe449f214944abf65a9, type: 3}
   m_PrefabInstance: {fileID: 6747629026197244270}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &648362248 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 387017665660994892, guid: 90e1d8e35943afe449f214944abf65a9, type: 3}
+  m_PrefabInstance: {fileID: 6747629026197244270}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca30e3b913da50a45bb2e9ed892c0191, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &666705519
 GameObject:
   m_ObjectHideFlags: 0

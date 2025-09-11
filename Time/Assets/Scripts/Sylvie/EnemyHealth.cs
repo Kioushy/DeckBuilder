@@ -67,7 +67,7 @@ public class EnemyHealth : MonoBehaviour
             return;
         }
 
-        currentHealth -= damageAmount;
+        currentHealth += damageAmount;
 
         // Mettre à jour ici la valeur du slider
         if (healthbarSlider != null)

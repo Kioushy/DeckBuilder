@@ -14,10 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: "Impact Oxyg\xE9nal"
   cardType: 00000000
+  Type: 1
   damage: 5
   protect: 0
   heal: 0
+  player: 0
+  dealDamage: 0
+  protection: 0
+  healing: 0
   descriptionCard: "Inflige 5 points de d\xE9g\xE2ts en monocible."
-  damageType: 00000000
-  protectType: 
-  healType: 

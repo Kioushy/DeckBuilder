@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Siphon du buveur
   cardType: 00000000
+  Type: 1
   damage: 10
   protect: 0
   heal: 0
