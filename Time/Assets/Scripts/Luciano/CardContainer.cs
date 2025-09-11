@@ -4,11 +4,11 @@ using UnityEngine.EventSystems;
 public class CardContainer : MonoBehaviour
 {
     public Card card;
-    public void LaunchEffect()
+     public void LaunchEffect()
     {
         if (card.damage != 0)
         {
-            EnemyHealth.Instance.TakeDamage(card.damage); 
+            EnemyHealth.currentHealth -= card.damage;
         }
 
         if (card.protect != 0)
@@ -20,8 +20,5 @@ public class CardContainer : MonoBehaviour
         {
             HealthBarPlayer.currentHealth += card.heal;
         }
-        Debug.Log("Effect apply");
     }
 }
-
-
