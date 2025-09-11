@@ -4,10 +4,10 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 
-public class GameFlowManager : MonoBehaviour
+public class GameFlowManagerOld : MonoBehaviour
 {
     // public event System.Action OnLevelChanged;
-    public static GameFlowManager Instance { get; private set; }
+    public static GameFlowManagerOld Instance { get; private set; }
 
     // Références privées pour les panneaux UI
     // Elles seront trouvées dynamiquement, pas besoin de les assigner dans l'Inspecteur
@@ -25,9 +25,11 @@ public class GameFlowManager : MonoBehaviour
     public GameObject victoryFinalText;
 
     // Un tableau pour stocker les références des scènes des niveaux
-    [Header("Levels")]
-    [Tooltip("Les GameObjects représentant chaque niveau")]
-    private GameObject[] levels;
+    [Header("Spawn Points")]
+    [Tooltip("Position où les ennemis doivent apparaître dans la scène")]
+    public Transform enemySpawnPoint;
+    [Tooltip("Position où les décors doivent apparaître dans la scène")]
+    [SerializeField] private Transform decorSpawnPoint;
 
     private int currentLevelIndex = 0;
     private bool gamePaused = false; // arr�te la barre de vie et les actions
@@ -35,6 +37,8 @@ public class GameFlowManager : MonoBehaviour
     // Evénement pour notifier les autres scripts quand un niveau change
     public event System.Action OnLevelChanged;
 
+    private GameObject currentEnemy; // Référence de l'ennemi actif
+    private GameObject currentDecor; // Décor actif
     private void Awake()
     {
         // Implémentation du Singleton
@@ -49,7 +53,7 @@ public class GameFlowManager : MonoBehaviour
 
         // Référencement dynamique des GameObjects de l'UI et des niveaux
         FindUiPanels();
-        FindLevels(); 
+        // FindLevels();
 
         // -- CODE MAEVA --
 
@@ -144,22 +148,22 @@ public class GameFlowManager : MonoBehaviour
     /// <summary>
     /// Recherche tous les niveaux sous l'objet parent 'LevelContainer'.
     /// </summary>
-    private void FindLevels()
-    {
-        GameObject container = GameObject.Find("LevelContainer");
-        if (container != null)
-        {
-            levels = new GameObject[container.transform.childCount];
-            for (int i = 0; i < container.transform.childCount; i++)
-            {
-                levels[i] = container.transform.GetChild(i).gameObject;
-            }
-        }
-        else
-        {
-            Debug.LogError("GameFlowManager: L'objet 'LevelContainer' est introuvable. Les niveaux ne peuvent pas être chargés.");
-        }
-    }
+    // private void FindLevels()
+    // {
+    //     GameObject container = GameObject.Find("LevelContainer");
+    //     if (container != null)
+    //     {
+    //         levels = new GameObject[container.transform.childCount];
+    //         for (int i = 0; i < container.transform.childCount; i++)
+    //         {
+    //             levels[i] = container.transform.GetChild(i).gameObject;
+    //         }
+    //     }
+    //     else
+    //     {
+    //         Debug.LogError("GameFlowManager: L'objet 'LevelContainer' est introuvable. Les niveaux ne peuvent pas être chargés.");
+    //     }
+    // }
 
     /// <summary>
     /// Lie les fonctions de gestion aux boutons des panneaux.
@@ -211,7 +215,7 @@ public class GameFlowManager : MonoBehaviour
         gamePaused = true;
         Time.timeScale = 0f;
 
-        if (currentLevelIndex == levels.Length - 1)
+        if (currentLevelIndex >= 2) // Dernier niveau (3e, index = 2)
         {
             // Fin du jeu
             if (victoryFinalText != null) victoryFinalText.SetActive(true);
@@ -237,7 +241,7 @@ public class GameFlowManager : MonoBehaviour
         SetPanelState(false);
 
         int nextIndex = currentLevelIndex + 1;
-        if (nextIndex < levels.Length)
+        if (nextIndex <= 2) // car 3 niveaux : 0, 1, 2
         {
             ShowLevel(nextIndex);
         }
@@ -266,10 +270,50 @@ public class GameFlowManager : MonoBehaviour
     /// </summary>
     private void ShowLevel(int index)
     {
+
         currentLevelIndex = index;
 
-        for (int i = 0; i < levels.Length; i++)
-            levels[i].SetActive(i == currentLevelIndex);
+        // Charger décor
+        string decorName = $"Prefabs/Level{index + 1}";
+        GameObject decorPrefab = Resources.Load<GameObject>(decorName);
+        if (decorPrefab != null)
+        {
+            Vector3 pos = decorSpawnPoint != null ? decorSpawnPoint.position : Vector3.zero;
+            currentDecor = Instantiate(decorPrefab, pos, Quaternion.identity); 
+        }
+
+        // Supprime le décor précédent
+        if (currentDecor != null)
+        {
+            Destroy(currentDecor);
+        }
+
+        // Supprime l'ancien ennemi si encore présent
+        if (currentEnemy != null)
+        {
+            Destroy(currentEnemy);
+        }
+        
+
+        // Choisit le prefab  de l'ennemi en fonction du niveau
+        string prefabName = "";
+        switch (index)
+        {
+            case 0: prefabName = "Prefabs/MedusaEnemy"; break;
+            case 1: prefabName = "Prefabs/SharkEnemy"; break;
+            case 2: prefabName = "Prefabs/SeaSerpentEnemy"; break;
+        }
+
+        GameObject enemyPrefab = Resources.Load<GameObject>(prefabName);
+        if (enemyPrefab != null)
+        {
+            Vector3 spawnPos = enemySpawnPoint != null ? enemySpawnPoint.position : Vector3.zero;
+            currentEnemy = Instantiate(enemyPrefab, spawnPos, Quaternion.identity);
+        }
+        else
+        {
+            Debug.LogError("Impossible de charger le prefab : " + prefabName);
+        }
 
         gamePaused = false;
         Time.timeScale = 1f;
@@ -278,16 +322,13 @@ public class GameFlowManager : MonoBehaviour
         OnLevelChanged?.Invoke();
     }
 
-    public void ActionDamage(InputAction.CallbackContext context) 
-    {
-        if (context.performed)
-        {
-            EnemyHealth.Instance.TakeDamage(1);
-        }
-    
-    
-    }
-
+    // public void ActionDamage(InputAction.CallbackContext context) 
+    // {
+    //     if (context.performed)
+    //     {
+    //         EnemyHealth.Instance.TakeDamage(1);
+    //     }
+    // }
 
     /// <summary>
     /// Indique si le jeu est en pause.

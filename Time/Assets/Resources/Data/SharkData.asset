@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 811be2664be93cb44ada2ba6d657d8d1, type: 3}
+  m_Name: SharkData
+  m_EditorClassIdentifier: 
+  enemyName: SharkEnemy
+  maxHealth: 100
+  damage: 10
+  enemySprite: {fileID: 9032407522959412017, guid: cf0256b0f7a2e7a42ba10aaf36aefd2b, type: 3}

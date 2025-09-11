@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 // Ce script s'occupe de la santé de l'ennemi et instancie sa barre de vie
-public class EnemyHealth : MonoBehaviour
+public class EnemyHealthOld : MonoBehaviour
 {
     [Header("Health Settings")]
     [SerializeField] private float maxHealth = 3f;
@@ -18,26 +18,23 @@ public class EnemyHealth : MonoBehaviour
     // Référence pour la barre de vie instanciée
     private Slider healthbarSlider;
 
-    // Valeur optionnelle provenant des données de l'ennemi
-    private int attackDamage = 0;
-
     private static EnemyHealth instance;
     public static EnemyHealth Instance
     {
         get { return instance; }
     }
 
-    private void Awake()
-    {
-        if (instance != null && instance != this)
-        {
-            Destroy(this.gameObject);
-            return;
-        }
+    // private void Awake()
+    // {
+    //     if (instance != null && instance != this)
+    //     {
+    //         Destroy(this.gameObject);
+    //         return;
+    //     }
 
-        instance = this;
-        DontDestroyOnLoad(this.gameObject);
-    }
+    //     instance = this;
+    //     DontDestroyOnLoad(this.gameObject);
+    // }
 
     /*
     private void Awake()
@@ -58,40 +55,6 @@ public class EnemyHealth : MonoBehaviour
             healthbarSlider.value = currentHealth;
         }
     }
-
-    /// <summary>
-    /// Initialise l'ennemi à partir d'un EnemyData (injecté depuis GameFlowManager).
-    /// Appellez cette méthode après l'instanciation pour configurer PV, sprite, et dégâts.
-    /// </summary>
-    public void Initialize(EnemyData data)
-    {
-        if (data == null)
-        {
-            Debug.LogWarning("EnemyHealth.Initialize appelé avec des données null.");
-            return;
-        }
-
-        // Appliquer les données
-        maxHealth = data.maxHealth;
-        currentHealth = maxHealth;
-
-        // Mettre à jour la barre de vie si elle est déjà liée
-        if (healthbarSlider != null)
-        {
-            healthbarSlider.maxValue = maxHealth;
-            healthbarSlider.value = currentHealth;
-        }
-
-        // Appliquer le sprite si possible
-        if (data.enemySprite != null)
-        {
-            var sr = GetComponent<SpriteRenderer>();
-            if (sr != null) sr.sprite = data.enemySprite;
-        }
-
-        // Stocker le damage si nécessaire pour la logique future
-        attackDamage = data.damage;
-    }
     
     public void TakeDamage(float damageAmount)
     {
@@ -104,7 +67,7 @@ public class EnemyHealth : MonoBehaviour
             return;
         }
 
-        currentHealth += damageAmount;
+        currentHealth -= damageAmount;
 
         // Mettre à jour ici la valeur du slider
         if (healthbarSlider != null)
