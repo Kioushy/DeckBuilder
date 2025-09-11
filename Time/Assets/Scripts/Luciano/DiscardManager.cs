@@ -25,8 +25,12 @@ public class DiscardManager : MonoBehaviour
 
     private void AddDiscard(Card _card)
     {
-        discardCardsCount += 1;
-        Debug.Log("Discard = " + discardCardsCount);
+        discardCards.Add(_card);
+        if (discardCards.Count == 3)
+        {
+            DrawPileManager.Instance.AddCardsFromDiscard(discardCards);
+        }
+        UpdateDiscardCount();
     }
     private void UpdateDiscardCount()
     {

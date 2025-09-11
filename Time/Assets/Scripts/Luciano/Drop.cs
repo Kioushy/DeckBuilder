@@ -15,8 +15,8 @@ public class DropZone : MonoBehaviour , IDropHandler
             eventData.selectedObject.GetComponent<CardContainer>().LaunchEffect();
             Debug.Log(eventData.selectedObject.name);
             Debug.Log("Drop");
-            Debug.LogError("ICI");
-            //Discard?.Invoke();
+            Discard?.Invoke(eventData.selectedObject.GetComponent<CardContainer>().card);
+            Destroy(eventData.selectedObject);
         }
     }
 

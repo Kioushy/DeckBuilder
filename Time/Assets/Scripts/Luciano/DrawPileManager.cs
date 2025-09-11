@@ -6,6 +6,8 @@ using Abyss;
 
 public class DrawPileManager : MonoBehaviour
 {
+    public static DrawPileManager Instance;
+
     public List<Card> drawPile = new List<Card>();
 
     public int startingHandSize = 3;
@@ -17,6 +19,17 @@ public class DrawPileManager : MonoBehaviour
     public DiscardManager discardManager;
     public TextMeshProUGUI drawPileCounter;
 
+
+    private void Awake()
+    {
+        if(!Instance)
+        {
+            Instance = this;
+        } else
+        {
+            Destroy(this);
+        }
+    }
     void Start()
     {
         handManager = FindFirstObjectByType<HandManager>();
@@ -28,6 +41,21 @@ public class DrawPileManager : MonoBehaviour
         {
             currentHandSize = handManager.cardsInHand.Count;
         }
+    }
+
+    public void AddCardsFromDiscard(List<Card> _cards)
+    {
+        /*foreach (Card _card in _cards)
+        {
+            drawPile.Add(_card);
+        }*/
+
+        for (int i = 0; i < _cards.Count; i++)
+        {
+            drawPile.Add(_cards[i]);
+            Debug.Log("Card Name Add = " + drawPile[0].cardName);
+        }
+        UpdateDrawPileCount();
     }
 
     public void MakeDrawPile(List<Card> cardsToAdd)
