@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a93b034b9ab4034da1c4a251745420c, type: 3}
+  m_Name: MedusaDialogue
+  m_EditorClassIdentifier: 
+  enemyName: Medusa
+  introLines:
+  - speaker: Medusa
+    text: '"Qui es-tu ? Comment oses-tu venir ici !"'
+  - speaker: Medusa
+    text: "\"Pr\xE9pare-toi \xE0 combattre !\""
+  victoryLines:
+  - speaker: Medusa
+    text: '"Je m''avoue vaincue... Tu peux passer."'
+  defeatLines:
+  - speaker: Medusa
+    text: Retourne chez toi !"
