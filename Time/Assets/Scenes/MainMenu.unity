@@ -490,7 +490,7 @@ GameObject:
   - component: {fileID: 80552550}
   - component: {fileID: 80552549}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Titre
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -672,7 +672,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "Vous plongez sous l'eau \xE0 la recherche d'un tr\xE9sor ...\nAttention
-    ! L'oxyg\xE8ne diminue rapidement"
+    ! Votre temps est compt\xE9, survivez !"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1744,8 +1744,8 @@ RectTransform:
   m_Children:
   - {fileID: 80552548}
   - {fileID: 1393723495}
-  - {fileID: 50108166}
   - {fileID: 1667530873}
+  - {fileID: 50108166}
   - {fileID: 285415367}
   m_Father: {fileID: 894274549}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2056,7 +2056,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -57}
+  m_AnchoredPosition: {x: 0, y: -17.3}
   m_SizeDelta: {x: 120, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1667530874
