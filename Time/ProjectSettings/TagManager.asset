@@ -5,8 +5,8 @@ TagManager:
   serializedVersion: 3
   tags:
   - Enemy
-  - Healthbar
   - HealthBarPlayer
+  - HealthBarEnemy
   layers:
   - Default
   - TransparentFX

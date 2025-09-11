@@ -144,17 +144,9 @@ public class GameFlowManager : MonoBehaviour
                 // 3. Instancier l'ennemi
                 currentEnemy = Instantiate(enemyPrefab, enemySpawnPoint.position, Quaternion.identity);
 
-                // 4. Récupérer son composant EnemyHealth
-                EnemyHealth healthComponent = currentEnemy.GetComponent<EnemyHealth>();
-                if (healthComponent != null)
-                {
-                    // 5. INJECTER les données dans l'instance !
-                    healthComponent.Initialize(data);
-                }
-                else
-                {
-                    Debug.LogError($"Le préfabriqué {enemyPrefab.name} n'a pas de composant EnemyHealth !");
-                }
+                // 4. Récupérer son composant Health
+                Health healthComponent = currentEnemy.GetComponent<Health>();
+               
             }
             else
             {
@@ -300,7 +292,7 @@ public class GameFlowManager : MonoBehaviour
     {
         if (context.performed)
         {
-            EnemyHealth.Instance.TakeDamage(1);
+          //  Health.Instance.TakeDamage(1);
         }
     }
 

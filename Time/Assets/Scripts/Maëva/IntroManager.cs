@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 
-public class LevelIntro : MonoBehaviour
+public class IntroManager : MonoBehaviour
 {
     private GameObject coralLeft;
     private GameObject coralRight;

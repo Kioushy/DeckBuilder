@@ -8,6 +8,7 @@ public class TurnManager : MonoBehaviour
 {
     public static TurnManager Instance;
 
+    public DeckManager DeckM;
     public enum State {PlayerTurn,EnemyTurn,Busy}
     public State currentState;
 
@@ -20,10 +21,13 @@ public class TurnManager : MonoBehaviour
         {
             Destroy(this);
         }
+
+
     }
     void Start()
     {
-        BattleSetup();
+       
+        StartCoroutine(BattleSetupTimer());
     }
 
     void Update()
@@ -34,8 +38,8 @@ public class TurnManager : MonoBehaviour
 
     public void BattleSetup()
     {
-        DeckManager.Instance.Shuffle();
-        DeckManager.Instance.DrawCard(HandManager.Instance.maxHandSize);
+        DeckM.Shuffle();
+        DeckM.DrawCard(HandManager.Instance.maxHandSize);
         currentState = State.PlayerTurn;
     }
 
@@ -44,6 +48,12 @@ public class TurnManager : MonoBehaviour
         currentState = State.EnemyTurn;
         StartCoroutine(AttackEnemy());
 
+    }
+
+    public IEnumerator BattleSetupTimer()
+    {
+        yield return new WaitForSeconds(1f);
+        BattleSetup();
     }
 
     public IEnumerator AttackEnemy() 

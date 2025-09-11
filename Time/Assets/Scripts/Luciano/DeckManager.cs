@@ -20,11 +20,13 @@ public class DeckManager : MonoBehaviour
 
     private HandManager _handManager;
 
+    public Card[] cards;
+
     void Awake()
     {
 
         //Load all card assets from the Ressources folder
-        Card[] cards = Resources.LoadAll<Card>("Cards");
+       // cards = Resources.LoadAll<Card>("Cards");
         //Add the loaded cards to the Deck list
         Deck.AddRange(cards);
 
@@ -97,10 +99,13 @@ public class DeckManager : MonoBehaviour
     */
     public void Shuffle()
     {
-        DeckTemp.AddRange(Deck);
-        Deck.Clear();
-        Deck = DeckTemp.OrderBy(c => Random.value).ToList();
-        DeckTemp.Clear();
+        for (int i = 0; i < Deck.Count; i++)
+        {
+            int randomIndex = Random.Range(i, Deck.Count);
+            Card temp = Deck[i];
+            Deck[i] = Deck[randomIndex];
+            Deck[randomIndex] = temp;
+        }
     }
 
     private void DeckCounter()

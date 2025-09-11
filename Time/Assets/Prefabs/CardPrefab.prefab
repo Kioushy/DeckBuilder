@@ -742,7 +742,6 @@ GameObject:
   - component: {fileID: 6708386004427810369}
   - component: {fileID: 1605357598172210717}
   - component: {fileID: 1027430850136470869}
-  - component: {fileID: 2468123596598618703}
   m_Layer: 0
   m_Name: CardPrefab
   m_TagString: Untagged
@@ -914,24 +913,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   card: {fileID: 0}
---- !u!114 &2468123596598618703
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4603167168328745094}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 980cfed6e950cff47a9677ac52488d39, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemyLayer:
-    serializedVersion: 2
-    m_Bits: 64
-  worldCamera: {fileID: 0}
-  aimAssistRadius: 0.35
-  cardContainer: {fileID: 0}
 --- !u!1 &4843652444362642492
 GameObject:
   m_ObjectHideFlags: 0

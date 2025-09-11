@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: Goxylla
   m_EditorClassIdentifier: 
   cardName: Goxylla
-  cardType: 
+  cardType: 01000000
+  Type: 0
   damage: 0
   protect: 20
   heal: 0

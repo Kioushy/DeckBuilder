@@ -3,7 +3,7 @@ using UnityEngine.InputSystem;
 
 public class CheatManager : MonoBehaviour
 {
-    private EnemyHealth currentEnemy;
+    private Health currentEnemy;
     // private GameFlowManager gameFlowManager;
     // private bool initialized = false;
 
@@ -32,7 +32,7 @@ public class CheatManager : MonoBehaviour
     public void FindCurrentEnemy()
     {
         // On cherche l'ennemi en fonction du tag "Enemy" ou de son script
-        currentEnemy = FindObjectOfType<EnemyHealth>();
+        currentEnemy = FindObjectOfType<Health>();
         if (currentEnemy == null)
         {
             Debug.LogWarning("CheatManager: Aucun ennemi trouvé dans la scène.");
@@ -51,7 +51,7 @@ public class CheatManager : MonoBehaviour
             if (currentEnemy != null)
             {
                 Debug.Log("CHEAT: Attaque simulée sur l'ennemi.");
-                currentEnemy.TakeDamage(100f); // Dégâts suffisants pour tuer n'importe quel ennemi
+                currentEnemy.TakeDamage(100); // Dégâts suffisants pour tuer n'importe quel ennemi
             }
             else
             {

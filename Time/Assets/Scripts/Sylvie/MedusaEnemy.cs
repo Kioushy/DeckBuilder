@@ -5,8 +5,8 @@ using UnityEngine.InputSystem;
 public class MedusaEnemy : MonoBehaviour
 {
 
-    [Header("Stats")]
-    public int health = 50;
+    public EnemyData enemyData; // Référence aux données de l'ennemi
+
     public int damage = 10;
 
     [Header("Shockwave")]
@@ -31,6 +31,22 @@ public class MedusaEnemy : MonoBehaviour
         }
     }
 
+    // Appelée quand le joueur inflige des dégâts avec une carte 
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Start()
+    {
+        // Stocker le damage si nécessaire pour la logique future
+        damage = enemyData.damage;
+
+        // Appliquer le sprite si possible
+        if (enemyData.enemySprite != null)
+        {
+            SpriteRenderer sr = GetComponent<SpriteRenderer>();
+            if (sr != null) sr.sprite = enemyData.enemySprite;
+        }
+
+    }
+    
     void OnEnable()
     {
         inputActions.Enable();
@@ -42,33 +58,18 @@ public class MedusaEnemy : MonoBehaviour
         inputActions.Player.CheatRiposte.performed -= OnCheatRiposte;
         inputActions.Disable();
     }
-
+    
      private void OnCheatRiposte(InputAction.CallbackContext context)
-    {
-        if (isAlive)
-        {
-            // Cheat code : lance directement la riposte
-            StartCoroutine(RiposteShockwave());
-            Debug.Log("Cheat riposte de la méduse activée !");
-        }
-    }
+     {
+         if (isAlive)
+         {
+             // Cheat code : lance directement la riposte
+             StartCoroutine(RiposteShockwave());
+             Debug.Log("Cheat riposte de la méduse activée !");
+         }
+     }
 
     // Appelée quand le joueur inflige des dégâts avec une carte
-    public void TakeDamage(int amount)
-    {
-        if (!isAlive) return;
-
-        health -= amount;
-
-        if (health <= 0)
-        {
-            Die();
-        }
-        else if (retaliateOnHit)
-        {
-            StartCoroutine(RiposteShockwave());
-        }
-    }
 
     private IEnumerator RiposteShockwave()
     {
@@ -77,22 +78,11 @@ public class MedusaEnemy : MonoBehaviour
         if (isAlive) // si toujours vivant après le délai
         {
             Instantiate(shockwavePrefab, transform.position, Quaternion.identity);
+          
         }
     }
 
-    private void Die()
-    {
-        isAlive = false;
-        Destroy(gameObject); // provisoire
-        GameFlowManager.Instance.EnemyDied();
-    }
-
-    // Appelée quand le joueur inflige des dégâts avec une carte 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+ 
 
     // Update is called once per frame
     void Update()

@@ -5,11 +5,14 @@ using System;
 
 public class HandManager : MonoBehaviour
 {
+
     private static HandManager instance;
     public static HandManager Instance
     {
         get { return instance; }
     }
+
+    public DeckManager deckManager;
 
     public GameObject cardPrefab; //assign card Prefab in the inspector
     public Transform handTransform; //Là où se trouvera la position de la main
@@ -72,9 +75,9 @@ public class HandManager : MonoBehaviour
         GameObject newCard = Instantiate(cardPrefab, handTransform.position, Quaternion.identity,handTransform);
         Hand.Add(newCard);
         //Set the CardData of the instantiated card 
-        newCard.GetComponent<CardDisplay>().cardData = DeckManager.Instance.Deck[0];
-        newCard.GetComponent<CardContainer>().card = DeckManager.Instance.Deck[0];
-        DeckManager.Instance.Deck.RemoveAt(0);
+        newCard.GetComponent<CardDisplay>().cardData = deckManager.Deck[0];
+        newCard.GetComponent<CardContainer>().card = deckManager.Deck[0];
+        deckManager.Deck.RemoveAt(0);
         HandCounter();
         UpdateHandVisuals();
     }

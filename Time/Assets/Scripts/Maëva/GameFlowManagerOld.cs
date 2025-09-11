@@ -326,7 +326,7 @@ public class GameFlowManagerOld : MonoBehaviour
     // {
     //     if (context.performed)
     //     {
-    //         EnemyHealth.Instance.TakeDamage(1);
+    //         Health.Instance.TakeDamage(1);
     //     }
     // }
 
