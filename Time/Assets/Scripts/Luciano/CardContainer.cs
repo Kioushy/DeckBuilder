@@ -6,19 +6,19 @@ public class CardContainer : MonoBehaviour
     public Card card;
     public void LaunchEffect()
     {
-        if (card.damage != 0)
+        if (card.type == Card.TypeCard.Attack)
         {
-            EnemyHealth.Instance.TakeDamage(card.damage); 
+            EnemyHealth.Instance.TakeDamage(card.damage);
         }
 
-        if (card.protect != 0)
+        if (card.type == Card.TypeCard.Defense)
         {
-            HealthBarPlayer.shield += card.protect;
+            HealthBarPlayer.Instance.UpdateHealth(card.protect);
         }
 
-        if (card.heal != 0)
+        if (card.type == Card.TypeCard.Special)
         {
-            HealthBarPlayer.currentHealth += card.heal;
+            HealthBarPlayer.Instance.UpdateHealth(card.heal);
         }
         Debug.Log("Effect apply");
     }
