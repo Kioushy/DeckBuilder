@@ -65,14 +65,14 @@ public class MainMenuController : MonoBehaviour
             bubbles.bubbleCount = 20;
         }
 
-        Invoke("LoadLevel1", transitionTime);
+        Invoke("LoadCombat", transitionTime);
 
     }
 
-    private void LoadLevel1()
+    private void LoadCombat()
 
     {
-        SceneManager.LoadScene("Level1");
+        SceneManager.LoadScene("Combat");
     }
 
     private void OnSettingClicked()
