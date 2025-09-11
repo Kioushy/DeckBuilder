@@ -1,22 +1,20 @@
 using UnityEngine;
-using UnityEngine.UI;
 
-// Ce script s'occupe de la santé de l'ennemi et instancie sa barre de vie
+/// <summary>
+/// Ce script est attaché à chaque ennemi en jeu.
+/// Il lit les données d'un Scriptable Object (EnemyData) pour s'initialiser
+/// et gère l'état de santé actuel de l'ennemi.
+/// </summary>
 public class EnemyHealth : MonoBehaviour
 {
-    [Header("Health Settings")]
-    [SerializeField] private float maxHealth = 3f;
+    // Référence aux données de l'ennemi. Sera assignée au moment de l'instanciation.
+    public EnemyData enemyData; 
+    
+    // La santé ACTUELLE de cette instance d'ennemi.
+    private float currentHealth;
 
-    [Header("UI Settings")]
-    [Tooltip("Prefab de la barre de vie qui contient un Canvas en mode 'World Space")]
-
-    //Références privées
-    public float currentHealth;
-    private bool isDead = false;   
-    // private Animator animator;
-
-    // Référence pour la barre de vie instanciée
-    private Slider healthbarSlider;
+    // Référence à la barre de vie de la scène.
+    private HealthBarEnemy healthBar;
 
     private static EnemyHealth instance;
     public static EnemyHealth Instance
@@ -24,58 +22,39 @@ public class EnemyHealth : MonoBehaviour
         get { return instance; }
     }
 
-    private void Awake()
+    public void Initialize(EnemyData data)
     {
-        if (instance != null && instance != this)
+        // On reçoit les données depuis le GameFlowManager
+        enemyData = data;
+
+        // On initialise la vie de l'ennemi avec la valeur max définie dans le SO
+        currentHealth = enemyData.maxHealth;
+
+        // On trouve la barre de vie dans la scène
+        healthBar = FindObjectOfType<HealthBarEnemy>();
+        if (healthBar != null)
         {
-            Destroy(this.gameObject);
-            return;
+            // On met à jour la barre de vie une première fois pour l'afficher pleine.
+            healthBar.UpdateHealthBar(enemyData.maxHealth, currentHealth);
         }
-
-        instance = this;
-        DontDestroyOnLoad(this.gameObject);
-    }
-
-    /*
-    private void Awake()
-    {
-        // animator = GetComponent<Animator>(); // on récupère l’Animator
-    }
-    */
-    private void Start()
-    {
-        healthbarSlider = transform.GetChild(0).transform.GetChild(0).GetComponent<Slider>();
-        currentHealth = maxHealth;
-
-        // On instancie la barre de vie au démarrage
-
-        if (healthbarSlider != null)
+        else
         {
-            healthbarSlider.maxValue = maxHealth;
-            healthbarSlider.value = currentHealth;
+            Debug.LogError("Aucune HealthBarEnemy trouvée dans la scène !");
         }
     }
-    
-    public void TakeDamage(float damageAmount)
+
+    public void TakeDamage(float amount)
     {
-        Debug.Log($"DAMAGE APPELÉ sur {gameObject.name}: {damageAmount} dégâts"); 
+        if (enemyData == null) return; // Sécurité
 
+        currentHealth -= amount;
+        currentHealth = Mathf.Clamp(currentHealth, 0, enemyData.maxHealth);
 
-        if (isDead)
+        // Mettre à jour l'affichage de la barre de vie
+        if (healthBar != null)
         {
-            Debug.Log("Ennemi déjà mort, dégâts ignorés"); 
-            return;
+            healthBar.UpdateHealthBar(enemyData.maxHealth, currentHealth);
         }
-
-        currentHealth -= damageAmount;
-
-        // Mettre à jour ici la valeur du slider
-        if (healthbarSlider != null)
-        {
-            healthbarSlider.value = currentHealth;
-        }
-
-        Debug.Log($"Nouvelle vie de {gameObject.name}: {currentHealth}/{maxHealth}"); 
 
         if (currentHealth <= 0)
         {
@@ -85,18 +64,13 @@ public class EnemyHealth : MonoBehaviour
 
     private void Die()
     {
-        if (isDead) return;
-        isDead = true;
+        // Logique de mort (lancer une animation, un son, un effet, etc.)
+        Debug.Log($"{enemyData.enemyName} est vaincu !");
 
-        // animator.SetTrigger("Die"); // Lance anim de mort
-        // GetComponent<Collider2D>().enabled = false; // optionnel : désactive collisions
-
-        // On notifie le GameFlowManager que l'ennemi est mort
-        if (GameFlowManager.Instance != null)
-        {
-            GameFlowManager.Instance.EnemyDied();
-        }
-        // On détruit l'ennemi après un délai, la barre de vie sera détruite via OnDestroy()
-        Destroy(gameObject); // ou Animation Event pour caler pile la durée
+        // Notifier le GameFlowManager
+        GameFlowManager.Instance.EnemyDied();
+        
+        // Détruire l'objet de l'ennemi
+        Destroy(gameObject);
     }
 }

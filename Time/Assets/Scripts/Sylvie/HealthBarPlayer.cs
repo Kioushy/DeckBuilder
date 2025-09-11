@@ -6,9 +6,12 @@ using System.Collections;
 
 public class HealthBarPlayer : MonoBehaviour
 {
-    [SerializeField] int MaxHealth;
+    [SerializeField] int MaxHealth = 100;
     [SerializeField] int MinHealth;
-    // [SerializeField] Slider healthSlider;
+
+    [SerializeField] private int currentHealt;
+    // [SerializeField] private Slider healthSlider;
+
     [Header("Input System")]
     [Tooltip("Optional: assign an InputActionReference from your Input Actions for Heal (performed)")]
     [SerializeField] InputActionReference healAction;
@@ -64,7 +67,7 @@ public class HealthBarPlayer : MonoBehaviour
     private void Start()
     {
         // On récupère directement la référence du Slider sur le GameObject
-    
+
         playerHealthSlider  = GetComponent<Slider>();
         
 
@@ -81,6 +84,11 @@ public class HealthBarPlayer : MonoBehaviour
         FullHeal();
         // Démarrez la coroutine au début du jeu
         healthDrainCoroutine = StartCoroutine(DrainHealthOverTime());
+
+        currentHealth = MaxHealth;
+        playerHealthSlider.maxValue = MaxHealth;
+        playerHealthSlider.value = currentHealth;
+
     }
 
 
@@ -237,6 +245,19 @@ public class HealthBarPlayer : MonoBehaviour
     public void Initialize(Slider slider)
     {
         playerHealthSlider = slider;
+    }
+
+    public void TakeDamage(int damage)
+    {
+        currentHealth -= damage;
+        currentHealth = Mathf.Max(currentHealth, 0); // éviter les PV négatifs
+        playerHealthSlider.value = currentHealth;
+
+        Debug.Log("Joueur perd " + damage + "PV. Restants : " + currentHealth);
+        if (currentHealth <= 0)
+        {
+            Die();
+        }
     }
     
     public void Die()
