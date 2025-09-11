@@ -40,9 +40,11 @@ public class DeckManager : MonoBehaviour
 
         if (currentHandSize < maxHandSize)
         {
-            Card nextCard = allCards[currentIndex];
+            int rand = Random.Range(0, allCards.Count - 1);
+            Card nextCard = allCards[rand];
             handManager.AddCardToHand(nextCard);
-            currentIndex = (currentIndex + 1) % allCards.Count;
+            allCards.Remove(allCards[rand]);
+          
         }
     }
 }

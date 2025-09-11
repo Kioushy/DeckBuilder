@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Oxyheimer
   m_EditorClassIdentifier: 
   cardName: Oxyheimer
-  cardType: 
+  cardType: 00000000
   Type: 1
   damage: 20
   protect: 0

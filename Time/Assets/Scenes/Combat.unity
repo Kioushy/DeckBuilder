@@ -4107,20 +4107,28 @@ PrefabInstance:
       objectReference: {fileID: 454069646}
     - target: {fileID: 387017665660994892, guid: 90e1d8e35943afe449f214944abf65a9, type: 3}
       propertyPath: allCards.Array.size
-      value: 9
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 387017665660994892, guid: 90e1d8e35943afe449f214944abf65a9, type: 3}
-      propertyPath: 'allCards.Array.data[3]'
+      propertyPath: 'allCards.Array.data[1]'
+      value: 
+      objectReference: {fileID: 11400000, guid: bf27710dbb884754b9dc764eb8b2126e, type: 2}
+    - target: {fileID: 387017665660994892, guid: 90e1d8e35943afe449f214944abf65a9, type: 3}
+      propertyPath: 'allCards.Array.data[2]'
       value: 
       objectReference: {fileID: 11400000, guid: 3326db025cb1d794593ee6bd934c8c98, type: 2}
     - target: {fileID: 387017665660994892, guid: 90e1d8e35943afe449f214944abf65a9, type: 3}
-      propertyPath: 'allCards.Array.data[4]'
+      propertyPath: 'allCards.Array.data[3]'
       value: 
       objectReference: {fileID: 11400000, guid: 040146c671ec1d5448707c9cd4eebddf, type: 2}
     - target: {fileID: 387017665660994892, guid: 90e1d8e35943afe449f214944abf65a9, type: 3}
+      propertyPath: 'allCards.Array.data[4]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 29aee755987d16a49ba031b528cee931, type: 2}
+    - target: {fileID: 387017665660994892, guid: 90e1d8e35943afe449f214944abf65a9, type: 3}
       propertyPath: 'allCards.Array.data[5]'
       value: 
-      objectReference: {fileID: 11400000, guid: 392563d2931f1d945a6eb6ab5b65bbf9, type: 2}
+      objectReference: {fileID: 11400000, guid: da02afc74ec148447a2b4f727858f3a7, type: 2}
     - target: {fileID: 387017665660994892, guid: 90e1d8e35943afe449f214944abf65a9, type: 3}
       propertyPath: 'allCards.Array.data[6]'
       value: 
@@ -4128,11 +4136,11 @@ PrefabInstance:
     - target: {fileID: 387017665660994892, guid: 90e1d8e35943afe449f214944abf65a9, type: 3}
       propertyPath: 'allCards.Array.data[7]'
       value: 
-      objectReference: {fileID: 11400000, guid: 29aee755987d16a49ba031b528cee931, type: 2}
+      objectReference: {fileID: 11400000, guid: b81b7f224ad5b0b40a762ccc81ec36ad, type: 2}
     - target: {fileID: 387017665660994892, guid: 90e1d8e35943afe449f214944abf65a9, type: 3}
       propertyPath: 'allCards.Array.data[8]'
       value: 
-      objectReference: {fileID: 11400000, guid: da02afc74ec148447a2b4f727858f3a7, type: 2}
+      objectReference: {fileID: 11400000, guid: 392563d2931f1d945a6eb6ab5b65bbf9, type: 2}
     - target: {fileID: 3133585713719917998, guid: 90e1d8e35943afe449f214944abf65a9, type: 3}
       propertyPath: m_Name
       value: DeckManager

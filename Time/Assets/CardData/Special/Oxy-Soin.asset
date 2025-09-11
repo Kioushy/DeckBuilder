@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5267f8265d5cbdb48b00dbbe5ec3c934, type: 3}
   m_Name: Oxy-Soin
   m_EditorClassIdentifier: 
-  cardName: 
+  cardName: Oxy-soin
   cardType: 02000000
   Type: 2
   damage: 0
