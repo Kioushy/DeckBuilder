@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 811be2664be93cb44ada2ba6d657d8d1, type: 3}
   m_Name: SharkData
   m_EditorClassIdentifier: 
-  enemyName: Nouvel Ennemi
+  enemyName: SharkEnemy
   maxHealth: 100
   damage: 10
   enemySprite: {fileID: 9032407522959412017, guid: cf0256b0f7a2e7a42ba10aaf36aefd2b, type: 3}
