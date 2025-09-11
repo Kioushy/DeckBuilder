@@ -60,8 +60,7 @@ public class EnemyHealth : MonoBehaviour
     }
 
     /// <summary>
-    /// Initialise l'ennemi à partir d'un EnemyData (injecté depuis GameFlowManager).
-    /// Appellez cette méthode après l'instanciation pour configurer PV, sprite, et dégâts.
+    /// Initialise l'ennemi avec les données du ScriptableObject EnemyData
     /// </summary>
     public void Initialize(EnemyData data)
     {
@@ -74,6 +73,7 @@ public class EnemyHealth : MonoBehaviour
         // Appliquer les données
         maxHealth = data.maxHealth;
         currentHealth = maxHealth;
+        attackDamage = data.damage;
 
         // Mettre à jour la barre de vie si elle est déjà liée
         if (healthbarSlider != null)
@@ -82,25 +82,25 @@ public class EnemyHealth : MonoBehaviour
             healthbarSlider.value = currentHealth;
         }
 
-        // Appliquer le sprite si possible
+        // Appliquer le sprite de l’ennemi
         if (data.enemySprite != null)
         {
-            var sr = GetComponent<SpriteRenderer>();
-            if (sr != null) sr.sprite = data.enemySprite;
+            SpriteRenderer sr = GetComponent<SpriteRenderer>();
+            if (sr != null)
+                sr.sprite = data.enemySprite;
         }
 
-        // Stocker le damage si nécessaire pour la logique future
-        attackDamage = data.damage;
+        Debug.Log($"EnemyHealth.Initialize -> {gameObject.name} avec {maxHealth} PV et {attackDamage} ATK");
     }
     
     public void TakeDamage(float damageAmount)
     {
-        Debug.Log($"DAMAGE APPELÉ sur {gameObject.name}: {damageAmount} dégâts"); 
+        Debug.Log($"DAMAGE APPELÉ sur {gameObject.name}: {damageAmount} dégâts");
 
 
         if (isDead)
         {
-            Debug.Log("Ennemi déjà mort, dégâts ignorés"); 
+            Debug.Log("Ennemi déjà mort, dégâts ignorés");
             return;
         }
 
@@ -112,7 +112,7 @@ public class EnemyHealth : MonoBehaviour
             healthbarSlider.value = currentHealth;
         }
 
-        Debug.Log($"Nouvelle vie de {gameObject.name}: {currentHealth}/{maxHealth}"); 
+        Debug.Log($"Nouvelle vie de {gameObject.name}: {currentHealth}/{maxHealth}");
 
         if (currentHealth <= 0)
         {
