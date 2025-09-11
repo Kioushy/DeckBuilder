@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 811be2664be93cb44ada2ba6d657d8d1, type: 3}
   m_Name: MedusaData
   m_EditorClassIdentifier: 
-  enemyName: Nouvel Ennemi
+  enemyName: MedusaEnemy
   maxHealth: 50
   damage: 10
   enemySprite: {fileID: 4721083297166304241, guid: fa103bfc4a9777549ac3b2ce5ed2980c, type: 3}
