@@ -11,12 +11,15 @@ public class EnemyHealth : MonoBehaviour
     [Tooltip("Prefab de la barre de vie qui contient un Canvas en mode 'World Space")]
 
     //Références privées
-    public static float currentHealth;
+    public float currentHealth;
     private bool isDead = false;   
     // private Animator animator;
 
     // Référence pour la barre de vie instanciée
     private Slider healthbarSlider;
+
+    // Valeur optionnelle provenant des données de l'ennemi
+    private int attackDamage = 0;
 
     private static EnemyHealth instance;
     public static EnemyHealth Instance
@@ -54,6 +57,40 @@ public class EnemyHealth : MonoBehaviour
             healthbarSlider.maxValue = maxHealth;
             healthbarSlider.value = currentHealth;
         }
+    }
+
+    /// <summary>
+    /// Initialise l'ennemi à partir d'un EnemyData (injecté depuis GameFlowManager).
+    /// Appellez cette méthode après l'instanciation pour configurer PV, sprite, et dégâts.
+    /// </summary>
+    public void Initialize(EnemyData data)
+    {
+        if (data == null)
+        {
+            Debug.LogWarning("EnemyHealth.Initialize appelé avec des données null.");
+            return;
+        }
+
+        // Appliquer les données
+        maxHealth = data.maxHealth;
+        currentHealth = maxHealth;
+
+        // Mettre à jour la barre de vie si elle est déjà liée
+        if (healthbarSlider != null)
+        {
+            healthbarSlider.maxValue = maxHealth;
+            healthbarSlider.value = currentHealth;
+        }
+
+        // Appliquer le sprite si possible
+        if (data.enemySprite != null)
+        {
+            var sr = GetComponent<SpriteRenderer>();
+            if (sr != null) sr.sprite = data.enemySprite;
+        }
+
+        // Stocker le damage si nécessaire pour la logique future
+        attackDamage = data.damage;
     }
     
     public void TakeDamage(float damageAmount)
