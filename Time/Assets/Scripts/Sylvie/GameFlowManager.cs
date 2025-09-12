@@ -35,7 +35,8 @@ public class GameFlowManager : MonoBehaviour
     // --- Events ---
     public event System.Action OnLevelChanged;
 
-    public Health health;
+    public Health healthP;
+    public Health healthE;
 
     public IntroManager introManager;
     
@@ -101,9 +102,6 @@ public class GameFlowManager : MonoBehaviour
     {
         currentLevelIndex = index;
 
-        // Supprime les anciens au cas où
-        if (currentEnemy != null) Destroy(currentEnemy);
-        if (currentDecor != null) Destroy(currentDecor);
 
         // --- Charger le décor ---
         string decorName = $"Prefabs/Level{index + 1}";
@@ -133,17 +131,6 @@ public class GameFlowManager : MonoBehaviour
 
         // Lancer l’intro à chaque nouveau niveau
 
-        IntroManager intro = FindObjectOfType<IntroManager>();
-        if (intro != null)
-        {
-            intro.PlayIntro();
-            Debug.Log("IntroManager lancé pour le niveau " + currentLevelIndex);
-
-        }
-        else
-        {
-            Debug.LogWarning("IntroManager introuvable dans la scène !");
-        }
 
         /*
             // --- NOUVELLE Logique de chargement de l'ennemi ---
@@ -207,9 +194,7 @@ public class GameFlowManager : MonoBehaviour
     // Unifie la logique de passage au niveau suivant
     public void NextLevel()
     {
-        currentLevelIndex++;
         Time.timeScale = 1f;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         introManager.StartLevelIntro();
     }
 
