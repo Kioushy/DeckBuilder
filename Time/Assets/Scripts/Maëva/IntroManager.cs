@@ -1,12 +1,13 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using TMPro;
 
 public class IntroManager : MonoBehaviour
 {
     private GameObject coralLeft;
     private GameObject coralRight;
-    private GameObject oxygenText;
+    private TextMeshProUGUI oxygenText; // dans l'UI du jeu
 
     private float moveDuration = 5f;
     private Vector3 leftTarget = new Vector3(-18f, 0f, 0f);
@@ -19,14 +20,22 @@ public class IntroManager : MonoBehaviour
         // Trouve les objets dynamiquement
         coralLeft = GameObject.Find("CoralLeft");
         coralRight = GameObject.Find("CoralRight");
-        oxygenText = GameObject.Find("OxygenTutorialText");
 
-        if (oxygenText != null) oxygenText.SetActive(false);
+        GameObject oxygenGO = GameObject.FindWithTag("oxygenText");
+        if (oxygenGO != null)
+        {
+            oxygenText = oxygenGO.GetComponent<TextMeshProUGUI>();
+            oxygenText.gameObject.SetActive(false);
+        }
+        else
+        {
+            Debug.LogWarning("IntroManager: Impossible de trouver oxygenText avec le tag !");
+        }
 
         // Pause totale du jeu
         Time.timeScale = 0f;
 
-        // Lancer la séquence d’intro
+        // Lancer la sï¿½quence dï¿½intro
         StartCoroutine(IntroSequence());
     }
 
@@ -35,7 +44,7 @@ public class IntroManager : MonoBehaviour
         // Si on attend un clic pour reprendre
         if (waitingForClick && Input.GetMouseButtonDown(0))
         {
-            if (oxygenText != null) oxygenText.SetActive(false);
+            if (oxygenText != null) oxygenText.gameObject.SetActive(false);
             waitingForClick = false;
 
             // Reprise du jeu
@@ -55,7 +64,7 @@ public class IntroManager : MonoBehaviour
         // Animation des coraux
         while (elapsed < moveDuration)
         {
-            elapsed += Time.unscaledDeltaTime; // On utilise le temps "réel" car le jeu est en pause
+            elapsed += Time.unscaledDeltaTime; // On utilise le temps "rï¿½el" car le jeu est en pause
             float t = elapsed / moveDuration;
 
             coralLeft.transform.position = Vector3.Lerp(startLeft, leftTarget, t);
@@ -65,7 +74,7 @@ public class IntroManager : MonoBehaviour
         }
 
         // Quand les coraux ont fini -> afficher le texte
-        if (oxygenText != null) oxygenText.SetActive(true);
+        if (oxygenText != null) oxygenText.gameObject.SetActive(true);
 
         // Attendre le clic du joueur
         waitingForClick = true;

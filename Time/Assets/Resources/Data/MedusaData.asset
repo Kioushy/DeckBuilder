@@ -15,4 +15,4 @@ MonoBehaviour:
   enemyName: MedusaEnemy
   maxHealth: 50
   damage: 10
-  enemySprite: {fileID: 4721083297166304241, guid: fa103bfc4a9777549ac3b2ce5ed2980c, type: 3}
+  enemySprite: {fileID: -5469531881828925177, guid: 3d99095e85c390c42858db347d103368, type: 3}
