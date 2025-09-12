@@ -178,6 +178,9 @@ public class GameFlowManager : MonoBehaviour
         currentLevelIndex++;
         Time.timeScale = 1f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        // Recentrer la caméra sur l'ennemi et le décor suivant (index++)
+        
+        // Remettre le HealthBarPlayer à Full
     }
 
     // Redémarre la scène
@@ -186,6 +189,8 @@ public class GameFlowManager : MonoBehaviour
         // SetPanelState(false);
         Time.timeScale = 1f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        // Recentrer la caméra sur currentEnemy et le currentDecor
+        // Remettre le HealthBarPlayer à Full
     }
 
     // Retour au menu principal
