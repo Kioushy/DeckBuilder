@@ -4925,6 +4925,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   victoryPanel: {fileID: 1989841690}
   defeatPanel: {fileID: 309493270}
+  health: {fileID: 816576047}
 --- !u!114 &2132357053
 MonoBehaviour:
   m_ObjectHideFlags: 0
