@@ -161,6 +161,7 @@ public class GameFlowManager : MonoBehaviour
             }
         }
         */
+        
         // --- Finaliser l'initialisation ---
         gamePaused = false;
         Time.timeScale = 1f;
