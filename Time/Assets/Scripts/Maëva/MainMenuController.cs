@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using System.Collections; // important pour les coroutines
 
 public class MainMenuController : MonoBehaviour
 {
@@ -45,13 +46,14 @@ public class MainMenuController : MonoBehaviour
             musicAudioSource.clip = bgMusic;
             musicAudioSource.loop = true; // musique en boucle
             musicAudioSource.playOnAwake = false;
+            musicAudioSource.volume = 1f; // volume de départ
             musicAudioSource.Play();
         }
         else
         {
-            Debug.LogWarning(" Pas de fichier 'MenuMusic' trouvé dans Resources !");
+            Debug.LogWarning("Pas de fichier 'MainSound' trouvé dans Resources !");
         }
-    
+
         // Audio transition le splash
         audioSource = gameObject.AddComponent<AudioSource>();
         AudioClip clip = Resources.Load<AudioClip>("Splash");
@@ -60,7 +62,7 @@ public class MainMenuController : MonoBehaviour
         // Bubble
         bubblePrefab = transitionPanel != null ? transitionPanel.transform.Find("BubblePrefab")?.gameObject : null;
         if (bubblePrefab != null)
-            bubblePrefab.SetActive(false );
+            bubblePrefab.SetActive(false);
         else
             Debug.LogWarning("BubblePrefab introuvable !");
     }
@@ -68,32 +70,33 @@ public class MainMenuController : MonoBehaviour
     private void OnStartClicked()
     {
         if (transitionPanel != null)
-        {  
-            transitionPanel.SetActive(true);  
-          
-        // Jouer le son
-        if (audioSource.clip != null)
-            audioSource.Play();
+        {
+            transitionPanel.SetActive(true);
 
-        // Générer les bulles
+            // Jouer le son
+            if (audioSource.clip != null)
+                audioSource.Play();
+
+            // Générer les bulles
             BubbleEffect bubbles = transitionPanel.AddComponent<BubbleEffect>();
             bubbles.bubblePrefab = bubblePrefab;
             bubbles.bubbleCount = 20;
         }
 
-        Invoke("LoadCombat", transitionTime);
+        // Lancer le fade de la musique
+        StartCoroutine(FadeOutMusic(transitionTime));
 
+        // Charger la scène après le temps de transition
+        Invoke("LoadCombat", transitionTime);
     }
 
     private void LoadCombat()
-
     {
         SceneManager.LoadScene("Combat");
     }
 
     private void OnSettingClicked()
     {
-        // Ouvre directement le SettingScreen
         PauseMenuController pauseController = GameObject.FindFirstObjectByType<PauseMenuController>();
         if (pauseController != null)
         {
@@ -108,5 +111,22 @@ public class MainMenuController : MonoBehaviour
 #else
         Application.Quit();
 #endif
+    }
+
+    // Coroutine pour réduire le volume progressivement
+    private IEnumerator FadeOutMusic(float duration)
+    {
+        if (musicAudioSource == null) yield break;
+
+        float startVolume = musicAudioSource.volume;
+
+        for (float t = 0; t < duration; t += Time.deltaTime)
+        {
+            musicAudioSource.volume = Mathf.Lerp(startVolume, 0f, t / duration);
+            yield return null;
+        }
+
+        musicAudioSource.volume = 0f;
+        musicAudioSource.Stop();
     }
 }
