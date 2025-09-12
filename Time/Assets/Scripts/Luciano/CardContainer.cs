@@ -21,7 +21,7 @@ public class CardContainer : MonoBehaviour
         
         if (card.Type == Card.TypeCard.Attack)
         {
-            _healthE.TakeDamage(-card.damage);
+            _healthE.TakeDamageEnemy(-card.damage);
         }
 
         if (card.Type == Card.TypeCard.Defense)

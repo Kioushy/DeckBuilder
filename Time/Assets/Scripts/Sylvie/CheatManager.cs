@@ -51,7 +51,7 @@ public class CheatManager : MonoBehaviour
             if (currentEnemy != null)
             {
                 Debug.Log("CHEAT: Attaque simulée sur l'ennemi.");
-                currentEnemy.TakeDamage(100); // Dégâts suffisants pour tuer n'importe quel ennemi
+                currentEnemy.TakeDamageEnemy(100); // Dégâts suffisants pour tuer n'importe quel ennemi
             }
             else
             {

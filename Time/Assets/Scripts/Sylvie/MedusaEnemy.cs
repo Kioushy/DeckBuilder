@@ -39,12 +39,12 @@ public class MedusaEnemy : MonoBehaviour
         damage = enemyData.damage;
 
         // Appliquer le sprite si possible
-        if (enemyData.enemySprite != null)
+       if (enemyData.enemySprite != null)
         {
             SpriteRenderer sr = GetComponent<SpriteRenderer>();
             if (sr != null) sr.sprite = enemyData.enemySprite;
         }
-
+     
     }
     
     void OnEnable()

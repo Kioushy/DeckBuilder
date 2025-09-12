@@ -33,7 +33,7 @@ public class IntroManager : MonoBehaviour
         }
 
         // Pause totale du jeu
-        Time.timeScale = 0f;
+        Time.timeScale = 1f;
 
         // Lancer la s�quence d�intro
         StartCoroutine(IntroSequence());

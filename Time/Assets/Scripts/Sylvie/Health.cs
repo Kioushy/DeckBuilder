@@ -61,7 +61,7 @@ public class Health : MonoBehaviour
                     break;
 
                     case EnemyType.Meduse:
-                    Initialize(transform.GetChild(0).GetComponent<MedusaEnemy>().enemyData);
+                    InitializeEnemy(transform.GetChild(0).GetComponent<MedusaEnemy>().enemyData);
                     break;
                     case EnemyType.Serpent:
                  //   Initialize(GetComponent<MedusaEnemy>().enemyData);
@@ -74,70 +74,12 @@ public class Health : MonoBehaviour
 
     }
 
-    /// <summary>
-    /// Initialise l'ennemi à partir d'un EnemyData (injecté depuis GameFlowManager).
-    /// Appellez cette méthode après l'instanciation pour configurer PV, sprite, et dégâts.
-    /// </summary>
-    public void Initialize(EnemyData data)
-    {
-        if (data == null)
-        {
-            Debug.LogWarning("Health.Initialize appelé avec des données null.");
-            return;
-        }
-        
-        // Appliquer les données
-        MaxHealth = data.maxHealth;
-        currentHealth = MaxHealth;
 
-
-        // Mettre à jour la barre de vie si elle est déjà liée
-        if (healthbarSlider != null)
-        {
-            healthbarSlider.maxValue = MaxHealth;
-            healthbarSlider.value = currentHealth;
-        }
-
-  
-    }
-
-    public void InitializePlayerHealth() 
+    #region Player
+    public void InitializePlayerHealth()
     {
         FullHeal();
         StartCoroutine(WaitAnimation());
-    }
-
-    private IEnumerator WaitAnimation()
-    {
-        yield return new WaitForSeconds(1f);
-        StartCoroutine(DrainHealthOverTime());
-    }
-
-    public void FullHeal() 
-    {
-        currentHealth = MaxHealth;
-        UpdateHealthSlider();
-    }
-
-    public void UpdateHealthSlider()
-    {
-        healthbarSlider.value = currentHealth;
-    }
-
-    public void Die()
-    { 
-        isDead = true;
-
-        // animator.SetTrigger("Die"); // Lance anim de mort
-        // GetComponent<Collider2D>().enabled = false; // optionnel : désactive collisions
-
-        // On notifie le GameFlowManager que l'ennemi est mort
-
-        _GFm.EnemyDied();
-        
-
-        // On détruit l'ennemi après un délai, la barre de vie sera détruite via OnDestroy()
-       // Destroy(gameObject); // ou Animation Event pour caler pile la durée
     }
 
     private IEnumerator DrainHealthOverTime()
@@ -159,6 +101,88 @@ public class Health : MonoBehaviour
         }
     }
 
+    public void TakeDamagePlayer(int damageAmount)
+    {
+        currentHealth += damageAmount;
+        UpdateHealthSlider();
+
+        if (currentHealth <= 0)
+        {
+            EnemyDie();
+        }
+
+    }
+
+    #endregion
+
+    #region Enemy
+
+    public void InitializeEnemy(EnemyData data)
+    {
+        if (data == null)
+        {
+            Debug.LogWarning("Health.Initialize appelé avec des données null.");
+            return;
+        }
+
+        // Appliquer les données
+        MaxHealth = data.maxHealth;
+        currentHealth = MaxHealth;
+
+
+        // Mettre à jour la barre de vie si elle est déjà liée
+        if (healthbarSlider != null)
+        {
+            healthbarSlider.maxValue = MaxHealth;
+            healthbarSlider.value = currentHealth;
+        }
+
+
+    }
+
+    public void EnemyDie()
+    {
+        isDead = true;
+        _GFm.EnemyDied();
+    }
+
+
+
+    public void TakeDamageEnemy(int damageAmount)
+    {
+        currentHealth += damageAmount;
+        UpdateHealthSlider();
+
+        if (currentHealth <= 0)
+        {
+            EnemyDie();
+        }
+
+    }
+
+    #endregion
+
+
+
+    private IEnumerator WaitAnimation()
+    {
+        yield return new WaitForSeconds(1f);
+        StartCoroutine(DrainHealthOverTime());
+    }
+
+    public void FullHeal() 
+    {
+        currentHealth = MaxHealth;
+        UpdateHealthSlider();
+    }
+
+    public void UpdateHealthSlider()
+    {
+        healthbarSlider.value = currentHealth;
+    }
+
+
+
     public void UpdateHealth(int healthToChange)
     {
 
@@ -179,17 +203,7 @@ public class Health : MonoBehaviour
  
     }
 
-    public void TakeDamage(int damageAmount)
-    {
-       
-            currentHealth += damageAmount;
-            UpdateHealthSlider();
 
-            if (currentHealth <= 0)
-            {
-                Die();
-            }
-        
-    }
+
 
 }
