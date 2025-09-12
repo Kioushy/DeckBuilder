@@ -5322,6 +5322,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c408797ec9f508b44b9d11e3e0eefe92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deckManager: {fileID: 648362248}
+  handManager: {fileID: 454069646}
+  waitingForClick: 0
 --- !u!114 &2132357052
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5336,7 +5339,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   victoryPanel: {fileID: 1989841690}
   defeatPanel: {fileID: 309493270}
-  health: {fileID: 816576047}
+  healthP: {fileID: 0}
+  healthE: {fileID: 0}
   introManager: {fileID: 2132357051}
 --- !u!114 &2132357053
 MonoBehaviour:

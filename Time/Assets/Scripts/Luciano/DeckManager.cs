@@ -1,8 +1,9 @@
-using UnityEngine;
-using System.Collections.Generic;
 using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
+using UnityEngine;
+using static UnityEngine.Rendering.GPUSort;
 
 
 public class DeckManager : MonoBehaviour
@@ -36,6 +37,7 @@ public class DeckManager : MonoBehaviour
     void Start()
     {
         _handManager = HandManager.Instance;
+
     }
 
     public void DrawCard(int cardToDraw)

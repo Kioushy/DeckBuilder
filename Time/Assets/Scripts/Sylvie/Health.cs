@@ -47,6 +47,7 @@ public class Health : MonoBehaviour
 
         if (htype == HealthType.Player)
         {
+            _GFm.healthP = GetComponent<Health>();
             healthbarSlider = GetComponent<Slider>();
             InitializePlayerHealth();
 
@@ -62,6 +63,7 @@ public class Health : MonoBehaviour
                     break;
 
                 case EnemyType.Meduse:
+                    _GFm.healthE = GetComponent<Health>();
                     InitializeEnemy(transform.GetChild(0).GetComponent<MedusaEnemy>().enemyData);
                     break;
                 case EnemyType.Serpent:

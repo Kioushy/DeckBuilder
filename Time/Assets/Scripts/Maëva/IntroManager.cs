@@ -1,10 +1,12 @@
-using UnityEngine;
-using UnityEngine.UI;
 using System.Collections;
 using TMPro;
+using UnityEngine;
+using UnityEngine.UI;
 
 public class IntroManager : MonoBehaviour
 {
+    public DeckManager deckManager;
+    public HandManager handManager;
     private GameObject coralLeft;
     private GameObject coralRight;
     private TextMeshProUGUI oxygenText; // dans l'UI du jeu
@@ -13,7 +15,7 @@ public class IntroManager : MonoBehaviour
     private Vector3 leftTarget = new Vector3(-18f, 0f, 0f);
     private Vector3 rightTarget = new Vector3(18f, 0f, 0f);
 
-    private bool waitingForClick = false;
+    public bool waitingForClick = false;
 
     private void Start()
     {
@@ -85,12 +87,8 @@ public class IntroManager : MonoBehaviour
 
         // Attendre le clic du joueur
         waitingForClick = true;
-    }
 
-    public void PlayIntro()
-    {
-        StopAllCoroutines();
-        StartCoroutine(IntroSequence());
+        TurnManager.Instance.BattleSetup();
     }
 
     public void StartLevelIntro()
@@ -98,6 +96,21 @@ public class IntroManager : MonoBehaviour
          // Trouve les objets dynamiquement
         coralLeft = GameObject.Find("CoralLeft");
         coralRight = GameObject.Find("CoralRight");
+        GameFlowManager.Instance.defeatPanel.SetActive(false);
+        GameFlowManager.Instance.victoryPanel.SetActive(false);
+        HandManager.Instance.Hand.Clear();
+       if (HandManager.Instance.handTransform.childCount > 0) 
+       {
+            for (int i = 0; i < HandManager.Instance.handTransform.childCount; i++) 
+            {
+                Destroy(HandManager.Instance.handTransform.GetChild(i).gameObject);
+            }
+       }
+
+        deckManager.Deck.Clear();
+        deckManager.Deck.AddRange(deckManager.cards);
+        GameFlowManager.Instance.healthE.FullHeal();
+        GameFlowManager.Instance.healthP.FullHeal();
 
         GameObject oxygenGO = GameObject.FindWithTag("oxygenText");
         if (oxygenGO != null)

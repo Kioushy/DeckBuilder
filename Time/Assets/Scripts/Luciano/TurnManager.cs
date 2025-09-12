@@ -26,7 +26,6 @@ public class TurnManager : MonoBehaviour
     void Start()
     {
        
-        StartCoroutine(BattleSetupTimer());
     }
 
     void Update()
@@ -48,12 +47,6 @@ public class TurnManager : MonoBehaviour
         currentState = State.EnemyTurn;
         StartCoroutine(AttackEnemy());
 
-    }
-
-    public IEnumerator BattleSetupTimer()
-    {
-        yield return new WaitForSeconds(1f);
-        BattleSetup();
     }
 
     public IEnumerator AttackEnemy() 
