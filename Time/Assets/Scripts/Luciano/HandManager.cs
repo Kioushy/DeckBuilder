@@ -29,12 +29,12 @@ public class HandManager : MonoBehaviour
     {
         if (instance != null && instance != this)
         {
-            Destroy(this.gameObject);
+            Destroy(gameObject);
             return;
         }
 
         instance = this;
-        DontDestroyOnLoad(this.gameObject);
+        DontDestroyOnLoad(gameObject);
     }
 
     void Start()

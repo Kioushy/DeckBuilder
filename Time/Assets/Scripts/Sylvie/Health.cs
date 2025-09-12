@@ -21,7 +21,7 @@ public class Health : MonoBehaviour
     // private Animator animator;
 
     // Référence pour la barre de vie instanciée
-    private Slider healthbarSlider;
+    public Slider healthbarSlider;
 
     public enum HealthType { Enemy,Player}
     public HealthType htype;
@@ -66,7 +66,7 @@ public class Health : MonoBehaviour
                  //   Initialize(GetComponent<MedusaEnemy>().enemyData);
                     break;
             }
-            healthbarSlider = GameObject.FindGameObjectWithTag("HealthBarEnemy").GetComponent<Slider>();
+          //  healthbarSlider = GameObject.FindGameObjectWithTag("HealthBarEnemy").GetComponent<Slider>();
 
 
         }
@@ -108,7 +108,7 @@ public class Health : MonoBehaviour
 
     private IEnumerator WaitAnimation()
     {
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(1f);
         StartCoroutine(DrainHealthOverTime());
     }
 
@@ -174,7 +174,7 @@ public class Health : MonoBehaviour
 
         if (currentHealth <= MinHealth)
         {
-            Die();
+            GameFlowManager.Instance.PlayerDied();
         }
 
  

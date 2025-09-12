@@ -5,6 +5,8 @@ using System;
 public class DropZone : MonoBehaviour , IDropHandler
 {
     public DeckManager _DeckM;
+    public TurnManager _TurnM;
+    public HandManager _HandM;
 
     public static event Action<Card> Discard;
     public void OnDrop(PointerEventData eventData)
@@ -18,8 +20,12 @@ public class DropZone : MonoBehaviour , IDropHandler
             eventData.pointerDrag.GetComponent<RectTransform>().anchoredPosition = new Vector2(transform.GetComponent<RectTransform>().sizeDelta.x / 2, transform.GetComponent<RectTransform>().sizeDelta.y / -2);
             cardPlayed.GetComponent<CardContainer>().LaunchEffect();
             Debug.Log( "Drop : " +  cardPlayed.name);
-            DeckManager.Instance.SendToCemetery(cardPlayed.GetComponent<CardContainer>().card);
-            Destroy(eventData.selectedObject);
+            _DeckM.SendToCemetery(cardPlayed.GetComponent<CardContainer>().card);
+            if (_HandM.currentCardInHand == 0) 
+            {
+                _TurnM.EnemyTurn();
+            }
+            Destroy(GameManager.instance.currentSelectedObject);
         }
     }
 

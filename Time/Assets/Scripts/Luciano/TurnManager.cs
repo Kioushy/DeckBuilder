@@ -2,7 +2,6 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
 using TMPro;
-using Abyss;
 
 public class TurnManager : MonoBehaviour
 {
@@ -45,6 +44,7 @@ public class TurnManager : MonoBehaviour
 
     public void EnemyTurn() 
     {
+        Debug.Log("Enemy turn");
         currentState = State.EnemyTurn;
         StartCoroutine(AttackEnemy());
 
@@ -61,7 +61,13 @@ public class TurnManager : MonoBehaviour
         // attack enemy
         //Damage Player / Heal Enemy
         yield return new WaitForSeconds(1f);
+        PlayerTurn();
+    }
+
+    public void PlayerTurn() 
+    {
         currentState = State.PlayerTurn;
+        DeckM.DrawCard(HandManager.Instance.maxHandSize);
     }
 
     public void Lose() { }

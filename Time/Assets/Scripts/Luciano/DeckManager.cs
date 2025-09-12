@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
 using System.Linq;
+using Unity.VisualScripting;
 
 
 public class DeckManager : MonoBehaviour
@@ -19,7 +20,7 @@ public class DeckManager : MonoBehaviour
     public int CardInCemetery;
 
     private HandManager _handManager;
-
+    public GameManager _Gm;
     public Card[] cards;
 
     void Awake()
@@ -51,8 +52,15 @@ public class DeckManager : MonoBehaviour
 
     public void SendToCemetery(Card card) 
     {
+        _handManager.currentCardInHand--;
+        _handManager.Hand.Remove(_Gm.currentSelectedObject);
         Cemetery.Add(card);
         CemeteryCounter();
+        if (_handManager.currentCardInHand == 0 && Deck.Count == 0)
+        {
+            ResetDeck();
+        }
+
     }
 
     public void ResetDeck() 

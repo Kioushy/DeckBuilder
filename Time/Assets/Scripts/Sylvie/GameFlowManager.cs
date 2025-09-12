@@ -21,8 +21,8 @@ public class GameFlowManager : MonoBehaviour
 
 
     // --- Scene References (trouvées dynamiquement)
-    private GameObject victoryPanel;
-    private GameObject defeatPanel;
+    public GameObject victoryPanel;
+    public GameObject defeatPanel;
     private GameObject victoryFinalText;
     private Transform enemySpawnPoint;
     private Transform decorSpawnPoint;
