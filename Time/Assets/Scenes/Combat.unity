@@ -1961,6 +1961,7 @@ MonoBehaviour:
   MinHealth: 0
   currentHealth: 0
   drainDuration: 60
+  healthbarSlider: {fileID: 0}
   htype: 1
   eType: 0
 --- !u!1 &846143139
@@ -2580,6 +2581,7 @@ MonoBehaviour:
   MinHealth: 0
   currentHealth: 0
   drainDuration: 60
+  healthbarSlider: {fileID: 1951840269}
   htype: 0
   eType: 1
 --- !u!1 &1085998913
@@ -3817,6 +3819,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _DeckM: {fileID: 648362248}
+  _TurnM: {fileID: 2132357053}
+  _HandM: {fileID: 454069646}
 --- !u!114 &1639834714
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4947,9 +4951,9 @@ GameObject:
   - component: {fileID: 2132357049}
   - component: {fileID: 2132357048}
   - component: {fileID: 2132357046}
-  - component: {fileID: 2132357050}
   - component: {fileID: 2132357051}
   - component: {fileID: 2132357052}
+  - component: {fileID: 2132357053}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -5027,6 +5031,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a718d0028d442f4f94d9a98bdb87ae8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentSelectedObject: {fileID: 0}
 --- !u!4 &2132357049
 Transform:
   m_ObjectHideFlags: 0
@@ -5042,20 +5047,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2132357050
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2132357045}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f7e9218159d2b9d4ab8631573f141902, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DeckM: {fileID: 648362248}
-  currentState: 0
 --- !u!114 &2132357051
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5080,6 +5071,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b529093a81e2e34b82557c79b379ee9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2132357053
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2132357045}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7e9218159d2b9d4ab8631573f141902, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DeckM: {fileID: 648362248}
+  currentState: 0
 --- !u!1001 &6747629026197244270
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5088,6 +5093,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1773069360}
     m_Modifications:
+    - target: {fileID: 387017665660994892, guid: 90e1d8e35943afe449f214944abf65a9, type: 3}
+      propertyPath: _Gm
+      value: 
+      objectReference: {fileID: 2132357048}
     - target: {fileID: 387017665660994892, guid: 90e1d8e35943afe449f214944abf65a9, type: 3}
       propertyPath: handManager
       value: 

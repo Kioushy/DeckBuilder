@@ -27,6 +27,7 @@ public class Drag : MonoBehaviour,
     {
         canvasGroup.alpha = 0.6f;
         canvasGroup.blocksRaycasts = false;
+       GameManager.instance.currentSelectedObject =  eventData.selectedObject.gameObject;
     }
 
     public void OnDrag(PointerEventData eventData)
