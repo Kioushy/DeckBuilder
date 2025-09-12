@@ -178,6 +178,8 @@ public class GameFlowManager : MonoBehaviour
         currentLevelIndex++;
         Time.timeScale = 1f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        // Descendre la caméra sur l'ennemi suivant
+        // Reset la barre de vie du joueur
     }
 
     // Redémarre la scène
@@ -186,6 +188,8 @@ public class GameFlowManager : MonoBehaviour
         // SetPanelState(false);
         Time.timeScale = 1f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        // Descendre la caméra sur l'ennemi du niveau en cours
+        // Reset la barre de vie du joueur
     }
 
     // Retour au menu principal
