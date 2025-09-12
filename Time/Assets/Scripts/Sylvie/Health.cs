@@ -29,6 +29,7 @@ public class Health : MonoBehaviour
     public enum EnemyType { Shark, Meduse, Serpent }
     public EnemyType eType;
 
+    public GameFlowManager _GFm;
     private void Start()
     {
         
@@ -123,7 +124,7 @@ public class Health : MonoBehaviour
         healthbarSlider.value = currentHealth;
     }
 
-    private void Die()
+    public void Die()
     { 
         isDead = true;
 
@@ -131,13 +132,12 @@ public class Health : MonoBehaviour
         // GetComponent<Collider2D>().enabled = false; // optionnel : désactive collisions
 
         // On notifie le GameFlowManager que l'ennemi est mort
-        if (GameFlowManager.Instance != null)
-        {
-            GameFlowManager.Instance.EnemyDied();
-        }
+
+        _GFm.EnemyDied();
+        
 
         // On détruit l'ennemi après un délai, la barre de vie sera détruite via OnDestroy()
-        Destroy(gameObject); // ou Animation Event pour caler pile la durée
+       // Destroy(gameObject); // ou Animation Event pour caler pile la durée
     }
 
     private IEnumerator DrainHealthOverTime()
@@ -162,7 +162,6 @@ public class Health : MonoBehaviour
     public void UpdateHealth(int healthToChange)
     {
 
-        if (isDead) return; // déjà mort, ignore
 
         // ajoute healthToChange
         currentHealth += healthToChange;
@@ -182,8 +181,7 @@ public class Health : MonoBehaviour
 
     public void TakeDamage(int damageAmount)
     {
-        if (!isDead)
-        {
+       
             currentHealth += damageAmount;
             UpdateHealthSlider();
 
@@ -191,7 +189,7 @@ public class Health : MonoBehaviour
             {
                 Die();
             }
-        }
+        
     }
 
 }
