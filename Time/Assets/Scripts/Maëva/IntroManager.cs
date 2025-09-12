@@ -18,26 +18,27 @@ public class IntroManager : MonoBehaviour
     private void Start()
     {
         // Trouve les objets dynamiquement
-        coralLeft = GameObject.Find("CoralLeft");
-        coralRight = GameObject.Find("CoralRight");
+        // coralLeft = GameObject.Find("CoralLeft");
+        // coralRight = GameObject.Find("CoralRight");
 
-        GameObject oxygenGO = GameObject.FindWithTag("oxygenText");
-        if (oxygenGO != null)
-        {
-            oxygenText = oxygenGO.GetComponent<TextMeshProUGUI>();
-            oxygenText.gameObject.SetActive(false);
-        }
-        else
-        {
-            Debug.LogWarning("IntroManager: Impossible de trouver oxygenText avec le tag !");
-        }
+        // GameObject oxygenGO = GameObject.FindWithTag("oxygenText");
+        // if (oxygenGO != null)
+        // {
+        //     oxygenText = oxygenGO.GetComponent<TextMeshProUGUI>();
+        //     oxygenText.gameObject.SetActive(false);
+        // }
+        // else
+        // {
+        //     Debug.LogWarning("IntroManager: Impossible de trouver oxygenText avec le tag !");
+        // }
 
-        // Pause totale du jeu
-        Time.timeScale = 1f;
+        // // Pause totale du jeu
+        // Time.timeScale = 1f;
 
-        // Lancer la s�quence d�intro
-        Debug.Log("intro anim lancer");
-        StartCoroutine(IntroSequence());
+        // // Lancer la s�quence d�intro
+        // Debug.Log("intro anim lancer");
+        // StartCoroutine(IntroSequence());
+        StartLevelIntro();
     }
 
     private void Update()
@@ -57,6 +58,11 @@ public class IntroManager : MonoBehaviour
     {
         if (coralLeft == null || coralRight == null)
             yield break;
+
+        // Reset positions au début du niveau
+        coralLeft.transform.position = new Vector3(0f, 0f, 0f);
+        coralRight.transform.position = new Vector3(0f, 0f, 0f);
+        if (oxygenText != null) oxygenText.gameObject.SetActive(false);
 
         float elapsed = 0f;
         Vector3 startLeft = coralLeft.transform.position;
@@ -79,5 +85,36 @@ public class IntroManager : MonoBehaviour
 
         // Attendre le clic du joueur
         waitingForClick = true;
+    }
+
+    public void PlayIntro()
+    {
+        StopAllCoroutines();
+        StartCoroutine(IntroSequence());
+    }
+
+    public void StartLevelIntro()
+    {
+         // Trouve les objets dynamiquement
+        coralLeft = GameObject.Find("CoralLeft");
+        coralRight = GameObject.Find("CoralRight");
+
+        GameObject oxygenGO = GameObject.FindWithTag("oxygenText");
+        if (oxygenGO != null)
+        {
+            oxygenText = oxygenGO.GetComponent<TextMeshProUGUI>();
+            oxygenText.gameObject.SetActive(false);
+        }
+        else
+        {
+            Debug.LogWarning("IntroManager: Impossible de trouver oxygenText avec le tag !");
+        }
+
+        // Pause totale du jeu
+        Time.timeScale = 1f;
+
+        // Lancer la s�quence d�intro
+        Debug.Log("intro anim lancer");
+        StartCoroutine(IntroSequence());
     }
 }

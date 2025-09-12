@@ -30,9 +30,10 @@ public class Health : MonoBehaviour
     public EnemyType eType;
 
     public GameFlowManager _GFm;
+    
     private void Start()
     {
-        
+
         currentHealth = MaxHealth;
 
         // On instancie la barre de vie au démarrage
@@ -48,26 +49,26 @@ public class Health : MonoBehaviour
         {
             healthbarSlider = GetComponent<Slider>();
             InitializePlayerHealth();
-      
+
         }
         if (htype == HealthType.Enemy)
         {
-         
 
-            switch (eType) 
+
+            switch (eType)
             {
                 case EnemyType.Shark:
-                   // Initialize(transform.GetChild(1).GetComponent<SharkEnemy>().enemyData);
+                    // Initialize(transform.GetChild(1).GetComponent<SharkEnemy>().enemyData);
                     break;
 
-                    case EnemyType.Meduse:
+                case EnemyType.Meduse:
                     InitializeEnemy(transform.GetChild(0).GetComponent<MedusaEnemy>().enemyData);
                     break;
-                    case EnemyType.Serpent:
-                 //   Initialize(GetComponent<MedusaEnemy>().enemyData);
+                case EnemyType.Serpent:
+                    //   Initialize(GetComponent<MedusaEnemy>().enemyData);
                     break;
             }
-          //  healthbarSlider = GameObject.FindGameObjectWithTag("HealthBarEnemy").GetComponent<Slider>();
+            //  healthbarSlider = GameObject.FindGameObjectWithTag("HealthBarEnemy").GetComponent<Slider>();
 
 
         }

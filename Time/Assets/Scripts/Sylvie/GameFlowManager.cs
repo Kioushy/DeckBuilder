@@ -37,6 +37,9 @@ public class GameFlowManager : MonoBehaviour
 
     public Health health;
 
+    public IntroManager introManager;
+    
+
     #region Unity Lifecycle Methods
     private void Awake()
     {
@@ -75,20 +78,6 @@ public class GameFlowManager : MonoBehaviour
         if (scene.name != "MainMenu")
         {
             InitializeLevel();
-
-            // Réinitialiser la vie du joueur
-            HealthBarPlayer healthBar = FindObjectOfType<HealthBarPlayer>();
-            if (healthBar != null)
-            {
-                healthBar.ResetHealth();
-            }
-
-            // Recentrer la caméra sur le nouvel ennemi ou décor
-            CameraFollow camFollow = Camera.main.GetComponent<CameraFollow>();
-            if (camFollow != null && currentEnemy != null)
-            {
-                camFollow.SetTarget(currentEnemy.transform);
-            }
         }
 
     }
@@ -127,56 +116,84 @@ public class GameFlowManager : MonoBehaviour
         {
             Debug.LogError("Décor introuvable : " + decorName);
         }
+        
+        // Réinitialiser la vie du joueur
+        HealthBarPlayer healthBar = FindObjectOfType<HealthBarPlayer>();
+        if (healthBar != null)
+        {
+            healthBar.ResetHealth();
+        }
+
+        // Recentrer la caméra sur le nouvel ennemi ou décor
+        CameraFollow camFollow = Camera.main.GetComponent<CameraFollow>();
+        if (camFollow != null && currentEnemy != null)
+        {
+            camFollow.SetTarget(currentEnemy.transform);
+        }
+
+        // Lancer l’intro à chaque nouveau niveau
+
+        IntroManager intro = FindObjectOfType<IntroManager>();
+        if (intro != null)
+        {
+            intro.PlayIntro();
+            Debug.Log("IntroManager lancé pour le niveau " + currentLevelIndex);
+
+        }
+        else
+        {
+            Debug.LogWarning("IntroManager introuvable dans la scène !");
+        }
 
         /*
-        // --- NOUVELLE Logique de chargement de l'ennemi ---
-        string enemyPrefabPath = "";
-        string enemyDataPath = "";
+            // --- NOUVELLE Logique de chargement de l'ennemi ---
+            string enemyPrefabPath = "";
+            string enemyDataPath = "";
 
-        switch (index)
-        {
-            case 0:
-                enemyPrefabPath = "Prefabs/MedusaEnemy";
-                enemyDataPath = "Data/MedusaData"; // Assurez-vous que vos SO sont dans "Resources/Data"
-                break;
-            case 1:
-                enemyPrefabPath = "Prefabs/SharkEnemy";
-                enemyDataPath = "Data/SharkData";
-                break;
-            case 2:
-                enemyPrefabPath = "Prefabs/SeaSerpentEnemy";
-                enemyDataPath = "Data/SeaSerpentData";
-                break;
-        }
-
-        if (!string.IsNullOrEmpty(enemyPrefabPath) && !string.IsNullOrEmpty(enemyDataPath))
-        {
-            // 1. Charger les données depuis le Scriptable Object
-            EnemyData data = Resources.Load<EnemyData>(enemyDataPath);
-
-            // 2. Charger le préfabriqué
-            GameObject enemyPrefab = Resources.Load<GameObject>(enemyPrefabPath);
-
-            if (data != null && enemyPrefab != null)
+            switch (index)
             {
-                // 3. Instancier l'ennemi
-                currentEnemy = Instantiate(enemyPrefab, enemySpawnPoint.position, Quaternion.identity);
+                case 0:
+                    enemyPrefabPath = "Prefabs/MedusaEnemy";
+                    enemyDataPath = "Data/MedusaData"; // Assurez-vous que vos SO sont dans "Resources/Data"
+                    break;
+                case 1:
+                    enemyPrefabPath = "Prefabs/SharkEnemy";
+                    enemyDataPath = "Data/SharkData";
+                    break;
+                case 2:
+                    enemyPrefabPath = "Prefabs/SeaSerpentEnemy";
+                    enemyDataPath = "Data/SeaSerpentData";
+                    break;
+            }
 
-                // 4. Récupérer son composant Health
-                Health healthComponent = currentEnemy.GetComponent<Health>();
-                if (healthComponent != null)
+            if (!string.IsNullOrEmpty(enemyPrefabPath) && !string.IsNullOrEmpty(enemyDataPath))
+            {
+                // 1. Charger les données depuis le Scriptable Object
+                EnemyData data = Resources.Load<EnemyData>(enemyDataPath);
+
+                // 2. Charger le préfabriqué
+                GameObject enemyPrefab = Resources.Load<GameObject>(enemyPrefabPath);
+
+                if (data != null && enemyPrefab != null)
                 {
-                    health = healthComponent; // stocker la référence pour le cheat code
+                    // 3. Instancier l'ennemi
+                    currentEnemy = Instantiate(enemyPrefab, enemySpawnPoint.position, Quaternion.identity);
+
+                    // 4. Récupérer son composant Health
+                    Health healthComponent = currentEnemy.GetComponent<Health>();
+                    if (healthComponent != null)
+                    {
+                        health = healthComponent; // stocker la référence pour le cheat code
+                    }
+
                 }
-               
+                else
+                {
+                    Debug.LogError($"Impossible de charger les données ({enemyDataPath}) ou le préfabriqué ({enemyPrefabPath})");
+                }
             }
-            else
-            {
-                Debug.LogError($"Impossible de charger les données ({enemyDataPath}) ou le préfabriqué ({enemyPrefabPath})");
-            }
-        }
-        */
-        
+            */
+
         // --- Finaliser l'initialisation ---
         gamePaused = false;
         Time.timeScale = 1f;
@@ -185,7 +202,7 @@ public class GameFlowManager : MonoBehaviour
 
     #endregion
 
-    #region UI Management & Public Game Flow Methods
+    #region GameFlow
 
     // Unifie la logique de passage au niveau suivant
     public void NextLevel()
@@ -193,9 +210,7 @@ public class GameFlowManager : MonoBehaviour
         currentLevelIndex++;
         Time.timeScale = 1f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        // Recentrer la caméra sur l'ennemi et le décor suivant (index++)
-        
-        // Remettre le HealthBarPlayer à Full
+        introManager.StartLevelIntro();
     }
 
     // Redémarre la scène
@@ -204,8 +219,7 @@ public class GameFlowManager : MonoBehaviour
         // SetPanelState(false);
         Time.timeScale = 1f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        // Recentrer la caméra sur currentEnemy et le currentDecor
-        // Remettre le HealthBarPlayer à Full
+        introManager.StartLevelIntro();
     }
 
     // Retour au menu principal
