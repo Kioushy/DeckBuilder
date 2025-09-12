@@ -1823,7 +1823,7 @@ MonoBehaviour:
   MinHealth: 0
   currentHealth: 0
   drainDuration: 60
-  healthbarSlider: {fileID: 0}
+  healthbarSlider: {fileID: 816576046}
   htype: 1
   eType: 0
 --- !u!1 &846143139
@@ -4923,6 +4923,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b529093a81e2e34b82557c79b379ee9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  victoryPanel: {fileID: 1989841690}
+  defeatPanel: {fileID: 309493270}
 --- !u!114 &2132357053
 MonoBehaviour:
   m_ObjectHideFlags: 0
