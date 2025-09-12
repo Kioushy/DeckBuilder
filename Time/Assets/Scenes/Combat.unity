@@ -3488,9 +3488,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce2824dbb381bb44fbadc9e44c4e2c82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  victoryVolume: 1
-  defeatVolume: 1
-  musicVolume: 0.5
+  victoryVolume: 0.106
+  defeatVolume: 0.11
+  musicVolume: 0.082
 --- !u!4 &1407878944
 Transform:
   m_ObjectHideFlags: 0
