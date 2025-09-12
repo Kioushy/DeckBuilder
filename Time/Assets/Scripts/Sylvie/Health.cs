@@ -108,7 +108,7 @@ public class Health : MonoBehaviour
 
     private IEnumerator WaitAnimation()
     {
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(1f);
         StartCoroutine(DrainHealthOverTime());
     }
 
@@ -174,7 +174,7 @@ public class Health : MonoBehaviour
 
         if (currentHealth <= MinHealth)
         {
-            Die();
+            GameFlowManager.Instance.PlayerDied();
         }
 
  
