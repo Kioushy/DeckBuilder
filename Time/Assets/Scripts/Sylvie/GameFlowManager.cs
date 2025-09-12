@@ -113,6 +113,7 @@ public class GameFlowManager : MonoBehaviour
             Debug.LogError("Décor introuvable : " + decorName);
         }
 
+        /*
         // --- NOUVELLE Logique de chargement de l'ennemi ---
         string enemyPrefabPath = "";
         string enemyDataPath = "";
@@ -159,7 +160,7 @@ public class GameFlowManager : MonoBehaviour
                 Debug.LogError($"Impossible de charger les données ({enemyDataPath}) ou le préfabriqué ({enemyPrefabPath})");
             }
         }
-
+        */
         // --- Finaliser l'initialisation ---
         gamePaused = false;
         Time.timeScale = 1f;
@@ -234,9 +235,9 @@ public class GameFlowManager : MonoBehaviour
     Canvas canvas = UnityEngine.Object.FindAnyObjectByType<Canvas>();
         if (canvas != null)
         {
-            victoryPanel = canvas.transform.Find("VictoryPanel")?.gameObject;
-            defeatPanel = canvas.transform.Find("DefeatPanel")?.gameObject;
-            victoryFinalText = canvas.transform.Find("VictoryFinalText")?.gameObject;
+          //  victoryPanel = canvas.transform.Find("VictoryPanel")?.gameObject;
+          //  defeatPanel = canvas.transform.Find("DefeatPanel")?.gameObject;
+          //  victoryFinalText = canvas.transform.Find("VictoryFinalText")?.gameObject;
         }
         else
         {
