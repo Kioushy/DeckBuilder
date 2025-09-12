@@ -13,7 +13,7 @@ public class EnemyData : ScriptableObject
     public string enemyName = "Nouvel Ennemi";
 
     [Header("Statistiques de combat")]
-    public float maxHealth = 100f;
+    public int maxHealth = 100;
 
     public int damage = 10;
 

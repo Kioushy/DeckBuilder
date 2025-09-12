@@ -66,6 +66,7 @@ public class HealthBarPlayer : MonoBehaviour
 
     private void Start()
     {
+        
         // On récupère directement la référence du Slider sur le GameObject
 
         playerHealthSlider  = GetComponent<Slider>();
@@ -81,9 +82,11 @@ public class HealthBarPlayer : MonoBehaviour
             return;
         }
 
+        StartCoroutine(WaitAnimation());
+
         FullHeal();
         // Démarrez la coroutine au début du jeu
-        healthDrainCoroutine = StartCoroutine(DrainHealthOverTime());
+     
 
         currentHealth = MaxHealth;
         playerHealthSlider.maxValue = MaxHealth;
@@ -259,7 +262,11 @@ public class HealthBarPlayer : MonoBehaviour
             Die();
         }
     }
-    
+    private IEnumerator WaitAnimation()
+    {
+        yield return new WaitForSeconds(5f);
+        StartCoroutine(DrainHealthOverTime());
+    }
     public void Die()
     {
         if (isDead) return;
@@ -285,5 +292,7 @@ public class HealthBarPlayer : MonoBehaviour
         }
 
         // Destroy(gameObject);
+
+
     }
 }
