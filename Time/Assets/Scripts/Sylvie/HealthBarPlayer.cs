@@ -1,8 +1,9 @@
-using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.InputSystem;
 using JetBrains.Annotations;
 using System.Collections;
+using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.UI;
+//using UnityEngine.UIElements;
 
 public class HealthBarPlayer : MonoBehaviour
 {
@@ -92,6 +93,12 @@ public class HealthBarPlayer : MonoBehaviour
         playerHealthSlider.maxValue = MaxHealth;
         playerHealthSlider.value = currentHealth;
 
+    }
+
+    public void ResetHealth()
+    {
+        currentHealth = MaxHealth;
+        playerHealthSlider.value = MaxHealth;
     }
 
 

@@ -75,7 +75,22 @@ public class GameFlowManager : MonoBehaviour
         if (scene.name != "MainMenu")
         {
             InitializeLevel();
+
+            // Réinitialiser la vie du joueur
+            HealthBarPlayer healthBar = FindObjectOfType<HealthBarPlayer>();
+            if (healthBar != null)
+            {
+                healthBar.ResetHealth();
+            }
+
+            // Recentrer la caméra sur le nouvel ennemi ou décor
+            CameraFollow camFollow = Camera.main.GetComponent<CameraFollow>();
+            if (camFollow != null && currentEnemy != null)
+            {
+                camFollow.SetTarget(currentEnemy.transform);
+            }
         }
+
     }
 
     /// <summary>
