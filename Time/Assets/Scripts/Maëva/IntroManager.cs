@@ -36,6 +36,7 @@ public class IntroManager : MonoBehaviour
         Time.timeScale = 1f;
 
         // Lancer la s�quence d�intro
+        Debug.Log("intro anim lancer");
         StartCoroutine(IntroSequence());
     }
 
