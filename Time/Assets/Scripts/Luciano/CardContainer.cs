@@ -1,24 +1,37 @@
+using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class CardContainer : MonoBehaviour
 {
     public Card card;
+
+    private Health _healthE;
+    private Health _healthP;
+
+    public void Start()
+    {
+      _healthE = GameObject.FindGameObjectWithTag("Enemy").transform.parent.GetComponent<Health>();
+      _healthP = GameObject.FindGameObjectWithTag("HealthBarPlayer").GetComponent<Health>();
+    }   
+
+
     public void LaunchEffect()
     {
-        if (card.damage != 0)
+        
+        if (card.Type == Card.TypeCard.Attack)
         {
-            EnemyHealth.Instance.TakeDamage(card.damage); 
+            _healthE.TakeDamage(card.damage);
         }
 
-        if (card.protect != 0)
+        if (card.Type == Card.TypeCard.Defense)
         {
-            HealthBarPlayer.shield += card.protect;
+            _healthP.UpdateHealth(card.protect);
         }
 
-        if (card.heal != 0)
+        if (card.Type == Card.TypeCard.Special)
         {
-            HealthBarPlayer.currentHealth += card.heal;
+            _healthP.UpdateHealth(card.heal);
         }
         Debug.Log("Effect apply");
     }

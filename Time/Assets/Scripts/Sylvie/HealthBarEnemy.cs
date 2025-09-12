@@ -15,7 +15,7 @@ public class HealthBarEnemy : MonoBehaviour
     }
 
     // Cette méthode met à jour l'affichage de la barre de vie
-    // maxHealth : la vie maximale de l'ennemi
+    // MaxHealth : la vie maximale de l'ennemi
     // currentHealth : la vie actuelle de l'ennemi
     public void UpdateHealthBar(float maxHealth, float currentHealth)
     {

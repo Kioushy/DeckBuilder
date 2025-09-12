@@ -9,6 +9,9 @@ public class Card : ScriptableObject
 {
     public string cardName;
     public List<CardType> cardType;
+
+    public enum TypeCard { Defense, Attack, Special };
+    public TypeCard Type;
     public int damage;
     public int protect;
     public int heal;

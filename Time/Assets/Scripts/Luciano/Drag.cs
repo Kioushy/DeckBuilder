@@ -31,6 +31,7 @@ public class Drag : MonoBehaviour,
 
     public void OnDrag(PointerEventData eventData)
     {
+     
         rectTransform.anchoredPosition += eventData.delta / canvas.scaleFactor;
     }
 
