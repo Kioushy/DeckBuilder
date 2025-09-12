@@ -11,7 +11,8 @@ public class MainMenuController : MonoBehaviour
     private GameObject transitionPanel;
     private float transitionTime = 5f;
 
-    private AudioSource audioSource;
+    private AudioSource audioSource; // le splash
+    private AudioSource musicAudioSource; // musique de fond
 
     private GameObject bubblePrefab;
 
@@ -36,7 +37,22 @@ public class MainMenuController : MonoBehaviour
         else
             Debug.LogWarning("TransitionPanel introuvable !");
 
-        // Audio
+        // Musique de fond
+        musicAudioSource = gameObject.AddComponent<AudioSource>();
+        AudioClip bgMusic = Resources.Load<AudioClip>("MainSound");
+        if (bgMusic != null)
+        {
+            musicAudioSource.clip = bgMusic;
+            musicAudioSource.loop = true; // musique en boucle
+            musicAudioSource.playOnAwake = false;
+            musicAudioSource.Play();
+        }
+        else
+        {
+            Debug.LogWarning(" Pas de fichier 'MenuMusic' trouvé dans Resources !");
+        }
+    
+        // Audio transition le splash
         audioSource = gameObject.AddComponent<AudioSource>();
         AudioClip clip = Resources.Load<AudioClip>("Splash");
         audioSource.clip = clip;
