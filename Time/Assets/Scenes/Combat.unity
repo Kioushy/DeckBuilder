@@ -3490,6 +3490,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   victoryVolume: 1
   defeatVolume: 1
+  musicVolume: 0.5
 --- !u!4 &1407878944
 Transform:
   m_ObjectHideFlags: 0
