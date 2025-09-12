@@ -7,6 +7,7 @@ TagManager:
   - Enemy
   - HealthBarPlayer
   - HealthBarEnemy
+  - oxygenText
   layers:
   - Default
   - TransparentFX

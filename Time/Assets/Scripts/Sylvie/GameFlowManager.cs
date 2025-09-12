@@ -35,6 +35,8 @@ public class GameFlowManager : MonoBehaviour
     // --- Events ---
     public event System.Action OnLevelChanged;
 
+    public Health health;
+
     #region Unity Lifecycle Methods
     private void Awake()
     {
@@ -146,6 +148,10 @@ public class GameFlowManager : MonoBehaviour
 
                 // 4. Récupérer son composant Health
                 Health healthComponent = currentEnemy.GetComponent<Health>();
+                if (healthComponent != null)
+                {
+                    health = healthComponent; // stocker la référence pour le cheat code
+                }
                
             }
             else
@@ -288,13 +294,14 @@ public class GameFlowManager : MonoBehaviour
     #region Debug
 
     // Debug damage avec la touche input
-    public void ActionDamage(InputAction.CallbackContext context)
-    {
-        if (context.performed)
-        {
-          //  Health.Instance.TakeDamage(1);
-        }
-    }
+    // public void ActionDamage(InputAction.CallbackContext context)
+    // {
+    //     if (context.performed)
+    //     {
+    //         health.TakeDamage(-1); // inflige 1 dégât
+    //         Debug.Log("Cheat Code: dégâts appliqués à l'ennemi !");
+    //     }
+    // }
 
     // Pour charger le niveau suivant
     // public void LoadNextLevel()
