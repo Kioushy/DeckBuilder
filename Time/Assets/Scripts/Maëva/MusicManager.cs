@@ -13,6 +13,9 @@ public class GameSoundManager : MonoBehaviour
     [Range(0f, 2f)] public float victoryVolume = 1f;
     [Range(0f, 2f)] public float defeatVolume = 1f;
     [Range(0f, 1f)] public float musicVolume = 0.5f; // volume de fond réglable
+    
+    private bool victoryPlayed = false;
+    private bool defeatPlayed = false;
 
     private void Awake()
     {
@@ -56,17 +59,19 @@ public class GameSoundManager : MonoBehaviour
                 // Victoire
                 if (GameFlowManager.Instance.victoryPanel != null &&
                     GameFlowManager.Instance.victoryPanel.activeSelf &&
-                    !sfxAudioSource.isPlaying)
+                    !victoryPlayed)
                 {
                     PlaySFX(victoryClip, victoryVolume);
+                    victoryPlayed = true; // joue une fois
                 }
 
                 // Défaite
                 if (GameFlowManager.Instance.defeatPanel != null &&
                     GameFlowManager.Instance.defeatPanel.activeSelf &&
-                    !sfxAudioSource.isPlaying)
+                    !defeatPlayed)
                 {
                     PlaySFX(defeatClip, defeatVolume);
+                    defeatPlayed = true; // joue une fois
                 }
             }
         }
@@ -87,4 +92,12 @@ public class GameSoundManager : MonoBehaviour
             sfxAudioSource.PlayOneShot(clip, volumeScale);
         }
     }
+
+    // Méthode publique à appeler pour réinitialiser les flags lors d'un restart
+    public void ResetFlags()
+    {
+        victoryPlayed = false;
+        defeatPlayed = false;
+    }
 }
+
