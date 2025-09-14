@@ -11,6 +11,8 @@ public class TurnManager : MonoBehaviour
     public enum State {PlayerTurn,EnemyTurn,Busy}
     public State currentState;
 
+    public Enemies Enemies;
+
     private void Awake()
     {
         if(!Instance)
@@ -52,7 +54,7 @@ public class TurnManager : MonoBehaviour
     public IEnumerator AttackEnemy() 
     {
         // attack enemy
-        //Damage Player / Heal Enemy
+        Enemies.Attack(); 
         yield return new WaitForSeconds(1f);
         PlayerTurn();
     }

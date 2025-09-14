@@ -47,6 +47,7 @@ public class MedusaEnemy : MonoBehaviour
      
     }
     
+
     void OnEnable()
     {
         inputActions.Enable();

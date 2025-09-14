@@ -64,7 +64,7 @@ public class Health : MonoBehaviour
 
                 case EnemyType.Meduse:
                     _GFm.healthE = GetComponent<Health>();
-                    InitializeEnemy(transform.GetChild(0).GetComponent<MedusaEnemy>().enemyData);
+                    InitializeEnemy(GetComponent<Enemies>().currentData);
                     break;
                 case EnemyType.Serpent:
                     //   Initialize(GetComponent<MedusaEnemy>().enemyData);
@@ -137,7 +137,7 @@ public class Health : MonoBehaviour
         if (healthbarSlider != null)
         {
             healthbarSlider.maxValue = MaxHealth;
-            healthbarSlider.value = currentHealth;
+            UpdateHealthSlider();
         }
 
 
