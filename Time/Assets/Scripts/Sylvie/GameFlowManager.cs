@@ -202,6 +202,7 @@ public class GameFlowManager : MonoBehaviour
     // Redémarre la scène
     public void RestartLevel()
     {
+     
         // SetPanelState(false);
         Time.timeScale = 1f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
