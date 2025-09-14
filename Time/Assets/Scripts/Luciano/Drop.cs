@@ -4,10 +4,12 @@ using System;
 
 public class DropZone : MonoBehaviour, IDropHandler
 {
+    public GameFlowManager _GFm;
     public DeckManager _DeckM;
     public TurnManager _TurnM;
     public HandManager _HandM;
     public Health healthE;
+    public Enemies Enemie;
 
     public static event Action<Card> Discard;
     public void OnDrop(PointerEventData eventData)
@@ -27,10 +29,23 @@ public class DropZone : MonoBehaviour, IDropHandler
             {
                 if (_HandM.currentCardInHand == 0)
                 {
-                    _TurnM.EnemyTurn();
+                   _TurnM.EnemyTurn();
                 }
             }
-            
+            else
+            {
+                if (healthE.enemy.currentEnemy == 2)
+                {
+                    _GFm.VictoryPanel();
+             
+                }
+                else
+                {
+                    Enemie.UpdateEnemy();
+                }
+           
+            }
+
 
             Destroy(GameManager.instance.currentSelectedObject);
         }

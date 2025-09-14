@@ -67,46 +67,18 @@ public class DeckManager : MonoBehaviour
 
     public void ResetDeck() 
     {
-        if (Deck.Count == 0 && _handManager.currentCardInHand == 0)
-        {
-            Deck.AddRange(Cemetery);
-            Cemetery.Clear();
-            Shuffle();
-            DeckCounter();
-            CemeteryCounter();
-        }
+      foreach (GameObject card in _handManager.Hand)
+      {
+          Destroy(card);
+      }
+      _handManager.Hand.Clear();
+      Deck.AddRange(cards);
+      Cemetery.Clear();
+      Shuffle();
+      DeckCounter();
+      CemeteryCounter();
     }
 
-    /*
-    private void RefillDeckFromDiscard()
-    {
-        if (discardManager == null)
-        {
-            discardManager = FindFirstObjectByType<DiscardManager>();
-        }
-
-        if (discardManager != null && discardManager.discardCardsCount > 0)
-        {
-            drawPile = discardManager.PullAllFromDiscard();
-            Utility.Shuffle(drawPile);
-            currentIndex = 0;
-        }
-    }
-
-    public void AddCardsFromDiscard(List<Card> _cards)
-    {
-        /*foreach (Card _card in _cards)
-        {
-            drawPile.Add(_card);
-        }
-
-        for (int i = 0; i < _cards.Count; i++)
-        {
-            drawPile.Add(_cards[i]);
-            Debug.Log("Card Name Add = " + drawPile[0].cardName);
-        }
-    }
-    */
     public void Shuffle()
     {
         for (int i = 0; i < Deck.Count; i++)

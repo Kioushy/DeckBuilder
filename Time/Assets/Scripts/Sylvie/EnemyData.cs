@@ -18,4 +18,7 @@ public class EnemyData : ScriptableObject
     public int damage = 10;
 
     public Sprite enemySprite;
+
+    public AudioClip attackSound;
+    public GameObject vfx;
 }

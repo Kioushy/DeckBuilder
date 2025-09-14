@@ -14,7 +14,6 @@ public class Health : MonoBehaviour
     [SerializeField] int MaxHealth;
     [SerializeField] int MinHealth;
     public float currentHealth;
-    private bool isDead = false;
 
     [SerializeField] float drainDuration = 60f;
 
@@ -26,8 +25,7 @@ public class Health : MonoBehaviour
     public enum HealthType { Enemy,Player}
     public HealthType htype;
 
-    public enum EnemyType { Shark, Meduse, Serpent }
-    public EnemyType eType;
+    public Enemies enemy;
 
     public GameFlowManager _GFm;
     
@@ -54,25 +52,7 @@ public class Health : MonoBehaviour
         }
         if (htype == HealthType.Enemy)
         {
-
-
-            switch (eType)
-            {
-                case EnemyType.Shark:
-                    // Initialize(transform.GetChild(1).GetComponent<SharkEnemy>().enemyData);
-                    break;
-
-                case EnemyType.Meduse:
-                    _GFm.healthE = GetComponent<Health>();
-                    InitializeEnemy(GetComponent<Enemies>().currentData);
-                    break;
-                case EnemyType.Serpent:
-                    //   Initialize(GetComponent<MedusaEnemy>().enemyData);
-                    break;
-            }
-            //  healthbarSlider = GameObject.FindGameObjectWithTag("HealthBarEnemy").GetComponent<Slider>();
-
-
+            _GFm.healthE = GetComponent<Health>();
         }
 
     }
@@ -111,7 +91,7 @@ public class Health : MonoBehaviour
 
         if (currentHealth <= 0)
         {
-            EnemyDie();
+          _GFm.DefeatPanel();
         }
 
     }
@@ -143,24 +123,11 @@ public class Health : MonoBehaviour
 
     }
 
-    public void EnemyDie()
-    {
-        isDead = true;
-        _GFm.EnemyDied();
-    }
-
-
 
     public void TakeDamageEnemy(int damageAmount)
     {
         currentHealth += damageAmount;
         UpdateHealthSlider();
-
-        if (currentHealth <= 0)
-        {
-            EnemyDie();
-        }
-
     }
 
     #endregion
@@ -197,12 +164,6 @@ public class Health : MonoBehaviour
         currentHealth = Mathf.Clamp(currentHealth, MinHealth, MaxHealth);
 
         UpdateHealthSlider();
-
-        if (currentHealth <= MinHealth)
-        {
-            GameFlowManager.Instance.PlayerDied();
-        }
-
  
     }
 

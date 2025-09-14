@@ -39,8 +39,7 @@ public class TurnManager : MonoBehaviour
     public void BattleSetup()
     {
         DeckM.Shuffle();
-        DeckM.DrawCard(HandManager.Instance.maxHandSize);
-        currentState = State.PlayerTurn;
+        PlayerTurn();
     }
 
     public void EnemyTurn() 
@@ -55,7 +54,7 @@ public class TurnManager : MonoBehaviour
     {
         // attack enemy
         Enemies.Attack(); 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(3f);
         PlayerTurn();
     }
 
@@ -64,8 +63,5 @@ public class TurnManager : MonoBehaviour
         currentState = State.PlayerTurn;
         DeckM.DrawCard(HandManager.Instance.maxHandSize);
     }
-
-    public void Lose() { }
-    public void Win() { }
 
 }

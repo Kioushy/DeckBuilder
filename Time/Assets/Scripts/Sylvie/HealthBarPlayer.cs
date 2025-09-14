@@ -191,7 +191,7 @@ public class HealthBarPlayer : MonoBehaviour
         //     // Notifie le GameFlowManager
         //     if (GameFlowManager.Instance != null)
         //     {
-        //         GameFlowManager.Instance.PlayerDied();
+        //         GameFlowManager.Instance.DefeatPanel();
         //     }
         // }
     }
@@ -295,7 +295,7 @@ public class HealthBarPlayer : MonoBehaviour
         // Très important : appeler le GameFlowManager
         if (GameFlowManager.Instance != null)
         {
-            GameFlowManager.Instance.PlayerDied();
+            GameFlowManager.Instance.DefeatPanel();
         }
 
         // Destroy(gameObject);

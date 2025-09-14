@@ -39,7 +39,8 @@ public class GameFlowManager : MonoBehaviour
     public Health healthE;
 
     public IntroManager introManager;
-    
+
+    public Enemies enemies;
 
     #region Unity Lifecycle Methods
     private void Awake()
@@ -92,7 +93,7 @@ public class GameFlowManager : MonoBehaviour
         FindSceneReferences();
         AssignButtonListeners();
         SetPanelState(false);
-        ShowLevel(currentLevelIndex);
+        //   ShowLevel(currentLevelIndex);
     }
 
     /// <summary>
@@ -114,7 +115,7 @@ public class GameFlowManager : MonoBehaviour
         {
             Debug.LogError("Décor introuvable : " + decorName);
         }
-        
+
         // Réinitialiser la vie du joueur
         HealthBarPlayer healthBar = Object.FindFirstObjectByType<HealthBarPlayer>();
         if (healthBar != null)
@@ -126,7 +127,7 @@ public class GameFlowManager : MonoBehaviour
         CameraFollow camFollow = Camera.main.GetComponent<CameraFollow>();
         if (camFollow != null && currentEnemy != null)
         {
-            camFollow.SetTarget(currentEnemy.transform);
+            camFollow.SetTarget();
         }
 
         // Lancer l’intro à chaque nouveau niveau
@@ -205,10 +206,10 @@ public class GameFlowManager : MonoBehaviour
         Time.timeScale = 1f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         introManager.StartLevelIntro();
-}
+    }
 
-// Retour au menu principal
-public void ReturnToMainMenu()
+    // Retour au menu principal
+    public void ReturnToMainMenu()
     {
         Time.timeScale = 1f;
         currentLevelIndex = 0; // Réinitialiser le niveau quand on retourne au menu.
@@ -216,29 +217,19 @@ public void ReturnToMainMenu()
     }
 
     // Quand le joueur meurt
-    public void PlayerDied()
+    public void DefeatPanel()
     {
         gamePaused = true;
         Time.timeScale = 0f;
         if (defeatPanel != null) defeatPanel.SetActive(true);
     }
 
-    // Quand l’ennemi meurt
-    public void EnemyDied()
+    public void VictoryPanel() 
     {
-        gamePaused = true;
         Time.timeScale = 0f;
-
-        // Pour vérifier qu'on est bien au dernier niveau
-        if (currentLevelIndex >= 2) // Dernier niveau atteint
-        {
-            if (victoryFinalText != null) victoryFinalText.SetActive(true);
-        }
-        else
-        {
-            if (victoryPanel != null) victoryPanel.SetActive(true);
-        }
+        victoryPanel.SetActive(true);
     }
+
 
     public bool IsGamePaused() => gamePaused;
 
@@ -252,12 +243,12 @@ public void ReturnToMainMenu()
     /// </summary>
     private void FindSceneReferences()
     {
-    Canvas canvas = UnityEngine.Object.FindAnyObjectByType<Canvas>();
+        Canvas canvas = UnityEngine.Object.FindAnyObjectByType<Canvas>();
         if (canvas != null)
         {
-          //  victoryPanel = canvas.transform.Find("VictoryPanel")?.gameObject;
-          //  defeatPanel = canvas.transform.Find("DefeatPanel")?.gameObject;
-          //  victoryFinalText = canvas.transform.Find("VictoryFinalText")?.gameObject;
+            //  victoryPanel = canvas.transform.Find("VictoryPanel")?.gameObject;
+            //  defeatPanel = canvas.transform.Find("DefeatPanel")?.gameObject;
+            //  victoryFinalText = canvas.transform.Find("VictoryFinalText")?.gameObject;
         }
         else
         {
@@ -331,7 +322,7 @@ public void ReturnToMainMenu()
     //     // Now you load the same scene, and the Start() method will handle loading the correct enemy
     //     SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     // }
- 
+
     #endregion
 
 

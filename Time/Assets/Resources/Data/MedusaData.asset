@@ -16,3 +16,5 @@ MonoBehaviour:
   maxHealth: 50
   damage: 10
   enemySprite: {fileID: -5469531881828925177, guid: 3d99095e85c390c42858db347d103368, type: 3}
+  attackSound: {fileID: 8300000, guid: c520511fd3250c7499258347d549c341, type: 3}
+  vfx: {fileID: 9106137791069938863, guid: 031ba8d52c4fbd03780a9c903ac210cd, type: 3}

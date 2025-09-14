@@ -2,32 +2,35 @@ using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
 {
-    private Transform target;
+    public Enemies enemies;
+    public Animator animationCamera;
 
-    public void SetTarget(Transform newTarget)
+    bool transition;
+    float speed;
+
+    public void Update()
     {
-        target = newTarget;
+        if (transition)
+        {
+            speed += 0.01f;
+        }
+     
     }
 
-    void LateUpdate()
+    public void SetTarget()
     {
-        if (target != null)
+        switch (enemies.currentEnemy) 
         {
-            Vector3 pos = target.position;
-            pos.z = transform.position.z; // Garder la profondeur de la caméra
-            transform.position = pos;
+            case 0:
+                animationCamera.SetTrigger("CameraOne");
+                break;
+            case 1:
+                animationCamera.SetTrigger("CameraTwo");
+                break;
+            case 2:
+                animationCamera.SetTrigger("CameraThree");
+                break;
         }
     }
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
