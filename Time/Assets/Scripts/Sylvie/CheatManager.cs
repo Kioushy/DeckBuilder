@@ -31,7 +31,7 @@ public class CheatManager : MonoBehaviour
     // On ré-exécute cette méthode chaque fois qu'un niveau change
     public void FindCurrentEnemy()
     {
-        // On cherche l'ennemi en fonction du tag "Enemy" ou de son script
+        // On cherche l'ennemi en fonction du tag "turnM" ou de son script
         currentEnemy = Object.FindFirstObjectByType<Health>();
         if (currentEnemy == null)
         {

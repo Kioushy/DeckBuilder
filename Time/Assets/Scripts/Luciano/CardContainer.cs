@@ -11,7 +11,7 @@ public class CardContainer : MonoBehaviour
 
     public void Start()
     {
-      _healthE = GameObject.FindGameObjectWithTag("Enemy").transform.parent.GetComponent<Health>();
+      _healthE = GameObject.FindGameObjectWithTag("Enemy").GetComponent<Health>();
       _healthP = GameObject.FindGameObjectWithTag("HealthBarPlayer").GetComponent<Health>();
     }   
 

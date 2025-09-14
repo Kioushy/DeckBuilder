@@ -4,7 +4,7 @@ using UnityEngine.EventSystems;
 public class CardDropOnEnemy2D : MonoBehaviour, IEndDragHandler
 {
     [Header("Ciblage")]
-    [SerializeField] private LayerMask enemyLayer;       // Doit pointer vers la layer "Enemy"
+    [SerializeField] private LayerMask enemyLayer;       // Doit pointer vers la layer "turnM"
     [SerializeField] private Camera worldCamera;         // Ta Main Camera (celle qui voit la scène 2D)
     [SerializeField] private float aimAssistRadius = 0.35f; // Tolérance si tu lâches "près" de l'ennemi
 
@@ -19,7 +19,7 @@ public class CardDropOnEnemy2D : MonoBehaviour, IEndDragHandler
         // Si l’inspector n’a pas la layer, on essaie de l’auto-déduire
         if (enemyLayer.value == 0)
         {
-            int idx = LayerMask.NameToLayer("Enemy");
+            int idx = LayerMask.NameToLayer("turnM");
             if (idx != -1) enemyLayer = 1 << idx;
         }
     }

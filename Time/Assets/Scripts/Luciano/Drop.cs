@@ -1,6 +1,8 @@
+using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using System;
+using static UnityEngine.EventSystems.EventTrigger;
 
 public class DropZone : MonoBehaviour, IDropHandler
 {
@@ -8,6 +10,7 @@ public class DropZone : MonoBehaviour, IDropHandler
     public DeckManager _DeckM;
     public TurnManager _TurnM;
     public HandManager _HandM;
+    public ChatManager chat;
     public Health healthE;
     public Enemies Enemie;
 
@@ -34,22 +37,28 @@ public class DropZone : MonoBehaviour, IDropHandler
             }
             else
             {
-                if (healthE.enemy.currentEnemy == 2)
-                {
-                    _GFm.VictoryPanel();
-             
-                }
-                else
-                {
-                    Enemie.UpdateEnemy();
-                }
-           
+                StartCoroutine(WaitUpdateEnemy());
+
             }
-
-
             Destroy(GameManager.instance.currentSelectedObject);
         }
     }
 
+
+    public IEnumerator WaitUpdateEnemy()
+    {
+        _TurnM.currentState = TurnManager.State.Busy;
+        chat.UpdateChat(Enemie.currentData.dialogues[1]);
+        yield return new WaitForSeconds(4f);
+
+        if (healthE.enemy.currentEnemy == 2)
+        {
+            _GFm.VictoryPanel();
+        }
+        else
+        {
+            Enemie.UpdateEnemy();
+        }
+    }
 
 }

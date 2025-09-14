@@ -5,8 +5,6 @@ using UnityEngine.UI;
 // Ce script s'occupe de la santé de l'ennemi et instancie sa barre de vie
 public class Health : MonoBehaviour
 {
-   
-
     [Tooltip("Prefab de la barre de vie qui contient un Canvas en mode 'World Space")]
 
     [Header("Stats")]
@@ -28,7 +26,9 @@ public class Health : MonoBehaviour
     public Enemies enemy;
 
     public GameFlowManager _GFm;
-    
+
+    public ChatManager chat;
+
     private void Start()
     {
 
@@ -91,7 +91,8 @@ public class Health : MonoBehaviour
 
         if (currentHealth <= 0)
         {
-          _GFm.DefeatPanel();
+            chat.UpdateChat(enemy.currentData.dialogues[2]);
+            _GFm.DefeatPanel();
         }
 
     }

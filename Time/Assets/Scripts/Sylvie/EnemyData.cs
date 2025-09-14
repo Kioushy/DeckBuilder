@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
@@ -21,4 +22,9 @@ public class EnemyData : ScriptableObject
 
     public AudioClip attackSound;
     public GameObject vfx;
+
+    [Tooltip("0: intro , 1 : Win , 2 : Lose")]
+    [TextArea(0,5)]
+    public List <string> dialogues;
+
 }

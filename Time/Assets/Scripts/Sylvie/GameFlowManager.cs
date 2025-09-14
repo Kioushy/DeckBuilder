@@ -40,7 +40,7 @@ public class GameFlowManager : MonoBehaviour
 
     public IntroManager introManager;
 
-    public Enemies enemies;
+    public TurnManager TurnM;
 
     #region Unity Lifecycle Methods
     private void Awake()

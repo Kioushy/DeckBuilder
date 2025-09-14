@@ -16,7 +16,6 @@ public class Enemies : MonoBehaviour
     public int currentEnemy;
 
     public AudioSource audioSource;
-    public string dialogue;
 
     public enum TypeEnemy { Meduse, Shark, Serpent }
     public TypeEnemy typeEnemy;
@@ -50,14 +49,11 @@ public class Enemies : MonoBehaviour
 
     }
 
-    void LaunchDialogue()
-    {
 
-    }
 
     public void UpdateEnemy()
     {
-        Debug.Log("Update Enemy");
+        Debug.Log("Update turnM");
 
         if (health.currentHealth <0)
         {

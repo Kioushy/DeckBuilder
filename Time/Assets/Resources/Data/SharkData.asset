@@ -18,3 +18,7 @@ MonoBehaviour:
   enemySprite: {fileID: 9032407522959412017, guid: cf0256b0f7a2e7a42ba10aaf36aefd2b, type: 3}
   attackSound: {fileID: 8300000, guid: ec97abc8f5da56c4882cf39caf8aa3db, type: 3}
   vfx: {fileID: 9106137791069938863, guid: 031ba8d52c4fbd03780a9c903ac210cd, type: 3}
+  dialogues:
+  - This jellyfish was so useless.
+  - "Smelled your fear\u2026 and your defeat!"
+  - "I\u2019ll be back\u2026 sharper than ever!"

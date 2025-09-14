@@ -3,12 +3,12 @@ using UnityEngine;
 [System.Serializable]
 public class DialogueLine
 {
-    public string speaker; // Qui parle (Enemy ou Player)
+    public string speaker; // Qui parle (turnM ou Player)
     [TextArea(2, 5)]
     public string text;   // La phrase
 }
 
-[CreateAssetMenu(fileName = "NewEnemyDialogue", menuName = "Dialogue/Enemy Dialogue")]
+[CreateAssetMenu(fileName = "NewEnemyDialogue", menuName = "Dialogue/turnM Dialogue")]
 public class EnemyDialogue : ScriptableObject
 {
     public string enemyName;
@@ -19,6 +19,6 @@ public class EnemyDialogue : ScriptableObject
     [Header("Victory Dialogue (Player gagne)")]
     public DialogueLine[] victoryLines;
 
-    [Header("Defeat Dialogue (Enemy gagne)")]
+    [Header("Defeat Dialogue (turnM gagne)")]
     public DialogueLine[] defeatLines;
 }

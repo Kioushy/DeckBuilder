@@ -1,7 +1,8 @@
-using UnityEngine;
-using System.Collections.Generic;
+using System;
 using System.Collections;
+using System.Collections.Generic;
 using TMPro;
+using UnityEngine;
 
 public class TurnManager : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class TurnManager : MonoBehaviour
     public State currentState;
 
     public Enemies Enemies;
+    public ChatManager chat;
 
     private void Awake()
     {
@@ -25,26 +27,25 @@ public class TurnManager : MonoBehaviour
 
 
     }
-    void Start()
-    {
-       
-    }
-
-    void Update()
-    {
-
-    }
-
 
     public void BattleSetup()
     {
+        if (Enemies.currentEnemy < 0)
+        {
+            chat.UpdateChat(Enemies.Datas[0].dialogues[0]);
+        }
+        else
+        {
+            chat.UpdateChat(Enemies.currentData.dialogues[0]);
+        }
+
         DeckM.Shuffle();
         PlayerTurn();
     }
 
     public void EnemyTurn() 
     {
-        Debug.Log("Enemy turn");
+        Debug.Log("turnM turn");
         currentState = State.EnemyTurn;
         StartCoroutine(AttackEnemy());
 
