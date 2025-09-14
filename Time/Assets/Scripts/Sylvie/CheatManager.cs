@@ -32,7 +32,7 @@ public class CheatManager : MonoBehaviour
     public void FindCurrentEnemy()
     {
         // On cherche l'ennemi en fonction du tag "Enemy" ou de son script
-        currentEnemy = FindObjectOfType<Health>();
+        currentEnemy = Object.FindFirstObjectByType<Health>();
         if (currentEnemy == null)
         {
             Debug.LogWarning("CheatManager: Aucun ennemi trouvé dans la scène.");

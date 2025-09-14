@@ -123,7 +123,7 @@ public class GameFlowManagerOld : MonoBehaviour
     /// </summary>
     private void FindUiPanels()
     {
-        Canvas canvas = FindObjectOfType<Canvas>();
+        Canvas canvas = Object.FindFirstObjectByType<Canvas>();
         if (canvas == null)
         {
             Debug.LogError("GameFlowManager: Aucun Canvas trouvé dans la scène.");

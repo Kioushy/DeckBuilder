@@ -116,7 +116,7 @@ public class GameFlowManager : MonoBehaviour
         }
         
         // Réinitialiser la vie du joueur
-        HealthBarPlayer healthBar = FindObjectOfType<HealthBarPlayer>();
+        HealthBarPlayer healthBar = Object.FindFirstObjectByType<HealthBarPlayer>();
         if (healthBar != null)
         {
             healthBar.ResetHealth();
@@ -205,10 +205,10 @@ public class GameFlowManager : MonoBehaviour
         Time.timeScale = 1f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         introManager.StartLevelIntro();
-    }
+}
 
-    // Retour au menu principal
-    public void ReturnToMainMenu()
+// Retour au menu principal
+public void ReturnToMainMenu()
     {
         Time.timeScale = 1f;
         currentLevelIndex = 0; // Réinitialiser le niveau quand on retourne au menu.
